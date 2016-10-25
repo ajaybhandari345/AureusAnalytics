@@ -18,691 +18,671 @@
             </div>
         </div>
     </div>
-<div style="width:90%; margin:0 auto; background-color:#F5F5F5;">
+    <div style="width:90%; margin:0 auto; background-color:#F5F5F5;">
 
-<div style="width:100%;float:left;margin:0 auto;">
+        <div style="width:100%;float:left;margin:0 auto;">
             <div style="width:100%;float:left;">
                 <div id="aside">
-			    <ul class="tabs">
-				    <li class="tabsli"><a href="#one">Dashboard</a></li>
-				    <li class="tabsli"><a href="#three">Key Drivers</a></li>
-				    <li class="tabsli"><a href="#four">Action Planner</a></li>
-			    </ul>
-		    </div>
-           </div>
-</div>
-<div class="wrap">
-		
-		<div class="contentMain">
-        
-		<div class="content" id="content">
-        
-	         <div id="one" class="tab_content">
-        <div class="dataContainer" style="box-shadow:none;padding-bottom:0;margin-bottom:0;margin-top:10px">
-            <div style="width:100%;float:left">
-                <div style="width:30%;float:left">
-                    <label> Store Number :</label> <input type="text" value="xxx-xxxxxx-xxxx" disabled />
-                 </div>
-
-                <div style="width:28%;float:left">
-                    <label> Store Address :</label> <input type="text" value="xxxxxxxxxx" disabled />
-                </div>
-                    </div>
-            <div style="width:100%;float:left">
-                <div style="width:30%;float:left">
-                    <label> Forecast Level :</label>
-                    <select ng-model="foreCastLevel">
-                        <option value="">--Select--</option>
-                        <option value="1" selected>Daily</option>
-                        <option value="2">Weekly</option>
-                        <option value="3">Monthly</option>
-                        <option value="4">Quarterly</option>
-                    </select>
-                </div>
-                <div style="width:40%;float:left" ng-show="foreCastLevel=='1'">
-                    <label> Forecast Time Range :</label>
-                    <div style="display:inline-block" id="dateBox"></div>
-                </div>
-                <div style="width:40%;float:left" ng-if="foreCastLevel=='2'">
-                    <label> Forecast Time Range :</label>
-                    <input type="week" name="input" ng-model="weekrange.value"
-                           placeholder="YYYY-W##" min="2007-W32"
-                           max="2020-W52" ng-change="setRange(weekrange.value,'w')"/>
-                </div>
-                <div style="width:40%;float:left" ng-if="foreCastLevel=='3'">
-                    <label> Forecast Time Range :</label>
-                    <select ng-model="range" ng-change="setRange(range,'m')">
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                </div>
-                <div style="width:40%;float:left" ng-if="foreCastLevel=='4'">
-                    <label> Forecast Time Range :</label>
-                    <select ng-model="range" ng-change="setRange(range,'q')">
-                        <option value="Q1">Q1</option>
-                        <option value="Q2">Q2</option>
-                        <option value="Q3">Q3</option>
-                        <option value="Q4">Q4</option>
-                    </select>
-                </div>
-                <div style="width:20%;float:left">
-                    <button type="submit" class="btnlock" ng-click="getReportData()">Get Report</button>
-                </div>
-             </div>
-                
-                </div>
-            <div class="tab1div1" style="box-shadow:none;margin-bottom:0;padding-bottom:0">
-                        
-                    <div class="rectBoxTop">Sales <br> ${{loyalSalesForecast}}</div>
-                    <div class="flowArrows">
-                        <div class="lineV"></div>
-                                
-                    </div>
-                    <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
-                    <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
-                           
-                <div style="float:left;width:100%">
-                    <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                    <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                </div>
-                    <div style="float:left;width:100%">
-                        <div style="width:45%;float:left;"><div class="point"></div></div>
-                        <div style="width:45%;margin:0 auto;float:right;"><div class="point"></div></div>
-                    </div>
-                    <div style="float:left;width:100%;">
-                        <div class="rectBox" style="float:left">Sales from Repeat Customers <br> ${{NewSalesForecast}}</div>
-                        <div class="rectBox" style="float:right">Sales from new Customers <br> ${{SalesForecast}}</div>
-                    </div>
-                <div style="float:left;width:100%">
-                    <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                    <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                </div>
-                <div style="float:left;width:100%">
-                    <div style="width:45%;float:left;"><div class="point"></div></div>
-                    <div style="width:45%;float:right;"><div class="point"></div></div>
-                </div>
-                <div style="float:left;width:100%;">
-                    <div style="float:left;width:49%;margin-right:2%">
-                        <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
-                        <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
-                        <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                        <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                        <div style="float:left;width:100%;">
-                            <div class="rectBox" style="float:left">Avg. Ticket-Size: <br> ${{LoyalAvgForecast}}</div>
-                            <div class="rectBox" style="float:right">Traffic from Loyal <br> ${{LoyalNumForecast}}</div>
-                        </div>
-                    </div>
-                    <div style="float:left;width:49%;">
-                        <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
-                        <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
-                        <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                        <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                        <div style="float:left;width:100%;">
-                            <div class="rectBox" style="float:left">Avg. Ticket-Size: <br> ${{NewAvgForecast}}</div>
-                            <div class="rectBox" style="float:right">Traffic from New <br> ${{NewNumForecast}}</div>
-                        </div>
-                    </div>
-                </div>
-
-
-                </div>      
-            
-            <div class="tab1div4">
-                <div id="freqByStoreContainer" style="width:100%"></div>
-            </div>
-        </div>
-             
-        <div id="three" class="tab_content">
-            <div style="float:left;width:100%;">
-                <div style="float:left;width:20%;text-align:right;">
-                    <ul class="tabsli_kd">
-                        <li class="tabsli_kd"><a href="#" onclick="switchTab('1')">Sales From Repeat Customers</a></li>
-                        <li class="tabsli_kd"><a href="#" onclick="switchTab('2')">Sales From New Customers</a></li>
+                    <ul class="tabs">
+                        <li class="tabsli"><a href="#one">Dashboard</a></li>
+                        <li class="tabsli"><a href="#three">Key Drivers</a></li>
+                        <li class="tabsli"><a href="#four">Action Planner</a></li>
                     </ul>
                 </div>
-                <div style="float:left;width:80%;">
-
-                    <!--Repeat Customers-->
-                    <div style="float:left;width:100%;padding:10px;background-color:rgb(222,235,247)" id="panel1">
-                        <div class="rectBoxTop">Sales From Repeat Customers <br> ${{NewSalesForecast}}</div>
-                    <div class="flowArrows">
-                        <div class="lineV"></div>
-                                
-                    </div>
-                    <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
-                    <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
-                           
-                <div style="float:left;width:100%">
-                    <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                    <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                </div>
-                    <div style="float:left;width:100%">
-                        <div style="width:45%;float:left;"><div class="point"></div></div>
-                        <div style="width:45%;margin:0 auto;float:right;"><div class="point"></div></div>
-                    </div>
-                    <div style="float:left;width:100%;">
-                        <div class="rectBox" style="float:left">Avg. Ticket-Size <br> ${{LoyalAvgForecast}}</div>
-                        <div class="rectBox" style="float:right">Traffic From Loyal Customers <br> ${{LoyalNumForecast}}</div>
-                    </div>
-                        <div style="float:left;width:100%;margin-top:20px">
-
-                            <div style="float:left;width:45%;text-align:center;margin:0 auto;">
-                                <label>Key Drivers:</label>
-                                <table style="margin:0 auto">
-                                    <tr style="background-color:rgb(166,166,166);">
-                                        <td></td>
-                                        <td>Current Value</td>
-                                        <td>Target Value</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">Food Quality</td>
-                                        <td style="background-color:rgb(214,220,229);"></td>
-                                        <td style="background-color:rgb(189,215,238);"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">Weather forecast</td>
-                                        <td style="background-color:rgb(214,220,229);">72<sup>&deg;</sup>F</td>
-                                        <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);"># of seats</td>
-                                        <td style="background-color:rgb(214,220,229);">40</td>
-                                        <td style="background-color:rgb(189,215,238);">40</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">&nbsp;</td>
-                                        <td style="background-color:rgb(214,220,229);"></td>
-                                        <td style="background-color:rgb(189,215,238);"></td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div style="float:right;width:45%;text-align:center;margin:0 auto">
-                                <label>Key Drivers:</label>
-                                <table style="margin:0 auto">
-                                    <tr style="background-color:rgb(166,166,166);">
-                                        <td></td>
-                                        <td>Current Value</td>
-                                        <td>Target Value</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">Food Quality</td>
-                                        <td style="background-color:rgb(214,220,229);"></td>
-                                        <td style="background-color:rgb(189,215,238);"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">Service Quality</td>
-                                        <td style="background-color:rgb(214,220,229);"></td>
-                                        <td style="background-color:rgb(189,215,238);"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">Weather forecast</td>
-                                        <td style="background-color:rgb(214,220,229);">72<sup>&deg;</sup>F</td>
-                                        <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">Price</td>
-                                        <td style="background-color:rgb(214,220,229);"></td>
-                                        <td style="background-color:rgb(189,215,238);"></td>
-                                    </tr>
-
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!--Repeat Customers-->
-                    <!--New Customers-->
-                    <div style="float:left;width:100%;padding:10px;background-color:rgb(222,235,247)" id="panel2">
-                        <div class="rectBoxTop">Sales From New Customers <br> ${{SalesForecast}}</div>
-                        <div class="flowArrows">
-                            <div class="lineV"></div>
-
-                        </div>
-                        <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
-                        <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
-
-                        <div style="float:left;width:100%">
-                            <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                            <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                        </div>
-                        <div style="float:left;width:100%">
-                            <div style="width:45%;float:left;"><div class="point"></div></div>
-                            <div style="width:45%;margin:0 auto;float:right;"><div class="point"></div></div>
-                        </div>
-                        <div style="float:left;width:100%;">
-                            <div class="rectBox" style="float:left">Avg. Ticket-Size <br> ${{NewAvgForecast}}</div>
-                            <div class="rectBox" style="float:right">Traffic From New Customers <br> ${{NewNumForecast}}</div>
-                        </div>
-                        <div style="float:left;width:100%;margin-top:20px">
-
-                            <div style="float:left;width:45%;text-align:center;margin:0 auto;">
-                                <label>Key Drivers:</label>
-                                <table style="margin:0 auto">
-                                    <tr style="background-color:rgb(166,166,166);">
-                                        <td></td>
-                                        <td>Current Value</td>
-                                        <td>Target Value</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">Loyalty</td>
-                                        <td style="background-color:rgb(214,220,229);"></td>
-                                        <td style="background-color:rgb(189,215,238);"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">Weather Forecast</td>
-                                        <td style="background-color:rgb(214,220,229);">72<sup>&deg;</sup>F</td>
-                                        <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);"># of seats</td>
-                                        <td style="background-color:rgb(214,220,229);">40</td>
-                                        <td style="background-color:rgb(189,215,238);">40</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">&nbsp;</td>
-                                        <td style="background-color:rgb(214,220,229);"></td>
-                                        <td style="background-color:rgb(189,215,238);"></td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div style="float:right;width:45%;text-align:center;margin:0 auto">
-                                <label>Key Drivers:</label>
-                                <table style="margin:0 auto">
-                                    <tr style="background-color:rgb(166,166,166);">
-                                        <td></td>
-                                        <td>Current Value</td>
-                                        <td>Target Value</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">Loyalty</td>
-                                        <td style="background-color:rgb(214,220,229);"></td>
-                                        <td style="background-color:rgb(189,215,238);"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">Service Quality</td>
-                                        <td style="background-color:rgb(214,220,229);"></td>
-                                        <td style="background-color:rgb(189,215,238);"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">Weather forecast</td>
-                                        <td style="background-color:rgb(214,220,229);">72<sup>&deg;</sup>F</td>
-                                        <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">Price</td>
-                                        <td style="background-color:rgb(214,220,229);"></td>
-                                        <td style="background-color:rgb(189,215,238);"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!--New Customers-->
-                </div>
             </div>
-            
-                   
         </div>
-        </div><!-- end tab_content -->
+        <div class="wrap">
+
+            <div class="contentMain">
+
+                <div class="content" id="content">
+
+                    <div id="one" class="tab_content">
+                        <div class="dataContainer" style="box-shadow:none;padding-bottom:0;margin-bottom:0;margin-top:10px">
+                            <div style="width:100%;float:left">
+                                <div style="width:30%;float:left">
+                                    <label> Store Number :</label> <input type="text" value="xxx-xxxxxx-xxxx" disabled />
+                                </div>
+
+                                <div style="width:28%;float:left">
+                                    <label> Store Address :</label> <input type="text" value="xxxxxxxxxx" disabled />
+                                </div>
+                            </div>
+                            <div style="width:100%;float:left">
+                                <div style="width:30%;float:left">
+                                    <label> Forecast Level :</label>
+                                    <select ng-model="foreCastLevel">
+                                        <option value="">--Select--</option>
+                                        <option value="1" selected>Daily</option>
+                                        <option value="2">Weekly</option>
+                                        <option value="3">Monthly</option>
+                                        <option value="4">Quarterly</option>
+                                    </select>
+                                </div>
+                                <div style="width:40%;float:left" ng-show="foreCastLevel=='1'">
+                                    <label> Forecast Time Range :</label>
+                                    <div style="display:inline-block" id="dateBox"></div>
+                                </div>
+                                <div style="width:40%;float:left" ng-if="foreCastLevel=='2'">
+                                    <label> Forecast Time Range :</label>
+                                    <input type="week" name="input" ng-model="weekrange.value"
+                                           placeholder="YYYY-W##" min="2007-W32"
+                                           max="2020-W52" ng-change="setRange(weekrange.value,'w')" />
+                                </div>
+                                <div style="width:40%;float:left" ng-if="foreCastLevel=='3'">
+                                    <label> Forecast Time Range :</label>
+                                    <select ng-model="range" ng-change="setRange(range,'m')">
+                                        <option value="1">January</option>
+                                        <option value="2">February</option>
+                                        <option value="3">March</option>
+                                        <option value="4">April</option>
+                                        <option value="5">May</option>
+                                        <option value="6">June</option>
+                                        <option value="7">July</option>
+                                        <option value="8">August</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div>
+                                <div style="width:40%;float:left" ng-if="foreCastLevel=='4'">
+                                    <label> Forecast Time Range :</label>
+                                    <select ng-model="range" ng-change="setRange(range,'q')">
+                                        <option value="Q1">Q1</option>
+                                        <option value="Q2">Q2</option>
+                                        <option value="Q3">Q3</option>
+                                        <option value="Q4">Q4</option>
+                                    </select>
+                                </div>
+                                <div style="width:20%;float:left">
+                                    <button type="submit" class="btnlock" ng-click="getReportData()">Get Report</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab1div1" style="box-shadow:none;margin-bottom:0;padding-bottom:0">
+
+                            <div class="rectBoxTop">Sales <br> ${{loyalSalesForecast}}</div>
+                            <div class="flowArrows">
+                                <div class="lineV"></div>
+
+                            </div>
+                            <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
+                            <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
+
+                            <div style="float:left;width:100%">
+                                <div style="width:45%;float:left;"><div class="lineV"></div></div>
+                                <div style="width:45%;float:right;"><div class="lineV"></div></div>
+                            </div>
+                            <div style="float:left;width:100%">
+                                <div style="width:45%;float:left;"><div class="point"></div></div>
+                                <div style="width:45%;margin:0 auto;float:right;"><div class="point"></div></div>
+                            </div>
+                            <div style="float:left;width:100%;">
+                                <div class="rectBox" style="float:left">Sales from Repeat Customers <br> ${{NewSalesForecast}}</div>
+                                <div class="rectBox" style="float:right">Sales from new Customers <br> ${{SalesForecast}}</div>
+                            </div>
+                            <div style="float:left;width:100%">
+                                <div style="width:45%;float:left;"><div class="lineV"></div></div>
+                                <div style="width:45%;float:right;"><div class="lineV"></div></div>
+                            </div>
+                            <div style="float:left;width:100%">
+                                <div style="width:45%;float:left;"><div class="point"></div></div>
+                                <div style="width:45%;float:right;"><div class="point"></div></div>
+                            </div>
+                            <div style="float:left;width:100%;">
+                                <div style="float:left;width:49%;margin-right:2%">
+                                    <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
+                                    <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
+                                    <div style="width:45%;float:left;"><div class="lineV"></div></div>
+                                    <div style="width:45%;float:right;"><div class="lineV"></div></div>
+                                    <div style="float:left;width:100%;">
+                                        <div class="rectBox" style="float:left">Avg. Ticket-Size: <br> ${{LoyalAvgForecast}}</div>
+                                        <div class="rectBox" style="float:right">Traffic from Loyal <br> ${{LoyalNumForecast}}</div>
+                                    </div>
+                                </div>
+                                <div style="float:left;width:49%;">
+                                    <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
+                                    <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
+                                    <div style="width:45%;float:left;"><div class="lineV"></div></div>
+                                    <div style="width:45%;float:right;"><div class="lineV"></div></div>
+                                    <div style="float:left;width:100%;">
+                                        <div class="rectBox" style="float:left">Avg. Ticket-Size: <br> ${{NewAvgForecast}}</div>
+                                        <div class="rectBox" style="float:right">Traffic from New <br> ${{NewNumForecast}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="tab1div4">
+                            <div id="freqByStoreContainer" style="width:100%"></div>
+                        </div>
+                    </div>
+
+                    <div id="three" class="tab_content">
+                        <div style="float:left;width:100%;">
+                            <div style="float:left;width:20%;text-align:right;">
+                                <ul class="tabsli_kd">
+                                    <li class="tabsli_kd"><a href="#" onclick="switchTab('1')">Sales From Repeat Customers</a></li>
+                                    <li class="tabsli_kd"><a href="#" onclick="switchTab('2')">Sales From New Customers</a></li>
+                                </ul>
+                            </div>
+                            <div style="float:left;width:80%;">
+
+                                <!--Repeat Customers-->
+                                <div style="float:left;width:100%;padding:10px;background-color:rgb(222,235,247)" id="panel1">
+                                    <div class="rectBoxTop">Sales From Repeat Customers <br> ${{NewSalesForecast}}</div>
+                                    <div class="flowArrows">
+                                        <div class="lineV"></div>
+
+                                    </div>
+                                    <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
+                                    <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
+
+                                    <div style="float:left;width:100%">
+                                        <div style="width:45%;float:left;"><div class="lineV"></div></div>
+                                        <div style="width:45%;float:right;"><div class="lineV"></div></div>
+                                    </div>
+                                    <div style="float:left;width:100%">
+                                        <div style="width:45%;float:left;"><div class="point"></div></div>
+                                        <div style="width:45%;margin:0 auto;float:right;"><div class="point"></div></div>
+                                    </div>
+                                    <div style="float:left;width:100%;">
+                                        <div class="rectBox" style="float:left">Avg. Ticket-Size <br> ${{LoyalAvgForecast}}</div>
+                                        <div class="rectBox" style="float:right">Traffic From Loyal Customers <br> ${{LoyalNumForecast}}</div>
+                                    </div>
+                                    <div style="float:left;width:100%;margin-top:20px">
+
+                                        <div style="float:left;width:45%;text-align:center;margin:0 auto;">
+                                            <label>Key Drivers:</label>
+                                            <table style="margin:0 auto">
+                                                <tr style="background-color:rgb(166,166,166);">
+                                                    <td></td>
+                                                    <td>Current Value</td>
+                                                    <td>Target Value</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Food Quality</td>
+                                                    <td style="background-color:rgb(214,220,229);"></td>
+                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Weather forecast</td>
+                                                    <td style="background-color:rgb(214,220,229);">72<sup>&deg;</sup>F</td>
+                                                    <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);"># of seats</td>
+                                                    <td style="background-color:rgb(214,220,229);">40</td>
+                                                    <td style="background-color:rgb(189,215,238);">40</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">&nbsp;</td>
+                                                    <td style="background-color:rgb(214,220,229);"></td>
+                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div style="float:right;width:45%;text-align:center;margin:0 auto">
+                                            <label>Key Drivers:</label>
+                                            <table style="margin:0 auto">
+                                                <tr style="background-color:rgb(166,166,166);">
+                                                    <td></td>
+                                                    <td>Current Value</td>
+                                                    <td>Target Value</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Food Quality</td>
+                                                    <td style="background-color:rgb(214,220,229);"></td>
+                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Service Quality</td>
+                                                    <td style="background-color:rgb(214,220,229);"></td>
+                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Weather forecast</td>
+                                                    <td style="background-color:rgb(214,220,229);">72<sup>&deg;</sup>F</td>
+                                                    <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Price</td>
+                                                    <td style="background-color:rgb(214,220,229);"></td>
+                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!--Repeat Customers-->
+                                <!--New Customers-->
+                                <div style="float:left;width:100%;padding:10px;background-color:rgb(222,235,247)" id="panel2">
+                                    <div class="rectBoxTop">Sales From New Customers <br> ${{SalesForecast}}</div>
+                                    <div class="flowArrows">
+                                        <div class="lineV"></div>
+
+                                    </div>
+                                    <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
+                                    <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
+
+                                    <div style="float:left;width:100%">
+                                        <div style="width:45%;float:left;"><div class="lineV"></div></div>
+                                        <div style="width:45%;float:right;"><div class="lineV"></div></div>
+                                    </div>
+                                    <div style="float:left;width:100%">
+                                        <div style="width:45%;float:left;"><div class="point"></div></div>
+                                        <div style="width:45%;margin:0 auto;float:right;"><div class="point"></div></div>
+                                    </div>
+                                    <div style="float:left;width:100%;">
+                                        <div class="rectBox" style="float:left">Avg. Ticket-Size <br> ${{NewAvgForecast}}</div>
+                                        <div class="rectBox" style="float:right">Traffic From New Customers <br> ${{NewNumForecast}}</div>
+                                    </div>
+                                    <div style="float:left;width:100%;margin-top:20px">
+
+                                        <div style="float:left;width:45%;text-align:center;margin:0 auto;">
+                                            <label>Key Drivers:</label>
+                                            <table style="margin:0 auto">
+                                                <tr style="background-color:rgb(166,166,166);">
+                                                    <td></td>
+                                                    <td>Current Value</td>
+                                                    <td>Target Value</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Loyalty</td>
+                                                    <td style="background-color:rgb(214,220,229);"></td>
+                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Weather Forecast</td>
+                                                    <td style="background-color:rgb(214,220,229);">72<sup>&deg;</sup>F</td>
+                                                    <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);"># of seats</td>
+                                                    <td style="background-color:rgb(214,220,229);">40</td>
+                                                    <td style="background-color:rgb(189,215,238);">40</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">&nbsp;</td>
+                                                    <td style="background-color:rgb(214,220,229);"></td>
+                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div style="float:right;width:45%;text-align:center;margin:0 auto">
+                                            <label>Key Drivers:</label>
+                                            <table style="margin:0 auto">
+                                                <tr style="background-color:rgb(166,166,166);">
+                                                    <td></td>
+                                                    <td>Current Value</td>
+                                                    <td>Target Value</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Loyalty</td>
+                                                    <td style="background-color:rgb(214,220,229);"></td>
+                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Service Quality</td>
+                                                    <td style="background-color:rgb(214,220,229);"></td>
+                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Weather forecast</td>
+                                                    <td style="background-color:rgb(214,220,229);">72<sup>&deg;</sup>F</td>
+                                                    <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Price</td>
+                                                    <td style="background-color:rgb(214,220,229);"></td>
+                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--New Customers-->
+                            </div>
+                        </div>
 
                         <div class="tab2div4" style="position:relative">
                             <div id="container2"></div>
                         </div>
-                    </div>
-
-                </div>
-
-                <div class="tab3div6" style="display:none;height:850px" id="secondContainer"></div>
-                <div class="tab3div6" style="display:none;height:450px" id="thirdContainer">
-                    <div style="width:48%;float:left;padding-right:30px">
-                        <span style="font-size:30px;color: #355066;font-weight:bold; padding-bottom:15px; padding-left:100px">Positive Comments Word Cloud</span> <br />
-                        <img height="400" width="600" src="Images/Image1.png" />
-                    </div>
-                    <div style="width:48%;float:left">
-                        <span style="font-size:30px;color: #355066;font-weight:bold; padding-bottom:15px; padding-left:100px">Negative Comments Word Cloud</span>
-                        <img height="400" width="600" src="Images/Image2.png" />
-
 
                     </div>
-                </div>
+                    <!-- end tab_content -->
 
-                <div class="tab3div6" style="display:none">
-
-                    <div id="orderAccuracyByStore" style="display:none; width:1050px; height:400px"></div>
-                    <div id="tfByStore" style="display:none; width:1050px; height:400px"></div>
-                    <div id="mvByStore" style="display:none; width:1050px; height:400px"></div>
-                    <div id="osByStore" style="display:none; width:1050px; height:450px"></div>
-                </div>
+                   
 
 
-            </div><!-- end tab_content -->
 
-            <div id="four" class="tab_content">
 
-                <div class="tab4div1">
-                    <!--<div class="rangeSlider" style="padding-bottom:15px">-->
-                    <div style="width:100%; height:25%; margin-bottom:30%; margin-bottom:32%;" id="key1">
-                        <div id="slider1" style="float:left;margin-top:0%; text-align:right; color:#173C57;cursor: pointer; "><b>Wait Time</b></div> <br /> <div id="waitTime" style="height: 25%; width:100%; float:left"></div>
+
+
+                    <div class="tab3div6" style="display:none">
+
+                        <div id="orderAccuracyByStore" style="display:none; width:1050px; height:400px"></div>
+                        <div id="tfByStore" style="display:none; width:1050px; height:400px"></div>
+                        <div id="mvByStore" style="display:none; width:1050px; height:400px"></div>
+                        <div id="osByStore" style="display:none; width:1050px; height:450px"></div>
                     </div>
 
 
-                    <div style="width:100%; height:25%;  border-top:solid 1px; margin-bottom:32%;" id="key2">
-                        <div id="slider2" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Drink Quality</b></div> <br /><div id="orderAccuracy" style="height: 25%; width:100%; float:left"></div>
-                    </div>
-                    <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key3">
-                        <div id="slider3" style=" float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Food Quality</b></div> <br /><div id="menuVariety" style="height: 25%; width:100%; float:left"></div>
-                    </div>
+                    <!-- end tab_content -->
 
+                    <div id="four" class="tab_content">
 
-                    <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key4">
-                        <div id="slider4" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Service Quality</b></div> <br /> <div id="serviceQuality" style="height: 25%; width:100%; float:left"></div>
-                    </div>
+                        <div class="tab4div1">
 
-
-                    <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key5">
-                        <div id="slider5" style=" float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Promotions</b></div> <br /><div id="promotions" style="height: 25%; width:100%; float:left"></div>
-                    </div>
-                    <div style="width:100%; height:25%;  border-top:solid 1px; margin-bottom:32%" id="key6">
-                        <div id="slider6" style=" float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Cleanliness</b></div> <br /><div id="cleanliness" style="height: 25%; width:100%; float:left"></div>
-                    </div>
-
-
-                    <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key7">
-                        <div id="slider7" style=" float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>External Appearance</b></div> <br /><div id="extApperance" style="height: 25%; width:100%; float:left"></div>
-                    </div>
-                    <div style="height: 20%; width:100%; float:left;"></div><div style="height: 20%; width:100%; float:left;margin-top:1%;padding-bottom:20px"><button id="btnLock" class="btnlock" onclick="lockTargets()">Lock Targets</button></div>
-                </div>
-
-                <div class="tab4div3">
-                    <div id="circle1" style="height:100%; width:100%">
-
-                        <!--<span class="glyphicon glyphicon-menu-humburger" aria-hidden="true"></span>-->
-                        <div id="circleBase" class="circleBase" >
-                        </div>
-                            
+                            <div style="width:100%; height:25%; margin-bottom:30%; margin-bottom:32%;" id="key1">
+                                <div id="slider1" style="float:left;margin-top:0%; text-align:right; color:#173C57;cursor: pointer; "><b>Wait Time</b></div> <br /> <div id="waitTime" style="height: 25%; width:100%; float:left"></div>
                             </div>
-                            
-                    <!--<div id="img_sales" style="height:auto; width:100%; display:none" >
-                        <img src="Images/export (1).png" width="686" height="457" />
-                    </div>-->
-
-                      
-                    </div>
-                    <!----------------------------------------------------Wait-time---------------------------------------------------------------->
-
-                    <div id="wait_time" style="display:none">
-                        <label style="font-size:200%; align-self:center;">Wait Time</label>
-                        <div id="waittimemeter" style="height:400px; width:400px; float:left;"></div>
-                        <div id="freqByStoreContainer1"></div><br />
-                        <div id="freqByStoreContainer2"></div>
-
-                    </div>
-                    <!----------------------------------------------------drink quality---------------------------------------------------------------->
-
-                    <div id="drink_quality" style="display:none">
-                        <label style="font-size:200%; align-self:center;">Drink Quality</label>
-                        <div id="drinkquality" style="height:400px; width:400px; float:left;"></div>
-
-                        <div id="freqByStoreContainer3"></div><br />
 
 
+                            <div style="width:100%; height:25%;  border-top:solid 1px; margin-bottom:32%;" id="key2">
+                                <div id="slider2" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Drink Quality</b></div> <br /><div id="orderAccuracy" style="height: 25%; width:100%; float:left"></div>
+                            </div>
+                            <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key3">
+                                <div id="slider3" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Food Quality</b></div> <br /><div id="menuVariety" style="height: 25%; width:100%; float:left"></div>
+                            </div>
 
-                        <div style="width:48%; float:left">
-                            <label>Food Items with Postive comments</label>
-                            <table>
-                                <tr style="background-color:rgb(166,166,166);">
-                                    <td></td>
-                                    <td>Freq. of Positive Comments</td>
 
-                                </tr>
+                            <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key4">
+                                <div id="slider4" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Service Quality</b></div> <br /> <div id="serviceQuality" style="height: 25%; width:100%; float:left"></div>
+                            </div>
 
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
 
-                                </tr>
+                            <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key5">
+                                <div id="slider5" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Promotions</b></div> <br /><div id="promotions" style="height: 25%; width:100%; float:left"></div>
+                            </div>
+                            <div style="width:100%; height:25%;  border-top:solid 1px; margin-bottom:32%" id="key6">
+                                <div id="slider6" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Cleanliness</b></div> <br /><div id="cleanliness" style="height: 25%; width:100%; float:left"></div>
+                            </div>
 
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
 
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-                            </table>
+                            <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key7">
+                                <div id="slider7" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>External Appearance</b></div> <br /><div id="extApperance" style="height: 25%; width:100%; float:left"></div>
+                            </div>
+                            <div style="height: 20%; width:100%; float:left;"></div><div style="height: 20%; width:100%; float:left;margin-top:1%;padding-bottom:20px"><button id="btnLock" class="btnlock" onclick="lockTargets()">Lock Targets</button></div>
                         </div>
-                        <div style="margin-left:50%; width:48%">
-                            <label>Food Items with Negative comments</label>
-                            <table>
-                                <tr style="background-color:rgb(166,166,166);">
-                                    <td></td>
-                                    <td>Freq. of Negative Comments</td>
 
-                                </tr>
+                        <div class="tab4div3">
+                            <div id="circle1" style="height:100%; width:100%">
 
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-
-                    <!----------------------------------------------------food quality---------------------------------------------------------------->
-
-                    <div id="food_quality" style="display:none">
-                        <label style="font-size:200%; align-self:center;">Food Quality</label>
-                        <div id="foodquality" style="height:400px; width:400px; float:left;"></div>
-
-                        <div id="freqByStoreContainer4"></div><br />
-
-
-
-                        <div style="width:48%; float:left">
-                            <label>Food Items with Postive comments</label>
-                            <table>
-                                <tr style="background-color:rgb(166,166,166);">
-                                    <td></td>
-                                    <td>Freq. of Positive Comments</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-                            </table>
-                        </div>
-                        <div style="margin-left:50%; width:48%">
-                            <label>Food Items with Negative comments</label>
-                            <table>
-                                <tr style="background-color:rgb(166,166,166);">
-                                    <td></td>
-                                    <td>Freq. of Negative Comments</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                    <td style="background-color:rgb(214,220,229);">##</td>
-
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!----------------------------------------------------service quality---------------------------------------------------------------->
-
-                    <div id="service_quality" style="display:none">
-                        <hi style="font-size:200%;">Service Quality</hi>
-                        <div id="servicequality" style="height:400px; width:400px; float:left;"></div>
-                        <div id="freqByStoreContainer5"></div><br />
-                    </div>
-
-
-                    <!----------------------------------------------------Promotions---------------------------------------------------------------->
-
-                    <div id="promo_tions" style="display:none">
-                        <label style="font-size:200%;">Promotions</label>
-                        <div style="border:solid 1px white">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#1" aria-controls="1" role="tab" data-toggle="tab">Promo#1</a></li>
-                                <li role="presentation"><a href="#2" aria-controls="2" role="tab" data-toggle="tab">Promo#2</a></li>
-                                <li role="presentation"><a href="#3" aria-controls="3" role="tab" data-toggle="tab">Promo#3</a></li>
-
-                            </ul>
-
-
-
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane" id="1">
-                                    <div>
-                                        <div style=""
-                                        <div id="clean_li_ness" style="height:400px; width:400px; float:left;"></div>
-                                        <div id="freqByStoreContainer6"></div><br />
-                                    </div>
+                                <!--<span class="glyphicon glyphicon-menu-humburger" aria-hidden="true"></span>-->
+                                <div id="circleBase" class="circleBase">
                                 </div>
-                                <div role="tabpanel" class="tab-pane" id="2">2</div>
-                                <div role="tabpanel" class="tab-pane" id="3">3</div>
 
+                            </div>
+
+                            <!--<div id="img_sales" style="height:auto; width:100%; display:none" >
+                                <img src="Images/export (1).png" width="686" height="457" />
+                            </div>-->
+
+
+                        </div>
+                        <!----------------------------------------------------Wait-time---------------------------------------------------------------->
+
+                        <div id="wait_time" style="display:none">
+                            <label style="font-size:200%; align-self:center;">Wait Time</label>
+                            <div id="waittimemeter" style="height:400px; width:400px; float:left;"></div>
+                            <div id="freqByStoreContainer1"></div><br />
+                            <div id="freqByStoreContainer2"></div>
+
+                        </div>
+                        <!----------------------------------------------------drink quality---------------------------------------------------------------->
+
+                        <div id="drink_quality" style="display:none">
+                            <label style="font-size:200%; align-self:center;">Drink Quality</label>
+                            <div id="drinkquality" style="height:400px; width:400px; float:left;"></div>
+
+                            <div id="freqByStoreContainer3"></div><br />
+
+
+
+                            <div style="width:48%; float:left">
+                                <label>Food Items with Postive comments</label>
+                                <table>
+                                    <tr style="background-color:rgb(166,166,166);">
+                                        <td></td>
+                                        <td>Freq. of Positive Comments</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="margin-left:50%; width:48%">
+                                <label>Food Items with Negative comments</label>
+                                <table>
+                                    <tr style="background-color:rgb(166,166,166);">
+                                        <td></td>
+                                        <td>Freq. of Negative Comments</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <!----------------------------------------------------food quality---------------------------------------------------------------->
+
+                        <div id="food_quality" style="display:none">
+                            <label style="font-size:200%; align-self:center;">Food Quality</label>
+                            <div id="foodquality" style="height:400px; width:400px; float:left;"></div>
+
+                            <div id="freqByStoreContainer4"></div><br />
+
+
+
+                            <div style="width:48%; float:left">
+                                <label>Food Items with Postive comments</label>
+                                <table>
+                                    <tr style="background-color:rgb(166,166,166);">
+                                        <td></td>
+                                        <td>Freq. of Positive Comments</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="margin-left:50%; width:48%">
+                                <label>Food Items with Negative comments</label>
+                                <table>
+                                    <tr style="background-color:rgb(166,166,166);">
+                                        <td></td>
+                                        <td>Freq. of Negative Comments</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                        <td style="background-color:rgb(214,220,229);">##</td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!----------------------------------------------------service quality---------------------------------------------------------------->
+
+                        <div id="service_quality" style="display:none">
+                            <hi style="font-size:200%;">Service Quality</hi>
+                            <div id="servicequality" style="height:400px; width:400px; float:left;"></div>
+                            <div id="freqByStoreContainer5"></div><br />
+                        </div>
+
+
+                        <!----------------------------------------------------Promotions---------------------------------------------------------------->
+
+                        <div id="promo_tions" style="display:none">
+                            <label style="font-size:200%;">Promotions</label>
+                            <div style="border:solid 1px white">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#1" aria-controls="1" role="tab" data-toggle="tab">Promo#1</a></li>
+                                    <li role="presentation"><a href="#2" aria-controls="2" role="tab" data-toggle="tab">Promo#2</a></li>
+                                    <li role="presentation"><a href="#3" aria-controls="3" role="tab" data-toggle="tab">Promo#3</a></li>
+
+                                </ul>
+
+
+
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane" id="1">
+                                        <div>
+
+                                            <div id="clean_li_ness" style="height:400px; width:400px; float:left;"></div>
+                                            <div id="freqByStoreContainer6"></div><br />
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="2">2</div>
+                                    <div role="tabpanel" class="tab-pane" id="3">3</div>
+
+
+                                </div>
 
                             </div>
 
                         </div>
+                        <!----------------------------------------------------cleanliness---------------------------------------------------------------->
 
-                    </div>
-                    <!----------------------------------------------------cleanliness---------------------------------------------------------------->
-
-                    <div id="cleanli_ness" style="display:none">
-                        <label style="font-size:200%; align-self:center;">cleanliness</label>
-                        <div id="clean_li_ness" style="height:400px; width:400px; float:left;"></div>
-                        <div id="freqByStoreContainer6"></div><br />
-                    </div>
+                        <div id="cleanli_ness" style="display:none">
+                            <label style="font-size:200%; align-self:center;">cleanliness</label>
+                            <div id="clean_li_ness" style="height:400px; width:400px; float:left;"></div>
+                            <div id="freqByStoreContainer6"></div><br />
+                        </div>
 
 
 
-                    <!----------------------------------------------------exteranl appearance---------------------------------------------------------------->
+                        <!----------------------------------------------------exteranl appearance---------------------------------------------------------------->
 
-                    <div id="external_appearance" style="display:none">
+                        <div id="external_appearance" style="display:none">
 
-                        <label style="font-size:200%; align-self:center;">Exteranl Appearance</label>
-                        <div id="external_appearance" style="height:400px; width:400px; float:left;"></div>
-                        <div id="freqByStoreContainer7"></div><br />
-                    </div>
+                            <label style="font-size:200%; align-self:center;">Exteranl Appearance</label>
+                            <div id="external_appearance" style="height:400px; width:400px; float:left;"></div>
+                            <div id="freqByStoreContainer7"></div><br />
+                        </div>
 
 
-                </div><!-- end tab_content -->
-            </div><!-- end content -->   
+                    </div><!-- end tab_content -->
+
+                </div>
+            </div>
         </div>
-                
-		</div><!-- end content -->
-			
-			
-			
-				
-</div><!-- end wrap -->
+    </div>
 
-
-
-<!--<div class="footer">
-</div>-->
-</div>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
 
@@ -721,7 +701,7 @@
     <script src="js/angular.min.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
     <script src="script.js" type="text/javascript"></script>
-    <!--<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>-->
+    
 
 </body>
 </html>
