@@ -52,7 +52,7 @@ background-position:left;
 {
   font: 400 100px/1.5 'Pacifico', Helvetica, sans-serif;
   color: #2b2b2b;
-  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+ 
   font-size:40px;  
     color:#215680;   
 }
@@ -302,6 +302,29 @@ list-style: none;
     
 }
 
+.tab4div4
+{
+    width:49%;
+    float:left;
+    border-radius:6px;
+    background-color:#FFF;
+    margin:1.5% 0 1% 1%;
+    padding:1%;
+      box-shadow: -1px 1px 10px 4px rgba(138,134,138,1);
+    
+}
+
+.tab4div5
+{
+    width:45%;
+    float:left;
+    border-radius:6px;
+    background-color:#FFF;
+    margin:1.5% 0 1% 1%;
+    padding:1%;
+      box-shadow: -1px 1px 10px 4px rgba(138,134,138,1);
+    
+}
 #action_planer
 {
     width:94%;
@@ -574,16 +597,16 @@ list-style: none;
 .lineV {
     margin:0 auto;
     width:2px;
-    color:green;
-    background:green;
+    color:black;
+    background:black;
     height:30px;
     margin:0 auto;
 }
 .lineH {
     width:58%;
-    background:green;
+    background:black;
     height:2px;
-    color:green;
+    color:black;
 }
 .point {	
     width: 0; 
@@ -594,7 +617,7 @@ list-style: none;
 
     border-right: 5px solid transparent;
 	border-left: 5px solid transparent;
-	border-top: 10px solid green;
+	border-top: 10px solid black;
     margin:0 auto;
 }
 .shadow
@@ -622,7 +645,7 @@ list-style: none;
 }
 .rectBoxTop{
     width:45%;  
-    background-color:#f37004; 
+    background-color:#3977db; 
     border-radius:8px; 
     float:left;
     border:1px solid #CCC;
@@ -634,7 +657,7 @@ list-style: none;
 }
 .rectBoxBtm{
     width:45%;  
-    background-color:#f37004; 
+    background-color:#3977db; 
     border-radius:8px; 
     float:left;
     border:1px solid #CCC;
@@ -646,7 +669,7 @@ list-style: none;
 }
 .rectBox{
     width:45%;  
-    background-color:#f37004; 
+    background-color:#3977db; 
     border-radius:8px; 
     border:1px solid #CCC;
     text-align:center;
@@ -827,6 +850,10 @@ td{
     padding:1%;
     border-radius:5px;
     box-shadow: -1px 1px 16px 4px rgba(138,134,138,1);
+}
+
+#action_planner_header {
+     width:100%; background-color:#355066; font-size:300%; font-weight:bold; text-align:center; color:white;
 }
 
 

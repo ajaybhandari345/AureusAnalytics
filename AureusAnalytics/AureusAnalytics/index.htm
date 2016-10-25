@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8">
 <title>Predicted Data</title>
-
-
+    <link rel="stylesheet" href="http://cdn3.devexpress.com/jslib/15.2.5/css/dx.common.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdn3.devexpress.com/jslib/15.2.5/css/dx.spa.css" type="text/css" />
+    <link rel="dx-theme" data-theme="generic.light" href="http://cdn3.devexpress.com/jslib/15.2.5/css/dx.light.css" data-active="true" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body ng-controller="mainController">
@@ -26,7 +29,7 @@
                     <ul class="tabs">
                         <li class="tabsli"><a href="#one">Dashboard</a></li>
                         <li class="tabsli"><a href="#three">Key Drivers</a></li>
-                        <li class="tabsli"><a href="#four">Action Planner</a></li>
+                        <li id="act_plnr" class="tabsli"><a href="#four">Action Planner</a></li>
                     </ul>
                 </div>
             </div>
@@ -370,30 +373,11 @@
                             </div>
                         </div>
 
-                        <div class="tab2div4" style="position:relative">
-                            <div id="container2"></div>
-                        </div>
+                       
 
                     </div>
                     <!-- end tab_content -->
 
-                   
-
-
-
-
-
-
-                    <div class="tab3div6" style="display:none">
-
-                        <div id="orderAccuracyByStore" style="display:none; width:1050px; height:400px"></div>
-                        <div id="tfByStore" style="display:none; width:1050px; height:400px"></div>
-                        <div id="mvByStore" style="display:none; width:1050px; height:400px"></div>
-                        <div id="osByStore" style="display:none; width:1050px; height:450px"></div>
-                    </div>
-
-
-                    <!-- end tab_content -->
 
                     <div id="four" class="tab_content">
 
@@ -441,267 +425,253 @@
                             </div>
 
                             <!--<div id="img_sales" style="height:auto; width:100%; display:none" >
-                                <img src="Images/export (1).png" width="686" height="457" />
-                            </div>-->
+            <img src="Images/export (1).png" width="686" height="457" />
+        </div>-->
+                            <!----------------------------------------------------Wait-time---------------------------------------------------------------->
 
-
-                        </div>
-                        <!----------------------------------------------------Wait-time---------------------------------------------------------------->
-
-                        <div id="wait_time" style="display:none">
-                            <label style="font-size:200%; align-self:center;">Wait Time</label>
-                            <div id="waittimemeter" style="height:400px; width:400px; float:left;"></div>
-                            <div id="freqByStoreContainer1"></div><br />
-                            <div id="freqByStoreContainer2"></div>
-
-                        </div>
-                        <!----------------------------------------------------drink quality---------------------------------------------------------------->
-
-                        <div id="drink_quality" style="display:none">
-                            <label style="font-size:200%; align-self:center;">Drink Quality</label>
-                            <div id="drinkquality" style="height:400px; width:400px; float:left;"></div>
-
-                            <div id="freqByStoreContainer3"></div><br />
-
-
-
-                            <div style="width:48%; float:left">
-                                <label>Food Items with Postive comments</label>
-                                <table>
-                                    <tr style="background-color:rgb(166,166,166);">
-                                        <td></td>
-                                        <td>Freq. of Positive Comments</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
-
-                                    </tr>
-                                </table>
+                            <div id="wait_time" style="display:none">
+                                <div id="action_planner_header">Wait Time</div>
+                                <div class="tab4div5">
+                                    <div id="waittimemeter" style="height:400px; width:400px; float:left;"></div> </div>
+                                    <div class="tab4div4"> <div id="freqByStoreContainer1"></div></div><br /><br />
+                                    <div class="tab4div4"> <div id="freqByStoreContainer2"></div></div><br />
                             </div>
-                            <div style="margin-left:50%; width:48%">
-                                <label>Food Items with Negative comments</label>
-                                <table>
-                                    <tr style="background-color:rgb(166,166,166);">
-                                        <td></td>
-                                        <td>Freq. of Negative Comments</td>
+                                
+                            <!----------------------------------------------------drink quality---------------------------------------------------------------->
 
-                                    </tr>
+                            <div id="drink_quality" style="display:none">
+                                <div id="action_planner_header">Drink Quality</div>
+                                <div class="tab4div5">
+                                    <div id="drinkquality" style="height:400px; width:400px; float:left;"></div></div>
 
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
-
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-
-
-                        <!----------------------------------------------------food quality---------------------------------------------------------------->
-
-                        <div id="food_quality" style="display:none">
-                            <label style="font-size:200%; align-self:center;">Food Quality</label>
-                            <div id="foodquality" style="height:400px; width:400px; float:left;"></div>
-
-                            <div id="freqByStoreContainer4"></div><br />
+                                    <div class="tab4div4"> <div id="freqByStoreContainer3"></div></div><br /><br />
 
 
 
-                            <div style="width:48%; float:left">
-                                <label>Food Items with Postive comments</label>
-                                <table>
-                                    <tr style="background-color:rgb(166,166,166);">
-                                        <td></td>
-                                        <td>Freq. of Positive Comments</td>
+                                    <div style="width:46%; float:left">
+                                        <label>Food Items with Postive comments</label>
+                                        <table>
+                                            <tr style="background-color:rgb(166,166,166);">
+                                                <td></td>
+                                                <td>Freq. of Positive Comments</td>
 
-                                    </tr>
+                                            </tr>
 
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
+                                            <tr>
+                                                <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                                <td style="background-color:rgb(214,220,229);">##</td>
 
-                                    </tr>
+                                            </tr>
 
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
+                                            <tr>
+                                                <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                                <td style="background-color:rgb(214,220,229);">##</td>
 
-                                    </tr>
+                                            </tr>
 
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
+                                            <tr>
+                                                <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                                <td style="background-color:rgb(214,220,229);">##</td>
 
-                                    </tr>
+                                            </tr>
 
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
+                                            <tr>
+                                                <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                                <td style="background-color:rgb(214,220,229);">##</td>
 
-                                    </tr>
-                                </table>
-                            </div>
-                            <div style="margin-left:50%; width:48%">
-                                <label>Food Items with Negative comments</label>
-                                <table>
-                                    <tr style="background-color:rgb(166,166,166);">
-                                        <td></td>
-                                        <td>Freq. of Negative Comments</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td style="background-color:rgb(222,235,247);">XXXX</td>
-                                        <td style="background-color:rgb(214,220,229);">##</td>
-
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-
-                        <!----------------------------------------------------service quality---------------------------------------------------------------->
-
-                        <div id="service_quality" style="display:none">
-                            <hi style="font-size:200%;">Service Quality</hi>
-                            <div id="servicequality" style="height:400px; width:400px; float:left;"></div>
-                            <div id="freqByStoreContainer5"></div><br />
-                        </div>
-
-
-                        <!----------------------------------------------------Promotions---------------------------------------------------------------->
-
-                        <div id="promo_tions" style="display:none">
-                            <label style="font-size:200%;">Promotions</label>
-                            <div style="border:solid 1px white">
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#1" aria-controls="1" role="tab" data-toggle="tab">Promo#1</a></li>
-                                    <li role="presentation"><a href="#2" aria-controls="2" role="tab" data-toggle="tab">Promo#2</a></li>
-                                    <li role="presentation"><a href="#3" aria-controls="3" role="tab" data-toggle="tab">Promo#3</a></li>
-
-                                </ul>
-
-
-
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane" id="1">
-                                        <div>
-
-                                            <div id="clean_li_ness" style="height:400px; width:400px; float:left;"></div>
-                                            <div id="freqByStoreContainer6"></div><br />
-                                        </div>
+                                            </tr>
+                                        </table>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane" id="2">2</div>
-                                    <div role="tabpanel" class="tab-pane" id="3">3</div>
+                                    <div style="margin-left:47%; width:46%">
+                                        <label>Food Items with Negative comments</label>
+                                        <table>
+                                            <tr style="background-color:rgb(166,166,166);">
+                                                <td></td>
+                                                <td>Freq. of Negative Comments</td>
 
+                                            </tr>
 
+                                            <tr>
+                                                <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                                <td style="background-color:rgb(214,220,229);">##</td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                                <td style="background-color:rgb(214,220,229);">##</td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                                <td style="background-color:rgb(214,220,229);">##</td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                                <td style="background-color:rgb(214,220,229);">##</td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
 
+
+                            <!----------------------------------------------------food quality---------------------------------------------------------------->
+
+                        <div id="food_quality" style="display:none">
+                            <div id="action_planner_header">Food Quality
+                        </div>
+                            <div class="tab4div5">
+                                <div id="foodquality" style="height:400px; width:400px; float:left;"></div></div>
+
+                                <div class="tab4div4"> <div id="freqByStoreContainer4"></div></div><br /><br />
+
+
+
+                                <div style="width:46%; float:left">
+                                    <label>Food Items with Postive comments</label>
+                                    <table>
+                                        <tr style="background-color:rgb(166,166,166);">
+                                            <td></td>
+                                            <td>Freq. of Positive Comments</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                            <td style="background-color:rgb(214,220,229);">##</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                            <td style="background-color:rgb(214,220,229);">##</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                            <td style="background-color:rgb(214,220,229);">##</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                            <td style="background-color:rgb(214,220,229);">##</td>
+
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="margin-left:47%; width:46%">
+                                    <label>Food Items with Negative comments</label>
+                                    <table>
+                                        <tr style="background-color:rgb(166,166,166);">
+                                            <td></td>
+                                            <td>Freq. of Negative Comments</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                            <td style="background-color:rgb(214,220,229);">##</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                            <td style="background-color:rgb(214,220,229);">##</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                            <td style="background-color:rgb(214,220,229);">##</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td style="background-color:rgb(222,235,247);">XXXX</td>
+                                            <td style="background-color:rgb(214,220,229);">##</td>
+
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
 
-                        </div>
-                        <!----------------------------------------------------cleanliness---------------------------------------------------------------->
+                            <!----------------------------------------------------service quality---------------------------------------------------------------->
 
-                        <div id="cleanli_ness" style="display:none">
-                            <label style="font-size:200%; align-self:center;">cleanliness</label>
-                            <div id="clean_li_ness" style="height:400px; width:400px; float:left;"></div>
-                            <div id="freqByStoreContainer6"></div><br />
-                        </div>
-
-
-
-                        <!----------------------------------------------------exteranl appearance---------------------------------------------------------------->
-
-                        <div id="external_appearance" style="display:none">
-
-                            <label style="font-size:200%; align-self:center;">Exteranl Appearance</label>
-                            <div id="external_appearance" style="height:400px; width:400px; float:left;"></div>
-                            <div id="freqByStoreContainer7"></div><br />
+                    <div id="service_quality" style="display:none">
+                        <div id="action_planner_header">Service Quality </div>
+                        <div class="tab4div5">
+                            <div id="servicequality" style="height:400px; width:400px; float:left;"></div></div>
+                            <div class="tab4div4"> <div id="freqByStoreContainer5"></div></div><br />
                         </div>
 
 
-                    </div><!-- end tab_content -->
+                            <!----------------------------------------------------Promotions---------------------------------------------------------------->
 
+                <div id="promo_tions" style="display:none">
+                    <div id="action_planner_header">Promotions</div>
+                                <div style="border:solid 1px white">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li data-toggle='tab' class="active"><a href="#1" aria-controls="1" role="tab" data-toggle="tab">Promo#1</a></li>
+                                        <li data-toggle='tab'><a href="#2" aria-controls="2" role="tab" data-toggle="tab">Promo#2</a></li>
+                                        <li data-toggle='tab'><a href="#3" aria-controls="3" role="tab" data-toggle="tab">Promo#3</a></li>
+
+                                    </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="1">
+                                    <div>
+                                        <div style="margin-left:20%; margin-top:2%; width:60%; background-color:yellow; text-align:center; font-weight:bold; font-size:200%;">Buy One Get One Free</div>
+
+                                        <div class="tab4div5">
+                                            <div id="promo1" style="height:400px; width:400px; float:left;"></div>
+                                        </div>
+                                        <div class="tab4div4">
+                                            <div id="freqByStoreContainer8"></div><br />
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="tab-pane fade in active" id="2">2</div>
+                                        <div class="tab-pane fade in active" id="3">3</div>
+                                         
+                                       </div>
+                                    </div>
+                            </div>
+                            <!----------------------------------------------------cleanliness---------------------------------------------------------------->
+
+            <div id="cleanli_ness" style="display:none">
+                <div id="action_planner_header">Cleanliness</div>
+                <div class="tab4div5">
+                    <div id="clean_li_ness" style="height:400px; width:400px; float:left;"></div></div>
+                    <div class="tab4div4"> <div id="freqByStoreContainer6"></div></div><br /><br />
                 </div>
+
+                            <!----------------------------------------------------exteranl appearance---------------------------------------------------------------->
+
+        <div id="external_appearance" style="display:none">
+
+            <div id="action_planner_header">External Appearance</div>
+            <div class="tab4div5">
+                <div id="external_appearance1" style="height:400px; width:400px; float:left;"></div></div>
+                <div class="tab4div4"> <div id="freqByStoreContainer7"></div></div><br /><br />
+            </div>
+                         </div><!-- end tab_content -->
+                       </div>
             </div>
         </div>
     </div>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/globalize/0.1.1/globalize.min.js"></script>
-
-    <link rel="stylesheet" href="http://cdn3.devexpress.com/jslib/15.2.5/css/dx.common.css" type="text/css" /> 
-    <link rel="stylesheet" href="http://cdn3.devexpress.com/jslib/15.2.5/css/dx.spa.css" type="text/css" />  
-
-    <link rel="dx-theme" data-theme="generic.light" href="http://cdn3.devexpress.com/jslib/15.2.5/css/dx.light.css" data-active="true" />
-    
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://cdn3.devexpress.com/jslib/15.2.5/js/dx.all.js"></script>
-    <link href="css/styles.css" rel="stylesheet" type="text/css" />
-
     <script src="data.js" type="text/javascript"></script>
     <script src="js/angular.min.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
     <script src="script.js" type="text/javascript"></script>
-    
-
 </body>
 </html>

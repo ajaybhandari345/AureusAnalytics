@@ -30,6 +30,7 @@
         loadfoodqualityGuage(storeId);
         loadservicequalityGauge(storeId);
         loadclean_li_nessGauge(storeId);
+        loadpromo1Gauge(storeId);
         loadexternal_appearanceGauge(storeId);
         loadWaitingGauge(storeId);
         getOtherFactorsData(storeId)
@@ -41,11 +42,7 @@
         loadOrderSampleGauge(storeId)
         loadContainer2(storeId)
         loadExperienceGraphByStage();
-        document.getElementById("orderAccuracyByStore").style.display = "none";
-        document.getElementById("container2").style.display = "block"
-        document.getElementById("tfByStore").style.display = "none";
-        document.getElementById("mvByStore").style.display = "none";
-        document.getElementById("osByStore").style.display = "none";
+        
 
         $(".tab_content").hide();
         var activeTab = $(this).find("a").attr("href");
@@ -1891,6 +1888,50 @@ function loadservicequalityGauge(storeId) {
     }).dxCircularGauge("instance");
 }
 
+
+//----------------------------------------------------loadcleanlinessGuage----------------------------------------------------------
+function loadpromo1Gauge(storeId) {
+    hdnwaittimemeter = $('#promo1').dxCircularGauge({
+        scale: {
+            startValue: 0,
+            endValue: 100,
+            tickInterval: 20,
+            label: {
+                customizeText: function (arg) {
+                    return arg.valueText + '%';
+                },
+                font: { size: 10, weight: 700 }
+            }
+        },
+        valueIndicator: {
+            type: 'triangleNeedle',
+            color: 'black'
+        },
+        rangeContainer: {
+            width: 4,
+            ranges: [
+                { startValue: 0, endValue: 30, color: '#CE2029' },
+                { startValue: 30, endValue: 60, color: '#FFD700' },
+                { startValue: 60, endValue: 100, color: '#228B22' }
+            ]
+        },
+        title: {
+            //text: 'Predicted NPS',
+            //font: { size: 28 }
+        },
+        value: data.filter(function (obj) {
+            return obj.LOC == storeId
+        })[0].CVF * 25,
+        subvalues: data.filter(function (obj) {
+            return obj.LOC == storeId
+        })[0].CVF * 25,
+        subvalueIndicator: {
+            type: 'textCloud',
+            color: 'royalblue'
+        }
+    }).dxCircularGauge("instance");
+}
+
 //----------------------------------------------------loadcleanlinessGuage----------------------------------------------------------
 function loadclean_li_nessGauge(storeId) {
     hdnwaittimemeter = $('#clean_li_ness').dxCircularGauge({
@@ -1936,7 +1977,7 @@ function loadclean_li_nessGauge(storeId) {
 
 //----------------------------------------------------external appearance----------------------------------------------------------
 function loadexternal_appearanceGauge(storeId) {
-    hdnexternalappearance = $('#external_appearance').dxCircularGauge({
+    hdnexternalappearance = $('#external_appearance1').dxCircularGauge({
         scale: {
             startValue: 0,
             endValue: 100,
@@ -1976,7 +2017,6 @@ function loadexternal_appearanceGauge(storeId) {
         }
     }).dxCircularGauge("instance");
 }
-
 
 
 loadCustVisitFrequecyGuage(storeId);
@@ -2532,6 +2572,17 @@ $('#slider7').click(function () {
     $('#promo_tions').css('display', 'none');
     $('#cleanli_ness').css('display', 'none');
     $('#external_appearance').css('display', 'block');
+});
+
+$('#act_plnr').click(function () {
+    $('#wait_time').css('display', 'none');
+    $('#circle1').css('display', 'block');
+    $('#drink_quality').css('display', 'none');
+    $('#food_quality').css('display', 'none');
+    $('#service_quality').css('display', 'none');
+    $('#promo_tions').css('display', 'none');
+    $('#cleanli_ness').css('display', 'none');
+    $('#external_appearance').css('display', 'none');
 });
 
 
