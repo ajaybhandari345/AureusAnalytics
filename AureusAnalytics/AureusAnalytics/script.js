@@ -17,13 +17,14 @@
         //$(this).find("a").addClass("selected");
         loadCustVisitFrequecyGuage(storeId);
         loadCustVisitFrequecyByStore(storeId);
-        loadCustVisitFrequecyByStore1(storeId);
-        loadCustVisitFrequecyByStore2(storeId);
-        loadCustVisitFrequecyByStore3(storeId);
-        loadCustVisitFrequecyByStore4(storeId);
-        loadCustVisitFrequecyByStore5(storeId);
-        loadCustVisitFrequecyByStore6(storeId);
-        loadCustVisitFrequecyByStore7(storeId);
+        waitTimeGraph_week(storeId);
+        waitTimeGraph_day(storeId);
+        drinkQualityGraph(storeId);
+        foodQualityGraph(storeId);
+        serviceQualityGraph(storeId);
+        promotionGraph(storeId);
+        cleanlinessGraph(storeId);
+        appearanceGraph(storeId);
         loadFinalCustVisitFrequecyGuage(storeId);
         loadwaittimemeterGuage(storeId);
         loaddrinkqualityGuage(storeId);
@@ -300,13 +301,14 @@ function buildChartForStore() {
     loadCustVisitFrequecyGuage(storeId);
     getCVFStoreCnt(storeId);
     loadCustVisitFrequecyByStore();
-    loadCustVisitFrequecyByStore1();
-    loadCustVisitFrequecyByStore2();
-    loadCustVisitFrequecyByStore3();
-    loadCustVisitFrequecyByStore4();
-    loadCustVisitFrequecyByStore5();
-    loadCustVisitFrequecyByStore6();
-    loadCustVisitFrequecyByStore7();
+    waitTimeGraph_week();
+    waitTimeGraph_day();
+    drinkQualityGraph();
+    foodQualityGraph();
+    serviceQualityGraph();
+    promotionGraph(storeId);
+    cleanlinessGraph();
+    appearanceGraph();
     loadWaitingGauge(storeId);
     getOtherFactorsData(storeId);
     loadOtherFactorsData();
@@ -464,13 +466,13 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
 }
 
 //----------------------------------------------------------------------------wait-time-graph--------------------------------------------------------------------------------
-    function loadCustVisitFrequecyByStore1(dataSource, type) {
+function waitTimeGraph_week(dataSource, type) {
 
         var dataSource = dataSource;
         if (type == 'q') {
-            var argmntField = "month";
-            var minV = 50000
-            var maxV = 600000
+            var argmntField = "dayofweek";
+            var minV = 0
+            var maxV = 5
 
         }
         if (type == 'd') {
@@ -493,7 +495,7 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 bottom: 20
             },
             series: [
-                { valueField: "SalesForecast", name: "Sales" },
+                { valueField: "waittime", name: "Time" },
 
             ],
             tooltip: {
@@ -508,7 +510,7 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 enabled: true
             },
             title: {
-                text: "Wait Time by Day", font: {
+                text: "Time in Sec.", font: {
                     size: 30,
                     color: '#355066',
                     weight: 'bold'
@@ -520,27 +522,27 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 title: 'Net Promoter Score',
                 label: {
                     customizeText: function (arg) {
-                        if (type == 'q') {
-                            return arg.valueText / 1000 + "k";
-                        }
-                        else {
+                        //if (type == 'q') {
+                        //    return arg.valueText / 1000 + "k";
+                        //}
+                        //else {
                             return arg.valueText
-                        }
+                        //}
                     }
                 }
             }
         };
-        var chart = $("#freqByStoreContainer1").dxChart(chartOptions).dxChart("instance");
+        var chart = $("#waitTimeGraph_week").dxChart(chartOptions).dxChart("instance");
     }
 
-//----------------------------------------------------------------------------wait-time-graph--------------------------------------------------------------------------------
-    function loadCustVisitFrequecyByStore2(dataSource, type) {
+//----------------------------------------------------------------------------wait-time-graph2--------------------------------------------------------------------------------
+function waitTimeGraph_day(dataSource, type) {
 
         var dataSource = dataSource;
         if (type == 'q') {
-            var argmntField = "month";
-            var minV = 50000
-            var maxV = 600000
+            var argmntField = "daypart";
+            var minV = 0
+            var maxV = 3
 
         }
         if (type == 'd') {
@@ -563,7 +565,7 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 bottom: 20
             },
             series: [
-                { valueField: "SalesForecast", name: "Sales" },
+                { valueField: "waittime", name: "Sales" },
 
             ],
             tooltip: {
@@ -590,27 +592,23 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 title: 'Net Promoter Score',
                 label: {
                     customizeText: function (arg) {
-                        if (type == 'q') {
-                            return arg.valueText / 1000 + "k";
-                        }
-                        else {
+                       
                             return arg.valueText
-                        }
-                    }
+                                            }
                 }
             }
         };
-        var chart = $("#freqByStoreContainer2").dxChart(chartOptions).dxChart("instance");
+        var chart = $("#waitTimeGraph_day").dxChart(chartOptions).dxChart("instance");
     }
 
-//----------------------------------------------------------------------------wait-time-graph--------------------------------------------------------------------------------
-    function loadCustVisitFrequecyByStore3(dataSource, type) {
+//----------------------------------------------------------------------------drink-qual-graph--------------------------------------------------------------------------------
+function drinkQualityGraph(dataSource, type) {
 
         var dataSource = dataSource;
         if (type == 'q') {
-            var argmntField = "month";
-            var minV = 50000
-            var maxV = 600000
+            var argmntField = "dayofweek";
+            var minV = 0
+            var maxV = 5
 
         }
         if (type == 'd') {
@@ -633,7 +631,7 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 bottom: 20
             },
             series: [
-                { valueField: "SalesForecast", name: "Sales" },
+                { valueField: "newdrinkqual", name: "Time" },
 
             ],
             tooltip: {
@@ -660,27 +658,24 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 title: 'Net Promoter Score',
                 label: {
                     customizeText: function (arg) {
-                        if (type == 'q') {
-                            return arg.valueText / 1000 + "k";
-                        }
-                        else {
+                       
                             return arg.valueText
-                        }
+                        
                     }
                 }
             }
         };
-        var chart = $("#freqByStoreContainer3").dxChart(chartOptions).dxChart("instance");
+        var chart = $("#drinkQualityGraph").dxChart(chartOptions).dxChart("instance");
     }
 
-//----------------------------------------------------------------------------wait-time-graph--------------------------------------------------------------------------------
-    function loadCustVisitFrequecyByStore4(dataSource, type) {
+//----------------------------------------------------------------------------food-qual-graph--------------------------------------------------------------------------------
+function foodQualityGraph(dataSource, type) {
 
         var dataSource = dataSource;
         if (type == 'q') {
-            var argmntField = "month";
-            var minV = 50000
-            var maxV = 600000
+            var argmntField = "dayofweek";
+            var minV = 0
+            var maxV = 5
 
         }
         if (type == 'd') {
@@ -703,7 +698,7 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 bottom: 20
             },
             series: [
-                { valueField: "SalesForecast", name: "Sales" },
+                { valueField: "newfoodqual", name: "Sales" },
 
             ],
             tooltip: {
@@ -730,27 +725,24 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 title: 'Net Promoter Score',
                 label: {
                     customizeText: function (arg) {
-                        if (type == 'q') {
-                            return arg.valueText / 1000 + "k";
-                        }
-                        else {
+                       
                             return arg.valueText
-                        }
+                        
                     }
                 }
             }
         };
-        var chart = $("#freqByStoreContainer4").dxChart(chartOptions).dxChart("instance");
+        var chart = $("#foodQualityGraph").dxChart(chartOptions).dxChart("instance");
     }
 
-//----------------------------------------------------------------------------wait-time-graph--------------------------------------------------------------------------------
-    function loadCustVisitFrequecyByStore5(dataSource, type) {
+//----------------------------------------------------------------------------service-qual-graph--------------------------------------------------------------------------------
+function serviceQualityGraph(dataSource, type) {
 
         var dataSource = dataSource;
         if (type == 'q') {
-            var argmntField = "month";
-            var minV = 50000
-            var maxV = 600000
+            var argmntField = "dayofweek";
+            var minV = 0
+            var maxV = 5
 
         }
         if (type == 'd') {
@@ -773,7 +765,7 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 bottom: 20
             },
             series: [
-                { valueField: "SalesForecast", name: "Sales" },
+                { valueField: "newservicequal", name: "Sales" },
 
             ],
             tooltip: {
@@ -800,28 +792,93 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 title: 'Net Promoter Score',
                 label: {
                     customizeText: function (arg) {
-                        if (type == 'q') {
-                            return arg.valueText / 1000 + "k";
-                        }
-                        else {
+                        
                             return arg.valueText
-                        }
+                        
                     }
                 }
             }
         };
-        var chart = $("#freqByStoreContainer5").dxChart(chartOptions).dxChart("instance");
+        var chart = $("#serviceQualityGraph").dxChart(chartOptions).dxChart("instance");
     }
 
 
-//----------------------------------------------------------------------------wait-time-graph--------------------------------------------------------------------------------
-    function loadCustVisitFrequecyByStore6(dataSource, type) {
+//----------------------------------------------------------------------------promotion-graph--------------------------------------------------------------------------------
+function promotionGraph(dataSource, type) {
+
+    var dataSource = dataSource;
+    if (type == 'q') {
+        var argmntField = "dayofweek";
+        var minV = 0
+        var maxV = 5
+
+    }
+    if (type == 'd') {
+        var argmntField = "daypart";
+        var minV = 500
+        var maxV = 3000
+    }
+    var chartOptions = {
+        dataSource: dataSource,
+        commonSeriesSettings: {
+            type: 'line',
+            argumentField: argmntField
+        },
+        commonAxisSettings: {
+            grid: {
+                visible: true
+            }
+        },
+        margin: {
+            bottom: 20
+        },
+        series: [
+            { valueField: "newpromo", name: "Time" },
+
+        ],
+        tooltip: {
+            enabled: true
+        },
+        legend: {
+            visible: false,
+            verticalAlignment: "top",
+            horizontalAlignment: "right"
+        },
+        "export": {
+            enabled: true
+        },
+        title: {
+            text: "Service Quality by Day", font: {
+                size: 30,
+                color: '#355066',
+                weight: 'bold'
+            }
+        },
+        valueAxis: {
+            min: minV,
+            max: maxV,
+            title: 'Net Promoter Score',
+            label: {
+                customizeText: function (arg) {
+
+                    return arg.valueText
+
+                }
+            }
+        }
+    };
+    var chart = $("#promotionGraph").dxChart(chartOptions).dxChart("instance");
+}
+
+
+//----------------------------------------------------------------------------Cleanliness-graph--------------------------------------------------------------------------------
+function cleanlinessGraph(dataSource, type) {
 
         var dataSource = dataSource;
         if (type == 'q') {
-            var argmntField = "month";
-            var minV = 50000
-            var maxV = 600000
+            var argmntField = "dayofweek";
+            var minV = 0
+            var maxV = 5
 
         }
         if (type == 'd') {
@@ -844,7 +901,7 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 bottom: 20
             },
             series: [
-                { valueField: "SalesForecast", name: "Sales" },
+                { valueField: "newclean", name: "Sales" },
 
             ],
             tooltip: {
@@ -871,27 +928,24 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 title: 'Net Promoter Score',
                 label: {
                     customizeText: function (arg) {
-                        if (type == 'q') {
-                            return arg.valueText / 1000 + "k";
-                        }
-                        else {
+                       
                             return arg.valueText
-                        }
+                        
                     }
                 }
             }
         };
-        var chart = $("#freqByStoreContainer6").dxChart(chartOptions).dxChart("instance");
+        var chart = $("#cleanlinessGraph").dxChart(chartOptions).dxChart("instance");
     }
 
-//----------------------------------------------------------------------------wait-time-graph--------------------------------------------------------------------------------
-    function loadCustVisitFrequecyByStore7(dataSource, type) {
+//----------------------------------------------------------------------------Appearance-graph--------------------------------------------------------------------------------
+function appearanceGraph(dataSource, type) {
 
         var dataSource = dataSource;
         if (type == 'q') {
-            var argmntField = "month";
-            var minV = 50000
-            var maxV = 600000
+            var argmntField = "dayofweek";
+            var minV = 0
+            var maxV = 5
 
         }
         if (type == 'd') {
@@ -914,7 +968,7 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 bottom: 20
             },
             series: [
-                { valueField: "SalesForecast", name: "Sales" },
+                { valueField: "newapperance", name: "Time" },
 
             ],
             tooltip: {
@@ -941,17 +995,14 @@ function loadCustVisitFrequecyByStore(dataSource,type) {
                 title: 'Net Promoter Score',
                 label: {
                     customizeText: function (arg) {
-                        if (type == 'q') {
-                            return arg.valueText / 1000 + "k";
-                        }
-                        else {
+                       
                             return arg.valueText
-                        }
+                        
                     }
                 }
             }
         };
-        var chart = $("#freqByStoreContainer7").dxChart(chartOptions).dxChart("instance");
+        var chart = $("#appearanceGraph").dxChart(chartOptions).dxChart("instance");
     }
 function loadContainer2(storeId) {
     var CRT_Data = [{ Name: 'Insurance Claim Discrepency', Days: 5 },

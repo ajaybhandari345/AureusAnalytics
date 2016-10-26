@@ -34,6 +34,8 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
 
     var daypart = ["6:00 - 9:00", "9:00 - 12:00", "12:00 - 3:00", "3:00 - 6:00", "6:00 - Close"];
 
+    var weekNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
+    "Sun"];
   
     $scope.getReportData = function () {
         var dbResObj = {
@@ -80,6 +82,182 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
                     v.time = k
                 })
             loadCustVisitFrequecyByStore(response.data.OutPutResults, $scope.foreCastType)
+    
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+    }
+
+
+
+    $scope.getWaitTime = function () {
+        dbResObj = {
+            "StoredProcedueName": "GetWaitTime",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            console.log(response)
+            //if ($scope.foreCastType == 'q')
+                angular.forEach(response.data.OutPutResults, function (v, k) {
+                    v.dayofweek = weekNames[v.dayofweek - 1]
+                })
+            waitTimeGraph_week(response.data.OutPutResults, 'q')
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+
+        dbResObj = {
+            "StoredProcedueName": "GetWaitTime_daypart",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            console.log(response)
+            //if ($scope.foreCastType == 'q')
+            angular.forEach(response.data.OutPutResults, function (v, k) {
+                v.daypart = daypart[v.daypart - 1]
+            })
+            waitTimeGraph_day(response.data.OutPutResults, 'q')
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+    }
+
+
+    $scope.getDrinkQuality = function () {
+        dbResObj = {
+            "StoredProcedueName": "GetDrinkQuality",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            console.log(response)
+            //if ($scope.foreCastType == 'q')
+            angular.forEach(response.data.OutPutResults, function (v, k) {
+                v.dayofweek = weekNames[v.dayofweek - 1]
+            })
+            drinkQualityGraph(response.data.OutPutResults, 'q')
+
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+    }
+
+    $scope.getFoodQuality = function () {
+        dbResObj = {
+            "StoredProcedueName": "GetFoodQuality",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            console.log(response)
+            //if ($scope.foreCastType == 'q')
+            angular.forEach(response.data.OutPutResults, function (v, k) {
+                v.dayofweek = weekNames[v.dayofweek - 1]
+            })
+            foodQualityGraph(response.data.OutPutResults, 'q')
+
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+    }
+
+    $scope.getServiceQuality = function () {
+        dbResObj = {
+            "StoredProcedueName": "GetServiceQuality",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            console.log(response)
+            //if ($scope.foreCastType == 'q')
+            angular.forEach(response.data.OutPutResults, function (v, k) {
+                v.dayofweek = weekNames[v.dayofweek - 1]
+            })
+            serviceQualityGraph(response.data.OutPutResults, 'q')
+
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+    }
+
+    $scope.getPromotion = function () {
+        dbResObj = {
+            "StoredProcedueName": "GetPromotion",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            console.log(response)
+            //if ($scope.foreCastType == 'q')
+            angular.forEach(response.data.OutPutResults, function (v, k) {
+                v.dayofweek = weekNames[v.dayofweek - 1]
+            })
+            promotionGraph(response.data.OutPutResults, 'q')
+
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+    }
+
+    $scope.getCleanliness = function () {
+        dbResObj = {
+            "StoredProcedueName": "GetCleanliness",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            console.log(response)
+            //if ($scope.foreCastType == 'q')
+            angular.forEach(response.data.OutPutResults, function (v, k) {
+                v.dayofweek = weekNames[v.dayofweek - 1]
+            })
+            cleanlinessGraph(response.data.OutPutResults, 'q')
+
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+    }
+
+    $scope.getAppearance = function () {
+        dbResObj = {
+            "StoredProcedueName": "GetAppearance",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            console.log(response)
+            //if ($scope.foreCastType == 'q')
+            angular.forEach(response.data.OutPutResults, function (v, k) {
+                v.dayofweek = weekNames[v.dayofweek - 1]
+            })
+            appearanceGraph(response.data.OutPutResults, 'q')
+
         }, function errorCallback(response) {
             console.log(response)
         });

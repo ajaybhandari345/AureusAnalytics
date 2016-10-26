@@ -384,33 +384,33 @@
                         <div class="tab4div1">
 
                             <div style="width:100%; height:25%; margin-bottom:30%; margin-bottom:32%;" id="key1">
-                                <div id="slider1" style="float:left;margin-top:0%; text-align:right; color:#173C57;cursor: pointer; "><b>Wait Time</b></div> <br /> <div id="waitTime" style="height: 25%; width:100%; float:left"></div>
+                                <div id="slider1" style="float:left;margin-top:0%; text-align:right; color:#173C57;cursor: pointer;" ng-click="getWaitTime()"><b>Wait Time</b></div> <br /> <div id="waitTime" style="height: 25%; width:100%; float:left"></div>
                             </div>
 
 
                             <div style="width:100%; height:25%;  border-top:solid 1px; margin-bottom:32%;" id="key2">
-                                <div id="slider2" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Drink Quality</b></div> <br /><div id="orderAccuracy" style="height: 25%; width:100%; float:left"></div>
+                                <div id="slider2" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getDrinkQuality()"><b>Drink Quality</b></div> <br /><div id="orderAccuracy" style="height: 25%; width:100%; float:left"></div>
                             </div>
                             <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key3">
-                                <div id="slider3" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Food Quality</b></div> <br /><div id="menuVariety" style="height: 25%; width:100%; float:left"></div>
+                                <div id="slider3" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getFoodQuality()"><b>Food Quality</b></div> <br /><div id="menuVariety" style="height: 25%; width:100%; float:left"></div>
                             </div>
 
 
                             <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key4">
-                                <div id="slider4" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Service Quality</b></div> <br /> <div id="serviceQuality" style="height: 25%; width:100%; float:left"></div>
+                                <div id="slider4" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getServiceQuality()"><b>Service Quality</b></div> <br /> <div id="serviceQuality" style="height: 25%; width:100%; float:left"></div>
                             </div>
 
 
                             <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key5">
-                                <div id="slider5" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Promotions</b></div> <br /><div id="promotions" style="height: 25%; width:100%; float:left"></div>
+                                <div id="slider5" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getPromotion()"><b>Promotions</b></div> <br /><div id="promotions" style="height: 25%; width:100%; float:left"></div>
                             </div>
                             <div style="width:100%; height:25%;  border-top:solid 1px; margin-bottom:32%" id="key6">
-                                <div id="slider6" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>Cleanliness</b></div> <br /><div id="cleanliness" style="height: 25%; width:100%; float:left"></div>
+                                <div id="slider6" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getCleanliness()"><b>Cleanliness</b></div> <br /><div id="cleanliness" style="height: 25%; width:100%; float:left"></div>
                             </div>
 
 
                             <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key7">
-                                <div id="slider7" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;"><b>External Appearance</b></div> <br /><div id="extApperance" style="height: 25%; width:100%; float:left"></div>
+                                <div id="slider7" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getAppearance()"><b>External Appearance</b></div> <br /><div id="extApperance" style="height: 25%; width:100%; float:left"></div>
                             </div>
                             <div style="height: 20%; width:100%; float:left;"></div><div style="height: 20%; width:100%; float:left;margin-top:1%;padding-bottom:20px"><button id="btnLock" class="btnlock" onclick="lockTargets()">Lock Targets</button></div>
                         </div>
@@ -431,10 +431,11 @@
 
                             <div id="wait_time" style="display:none">
                                 <div id="action_planner_header">Wait Time</div>
+                               
                                 <div class="tab4div5">
                                     <div id="waittimemeter" style="height:400px; width:400px; float:left;"></div> </div>
-                                    <div class="tab4div4"> <div id="freqByStoreContainer1"></div></div><br /><br />
-                                    <div class="tab4div4"> <div id="freqByStoreContainer2"></div></div><br />
+                                    <div class="tab4div4"> <div id="waitTimeGraph_week"></div></div><br /><br />
+                                    <div class="tab4div4"> <div id="waitTimeGraph_day"></div></div><br />
                             </div>
                                 
                             <!----------------------------------------------------drink quality---------------------------------------------------------------->
@@ -444,7 +445,7 @@
                                 <div class="tab4div5">
                                     <div id="drinkquality" style="height:400px; width:400px; float:left;"></div></div>
 
-                                    <div class="tab4div4"> <div id="freqByStoreContainer3"></div></div><br /><br />
+                                    <div class="tab4div4"> <div id="drinkQualityGraph"></div></div><br /><br />
 
 
 
@@ -527,7 +528,7 @@
                             <div class="tab4div5">
                                 <div id="foodquality" style="height:400px; width:400px; float:left;"></div></div>
 
-                                <div class="tab4div4"> <div id="freqByStoreContainer4"></div></div><br /><br />
+                                <div class="tab4div4"> <div id="foodQualityGraph"></div></div><br /><br />
 
 
 
@@ -607,7 +608,7 @@
                         <div id="action_planner_header">Service Quality </div>
                         <div class="tab4div5">
                             <div id="servicequality" style="height:400px; width:400px; float:left;"></div></div>
-                            <div class="tab4div4"> <div id="freqByStoreContainer5"></div></div><br />
+                            <div class="tab4div4"> <div id="serviceQualityGraph"></div></div><br />
                         </div>
 
 
@@ -631,7 +632,7 @@
                                             <div id="promo1" style="height:400px; width:400px; float:left;"></div>
                                         </div>
                                         <div class="tab4div4">
-                                            <div id="freqByStoreContainer8"></div><br />
+                                            <div id="promotionGraph"></div><br />
                                         </div>
                                     </div>
                                 </div>
@@ -647,7 +648,7 @@
                 <div id="action_planner_header">Cleanliness</div>
                 <div class="tab4div5">
                     <div id="clean_li_ness" style="height:400px; width:400px; float:left;"></div></div>
-                    <div class="tab4div4"> <div id="freqByStoreContainer6"></div></div><br /><br />
+                    <div class="tab4div4"> <div id="cleanlinessGraph"></div></div><br /><br />
                 </div>
 
                             <!----------------------------------------------------exteranl appearance---------------------------------------------------------------->
@@ -657,7 +658,7 @@
             <div id="action_planner_header">External Appearance</div>
             <div class="tab4div5">
                 <div id="external_appearance1" style="height:400px; width:400px; float:left;"></div></div>
-                <div class="tab4div4"> <div id="freqByStoreContainer7"></div></div><br /><br />
+                <div class="tab4div4"> <div id="appearanceGraph"></div></div><br /><br />
             </div>
                          </div><!-- end tab_content -->
                        </div>
