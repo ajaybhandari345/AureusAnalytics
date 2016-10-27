@@ -34,8 +34,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
 
     var daypart = ["6:00 - 9:00", "9:00 - 12:00", "12:00 - 3:00", "3:00 - 6:00", "6:00 - Close"];
 
-    var weekNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
-    "Sun"];
+    var weekNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   
     $scope.getReportData = function () {
         var dbResObj = {
@@ -89,8 +88,24 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
     }
 
 
-
+//----------------------------------------------------------Wait Time servic calling--------------------------------------------------------------------------
     $scope.getWaitTime = function () {
+
+        dbResObj = {
+            "StoredProcedueName": "GetWaitTimeGuage",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            console.log(response)
+          loadwaittimemeterGuage(response.data.OutPutResults[0].waittime)
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+
         dbResObj = {
             "StoredProcedueName": "GetWaitTime",
             "Paramtervalues": { range: "Q1" }
@@ -130,8 +145,24 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         });
     }
 
-
+    //----------------------------------------------------------Drink Quality service calling--------------------------------------------------------------------------
     $scope.getDrinkQuality = function () {
+
+        dbResObj = {
+            "StoredProcedueName": "GetDrinkQualityGuage",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            
+            loaddrinkqualityGuage(response.data.OutPutResults[0].newdrinkqual)
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+
         dbResObj = {
             "StoredProcedueName": "GetDrinkQuality",
             "Paramtervalues": { range: "Q1" }
@@ -153,7 +184,24 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         });
     }
 
+    //----------------------------------------------------------Food Quality service calling--------------------------------------------------------------------------
     $scope.getFoodQuality = function () {
+
+        dbResObj = {
+            "StoredProcedueName": "GetFoodQualityGuage",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+           
+            loadfoodqualityGuage(response.data.OutPutResults[0].newfoodqual)
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+
         dbResObj = {
             "StoredProcedueName": "GetFoodQuality",
             "Paramtervalues": { range: "Q1" }
@@ -175,7 +223,25 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         });
     }
 
+
+    //----------------------------------------------------------Service Quality service calling--------------------------------------------------------------------------
     $scope.getServiceQuality = function () {
+
+        dbResObj = {
+            "StoredProcedueName": "GetServiceQualityGuage",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+           
+            loadservicequalityGauge(response.data.OutPutResults[0].newservicequal)
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+
         dbResObj = {
             "StoredProcedueName": "GetServiceQuality",
             "Paramtervalues": { range: "Q1" }
@@ -197,7 +263,25 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         });
     }
 
+
+    //----------------------------------------------------------Promotion service calling--------------------------------------------------------------------------
     $scope.getPromotion = function () {
+
+        dbResObj = {
+            "StoredProcedueName": "GetPromotionGuage",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+           
+            loadpromo1Gauge(response.data.OutPutResults[0].newpromo)
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+
         dbResObj = {
             "StoredProcedueName": "GetPromotion",
             "Paramtervalues": { range: "Q1" }
@@ -219,7 +303,25 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         });
     }
 
+
+    //----------------------------------------------------------Cleanliness service calling--------------------------------------------------------------------------
     $scope.getCleanliness = function () {
+
+        dbResObj = {
+            "StoredProcedueName": "GetCleanlinessGuage",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+           
+            loadclean_li_nessGauge(response.data.OutPutResults[0].newclean)
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+
         dbResObj = {
             "StoredProcedueName": "GetCleanliness",
             "Paramtervalues": { range: "Q1" }
@@ -241,7 +343,25 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         });
     }
 
+
+    //----------------------------------------------------------Appearance service calling--------------------------------------------------------------------------
     $scope.getAppearance = function () {
+
+        dbResObj = {
+            "StoredProcedueName": "GetAppearanceGuage",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+           
+            loadexternal_appearanceGauge(response.data.OutPutResults[0].newapperance)
+        }, function errorCallback(response) {
+            console.log(response)
+        });
+
         dbResObj = {
             "StoredProcedueName": "GetAppearance",
             "Paramtervalues": { range: "Q1" }

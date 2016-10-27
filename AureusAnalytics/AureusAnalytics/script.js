@@ -25,7 +25,7 @@
         promotionGraph(storeId);
         cleanlinessGraph(storeId);
         appearanceGraph(storeId);
-        loadFinalCustVisitFrequecyGuage(storeId);
+       
         loadwaittimemeterGuage(storeId);
         loaddrinkqualityGuage(storeId);
         loadfoodqualityGuage(storeId);
@@ -312,6 +312,13 @@ function buildChartForStore() {
     loadWaitingGauge(storeId);
     getOtherFactorsData(storeId);
     loadOtherFactorsData();
+    loadwaittimemeterGuage();
+    loaddrinkqualityGuage();
+    loadfoodqualityGuage();
+    loadservicequalityGauge();
+    loadclean_li_nessGauge();
+    loadpromo1Gauge();
+    loadexternal_appearanceGauge();
 
 }
 function loadKeyFactorsGauges() {
@@ -510,7 +517,7 @@ function waitTimeGraph_week(dataSource, type) {
                 enabled: true
             },
             title: {
-                text: "Time in Sec.", font: {
+                text: "Wait Time by Week Day", font: {
                     size: 30,
                     color: '#355066',
                     weight: 'bold'
@@ -519,7 +526,7 @@ function waitTimeGraph_week(dataSource, type) {
             valueAxis: {
                 min: minV,
                 max: maxV,
-                title: 'Net Promoter Score',
+                title: 'Avg. Time (in seconds)',
                 label: {
                     customizeText: function (arg) {
                         //if (type == 'q') {
@@ -589,7 +596,7 @@ function waitTimeGraph_day(dataSource, type) {
             valueAxis: {
                 min: minV,
                 max: maxV,
-                title: 'Net Promoter Score',
+                title: 'Avg. Time (in seconds)',
                 label: {
                     customizeText: function (arg) {
                        
@@ -655,7 +662,7 @@ function drinkQualityGraph(dataSource, type) {
             valueAxis: {
                 min: minV,
                 max: maxV,
-                title: 'Net Promoter Score',
+                title: 'Avg. Drink Quality Rating',
                 label: {
                     customizeText: function (arg) {
                        
@@ -722,7 +729,7 @@ function foodQualityGraph(dataSource, type) {
             valueAxis: {
                 min: minV,
                 max: maxV,
-                title: 'Net Promoter Score',
+                title: 'Avg. Food Quality Rating',
                 label: {
                     customizeText: function (arg) {
                        
@@ -789,7 +796,7 @@ function serviceQualityGraph(dataSource, type) {
             valueAxis: {
                 min: minV,
                 max: maxV,
-                title: 'Net Promoter Score',
+                title: 'Avg. Service Quality Rating',
                 label: {
                     customizeText: function (arg) {
                         
@@ -848,7 +855,7 @@ function promotionGraph(dataSource, type) {
             enabled: true
         },
         title: {
-            text: "Service Quality by Day", font: {
+            text: "First Promotion rating by Day", font: {
                 size: 30,
                 color: '#355066',
                 weight: 'bold'
@@ -857,7 +864,7 @@ function promotionGraph(dataSource, type) {
         valueAxis: {
             min: minV,
             max: maxV,
-            title: 'Net Promoter Score',
+            title: 'Avg. First Promotion Rating',
             label: {
                 customizeText: function (arg) {
 
@@ -901,7 +908,7 @@ function cleanlinessGraph(dataSource, type) {
                 bottom: 20
             },
             series: [
-                { valueField: "newclean", name: "Sales" },
+                { valueField: "newclean", name: "Time" },
 
             ],
             tooltip: {
@@ -925,7 +932,7 @@ function cleanlinessGraph(dataSource, type) {
             valueAxis: {
                 min: minV,
                 max: maxV,
-                title: 'Net Promoter Score',
+                title: 'Avg. Cleanliness Rating',
                 label: {
                     customizeText: function (arg) {
                        
@@ -968,7 +975,7 @@ function appearanceGraph(dataSource, type) {
                 bottom: 20
             },
             series: [
-                { valueField: "newapperance", name: "Time" },
+                { valueField: "newapearance", name: "Time" },
 
             ],
             tooltip: {
@@ -992,7 +999,7 @@ function appearanceGraph(dataSource, type) {
             valueAxis: {
                 min: minV,
                 max: maxV,
-                title: 'Net Promoter Score',
+                title: 'Avg. Appearance Rating',
                 label: {
                     customizeText: function (arg) {
                        
@@ -1718,63 +1725,17 @@ function setRangeSliders(sId) {
     }).dxSlider("instance");
 }
 
-//----------------------------------------------------loadFinalCustVisitFrequecyGuage----------------------------------------------------------
-function loadFinalCustVisitFrequecyGuage(storeId) {
+//----------------------------------------------------wait-time-meter-Guage----------------------------------------------------------
 
-
-
-    hdnfinalCustVisitFreq = $('#finalCustVisitFreq').dxCircularGauge({
-        scale: {
-            startValue: 0,
-            endValue: 100,
-            tickInterval: 20,
-            label: {
-                customizeText: function (arg) {
-                    return arg.valueText + '%';
-                },
-                font: { size: 10, weight: 700 }
-            }
-        },
-        valueIndicator: {
-            type: 'triangleNeedle',
-            color: 'black'
-        },
-        rangeContainer: {
-            width: 4,
-            ranges: [
-                { startValue: 0, endValue: 30, color: '#CE2029' },
-                { startValue: 30, endValue: 60, color: '#FFD700' },
-                { startValue: 60, endValue: 100, color: '#228B22' }
-            ]
-        },
-        title: {
-            //text: 'Predicted NPS',
-            //font: { size: 28 }
-        },
-        value: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalues: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalueIndicator: {
-            type: 'textCloud',
-            color: 'royalblue'
-        }
-    }).dxCircularGauge("instance");
-}
-
-//----------------------------------------------------loadwaittimemeterGuage----------------------------------------------------------
-
-function loadwaittimemeterGuage(storeId) {
+function loadwaittimemeterGuage(GaugeValue) {
     hdnwaittimemeter = $('#waittimemeter').dxCircularGauge({
         scale: {
             startValue: 0,
-            endValue: 100,
-            tickInterval: 20,
+            endValue: 2,
+            tickInterval: .25,
             label: {
                 customizeText: function (arg) {
-                    return arg.valueText + '%';
+                    return arg.valueText;
                 },
                 font: { size: 10, weight: 700 }
             }
@@ -1786,38 +1747,37 @@ function loadwaittimemeterGuage(storeId) {
         rangeContainer: {
             width: 4,
             ranges: [
-                { startValue: 0, endValue: 30, color: '#CE2029' },
-                { startValue: 30, endValue: 60, color: '#FFD700' },
-                { startValue: 60, endValue: 100, color: '#228B22' }
+                { startValue: 0, endValue: .25, color: '#CE2029' },
+                { startValue: .25, endValue: .5, color: '#FFD700' },
+                { startValue: .5, endValue: .75, color: '#228B22' },
+                { startValue: .75, endValue: 1, color: 'blue' },
+                { startValue: 1, endValue: 1.25, color: '#CE2029' },
+                { startValue: 1.25, endValue: 1.5, color: '#FFD700' },
+                { startValue: 1.5, endValue: 1.75, color: '#228B22' },
+                { startValue: 1.75, endValue: 2, color: 'blue' }
             ]
         },
+
         title: {
-            //text: 'Predicted NPS',
-            //font: { size: 28 }
+            text: 'Avg. Wait Time: ' + GaugeValue,
+            font: { size: 25 }
         },
-        value: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalues: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalueIndicator: {
-            type: 'textCloud',
-            color: 'royalblue'
-        }
+        value: GaugeValue
+       
+        
     }).dxCircularGauge("instance");
 }
 
 //----------------------------------------------------loaddrinkqualityGuage----------------------------------------------------------
-function loaddrinkqualityGuage(storeId) {
-    hdnwaittimemeter = $('#drinkquality').dxCircularGauge({
+function loaddrinkqualityGuage(GaugeValue) {
+    hdndrinkquality = $('#drinkquality').dxCircularGauge({
         scale: {
             startValue: 0,
-            endValue: 100,
-            tickInterval: 20,
+            endValue: 5,
+            tickInterval: 1,
             label: {
                 customizeText: function (arg) {
-                    return arg.valueText + '%';
+                    return arg.valueText;
                 },
                 font: { size: 10, weight: 700 }
             }
@@ -1829,39 +1789,33 @@ function loaddrinkqualityGuage(storeId) {
         rangeContainer: {
             width: 4,
             ranges: [
-                { startValue: 0, endValue: 30, color: '#CE2029' },
-                { startValue: 30, endValue: 60, color: '#FFD700' },
-                { startValue: 60, endValue: 100, color: '#228B22' }
+                { startValue: 0, endValue: 1, color: '#CE2029' },
+                { startValue: 1, endValue: 2, color: '#FFD700' },
+                { startValue: 2, endValue: 3, color: '#228B22' },
+                { startValue: 3, endValue: 4, color: 'blue' },
+                { startValue: 4, endValue: 5, color: '#CE2029' },
+                
             ]
         },
         title: {
-            //text: 'Predicted NPS',
-            //font: { size: 28 }
+            text: 'Avg. Drink Quality Rating: ' + GaugeValue,
+            font: { size: 20 }
         },
-        value: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalues: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalueIndicator: {
-            type: 'textCloud',
-            color: 'royalblue'
-        }
+        value: GaugeValue
     }).dxCircularGauge("instance");
 }
 
 
 //----------------------------------------------------loadfoodqualityGuage----------------------------------------------------------
-function loadfoodqualityGuage(storeId) {
-    hdnwaittimemeter = $('#foodquality').dxCircularGauge({
+function loadfoodqualityGuage(GaugeValue) {
+    hdnfoodquality = $('#foodquality').dxCircularGauge({
         scale: {
             startValue: 0,
-            endValue: 100,
-            tickInterval: 20,
+            endValue: 5,
+            tickInterval: 1,
             label: {
                 customizeText: function (arg) {
-                    return arg.valueText + '%';
+                    return arg.valueText;
                 },
                 font: { size: 10, weight: 700 }
             }
@@ -1873,39 +1827,32 @@ function loadfoodqualityGuage(storeId) {
         rangeContainer: {
             width: 4,
             ranges: [
-                { startValue: 0, endValue: 30, color: '#CE2029' },
-                { startValue: 30, endValue: 60, color: '#FFD700' },
-                { startValue: 60, endValue: 100, color: '#228B22' }
+               { startValue: 0, endValue: 1, color: '#CE2029' },
+                { startValue: 1, endValue: 2, color: '#FFD700' },
+                { startValue: 2, endValue: 3, color: '#228B22' },
+                { startValue: 3, endValue: 4, color: 'blue' },
+                { startValue: 4, endValue: 5, color: '#CE2029' },
             ]
         },
         title: {
-            //text: 'Predicted NPS',
-            //font: { size: 28 }
+            text: 'Avg. Food Quality Rating: ' + GaugeValue,
+            font: { size: 20 }
         },
-        value: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalues: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalueIndicator: {
-            type: 'textCloud',
-            color: 'royalblue'
-        }
+        value: GaugeValue
     }).dxCircularGauge("instance");
 }
 
 
 //----------------------------------------------------loadservicequalityGuage----------------------------------------------------------
-function loadservicequalityGauge(storeId) {
-    hdnwaittimemeter = $('#servicequality').dxCircularGauge({
+function loadservicequalityGauge(GaugeValue) {
+    hdnservicequality = $('#servicequality').dxCircularGauge({
         scale: {
             startValue: 0,
-            endValue: 100,
-            tickInterval: 20,
+            endValue: 5,
+            tickInterval: 1,
             label: {
                 customizeText: function (arg) {
-                    return arg.valueText + '%';
+                    return arg.valueText;
                 },
                 font: { size: 10, weight: 700 }
             }
@@ -1917,39 +1864,32 @@ function loadservicequalityGauge(storeId) {
         rangeContainer: {
             width: 4,
             ranges: [
-                { startValue: 0, endValue: 30, color: '#CE2029' },
-                { startValue: 30, endValue: 60, color: '#FFD700' },
-                { startValue: 60, endValue: 100, color: '#228B22' }
+                { startValue: 0, endValue: 1, color: '#CE2029' },
+                { startValue: 1, endValue: 2, color: '#FFD700' },
+                { startValue: 2, endValue: 3, color: '#228B22' },
+                { startValue: 3, endValue: 4, color: 'blue' },
+                { startValue: 4, endValue: 5, color: '#CE2029' },
             ]
         },
         title: {
-            //text: 'Predicted NPS',
-            //font: { size: 28 }
+            text: 'Avg. Service Quality Rating: ' + GaugeValue,
+            font: { size: 20 }
         },
-        value: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalues: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalueIndicator: {
-            type: 'textCloud',
-            color: 'royalblue'
-        }
+        value: GaugeValue
     }).dxCircularGauge("instance");
 }
 
 
-//----------------------------------------------------loadcleanlinessGuage----------------------------------------------------------
-function loadpromo1Gauge(storeId) {
-    hdnwaittimemeter = $('#promo1').dxCircularGauge({
+//----------------------------------------------------loadpromolinessGuage----------------------------------------------------------
+function loadpromo1Gauge(GaugeValue) {
+    hdnpromo1 = $('#promo1').dxCircularGauge({
         scale: {
             startValue: 0,
-            endValue: 100,
-            tickInterval: 20,
+            endValue: 5,
+            tickInterval: 1,
             label: {
                 customizeText: function (arg) {
-                    return arg.valueText + '%';
+                    return arg.valueText;
                 },
                 font: { size: 10, weight: 700 }
             }
@@ -1961,38 +1901,31 @@ function loadpromo1Gauge(storeId) {
         rangeContainer: {
             width: 4,
             ranges: [
-                { startValue: 0, endValue: 30, color: '#CE2029' },
-                { startValue: 30, endValue: 60, color: '#FFD700' },
-                { startValue: 60, endValue: 100, color: '#228B22' }
+               { startValue: 0, endValue: 1, color: '#CE2029' },
+                { startValue: 1, endValue: 2, color: '#FFD700' },
+                { startValue: 2, endValue: 3, color: '#228B22' },
+                { startValue: 3, endValue: 4, color: 'blue' },
+                { startValue: 4, endValue: 5, color: '#CE2029' },
             ]
         },
         title: {
-            //text: 'Predicted NPS',
-            //font: { size: 28 }
+            text: 'Avg. Promotion Rating: ' + GaugeValue,
+            font: { size: 20 }
         },
-        value: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalues: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalueIndicator: {
-            type: 'textCloud',
-            color: 'royalblue'
-        }
+        value: GaugeValue
     }).dxCircularGauge("instance");
 }
 
 //----------------------------------------------------loadcleanlinessGuage----------------------------------------------------------
-function loadclean_li_nessGauge(storeId) {
-    hdnwaittimemeter = $('#clean_li_ness').dxCircularGauge({
+function loadclean_li_nessGauge(GaugeValue) {
+    hdncleanliness = $('#clean_li_ness').dxCircularGauge({
         scale: {
             startValue: 0,
-            endValue: 100,
-            tickInterval: 20,
+            endValue: 5,
+            tickInterval: 1,
             label: {
                 customizeText: function (arg) {
-                    return arg.valueText + '%';
+                    return arg.valueText;
                 },
                 font: { size: 10, weight: 700 }
             }
@@ -2004,38 +1937,31 @@ function loadclean_li_nessGauge(storeId) {
         rangeContainer: {
             width: 4,
             ranges: [
-                { startValue: 0, endValue: 30, color: '#CE2029' },
-                { startValue: 30, endValue: 60, color: '#FFD700' },
-                { startValue: 60, endValue: 100, color: '#228B22' }
+               { startValue: 0, endValue: 1, color: '#CE2029' },
+                { startValue: 1, endValue: 2, color: '#FFD700' },
+                { startValue: 2, endValue: 3, color: '#228B22' },
+                { startValue: 3, endValue: 4, color: 'blue' },
+                { startValue: 4, endValue: 5, color: '#CE2029' },
             ]
         },
         title: {
-            //text: 'Predicted NPS',
-            //font: { size: 28 }
+            text: 'Avg. Cleanliness Rating: ' + GaugeValue,
+            font: { size: 20 }
         },
-        value: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalues: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalueIndicator: {
-            type: 'textCloud',
-            color: 'royalblue'
-        }
+        value: GaugeValue
     }).dxCircularGauge("instance");
 }
 
 //----------------------------------------------------external appearance----------------------------------------------------------
-function loadexternal_appearanceGauge(storeId) {
+function loadexternal_appearanceGauge(GaugeValue) {
     hdnexternalappearance = $('#external_appearance1').dxCircularGauge({
         scale: {
             startValue: 0,
-            endValue: 100,
-            tickInterval: 20,
+            endValue: 5,
+            tickInterval: 1,
             label: {
                 customizeText: function (arg) {
-                    return arg.valueText + '%';
+                    return arg.valueText;
                 },
                 font: { size: 10, weight: 700 }
             }
@@ -2047,32 +1973,25 @@ function loadexternal_appearanceGauge(storeId) {
         rangeContainer: {
             width: 4,
             ranges: [
-                { startValue: 0, endValue: 30, color: '#CE2029' },
-                { startValue: 30, endValue: 60, color: '#FFD700' },
-                { startValue: 60, endValue: 100, color: '#228B22' }
+               { startValue: 0, endValue: 1, color: '#CE2029' },
+                { startValue: 1, endValue: 2, color: '#FFD700' },
+                { startValue: 2, endValue: 3, color: '#228B22' },
+                { startValue: 3, endValue: 4, color: 'blue' },
+                { startValue: 4, endValue: 5, color: '#CE2029' },
             ]
         },
         title: {
-            //text: 'Predicted NPS',
-            //font: { size: 28 }
+            text: 'Avg. Appearance Rating: ' + GaugeValue,
+            font: { size: 20 }
         },
-        value: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalues: data.filter(function (obj) {
-            return obj.LOC == storeId
-        })[0].CVF * 25,
-        subvalueIndicator: {
-            type: 'textCloud',
-            color: 'royalblue'
-        }
+        value: GaugeValue
     }).dxCircularGauge("instance");
 }
 
 
 loadCustVisitFrequecyGuage(storeId);
 loadCustVisitFrequecyByStore(storeId);
-loadFinalCustVisitFrequecyGuage(storeId);
+
 loadWaitingGauge(storeId);
 getOtherFactorsData(storeId)
 loadOtherFactorsData();
