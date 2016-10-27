@@ -1153,7 +1153,7 @@ $('#slider2').click(function () {
     $('#food_quality').css('display', 'none');
     $('#service_quality').css('display', 'none');
     $('#promo_tions').css('display', 'none');
-    $('#cleanlin_ess').css('display', 'none');
+    $('#cleanli_ness').css('display', 'none');
     $('#external_appearance').css('display', 'none');
 });
 
