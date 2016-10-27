@@ -59,10 +59,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\step.png" />
+    <Content Include="Images\aur_new.png" />
     <Content Include="Images\export %281%29.png" />
     <Content Include="Images\Image1.png" />
     <Content Include="Images\Image2.png" />
     <Content Include="Images\method-draw-image.svg" />
+    <Content Include="Images\PowerPoint Presentation.png" />
     <Content Include="Images\tree2.jpg" />
     <Content Include="Images\Untitled - Copy - Copy.jpg" />
     <Content Include="Images\Untitled - Copy.jpg" />

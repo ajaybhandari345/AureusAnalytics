@@ -8,26 +8,26 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         onValueChanged: function (e) {
             date = $("#dateBox").dxDateBox("instance").option('value');
             $scope.foreCastType = 'd';
-            
+
         }
     });
-    $scope.foreCastType = 'd';
+    $scope.foreCastType = 'q';
     $scope.weekrange = {
         value: date
     };
-    $scope.foreCastLevel = '1';
-    $scope.range = $filter('date')(date, 'ww');
+    $scope.foreCastLevel = '4';
+    $scope.range = "Q1"
 
     $scope.setRange = function (val, type) {
         $scope.foreCastType = type;
-        if (type=='w')
+        if (type == 'w')
             $scope.range = $filter('date')(val, 'ww');
         if (type == 'q')
             $scope.range = val;
         if (type == 'm')
             $scope.range = val;
     }
-    
+
     var monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
     ];
@@ -35,27 +35,34 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
     var daypart = ["6:00 - 9:00", "9:00 - 12:00", "12:00 - 3:00", "3:00 - 6:00", "6:00 - Close"];
 
     var weekNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  
+
+
+
     $scope.getReportData = function () {
         var dbResObj = {
             "StoredProcedueName": "GetDashboardSales",
-            "Paramtervalues": { type: $scope.foreCastLevel, range: $scope.range, date: $filter('date')(new Date(date.getFullYear()+1,date.getMonth(),date.getDay()), 'yyyy-MM-dd') }
+            "Paramtervalues": { type: $scope.foreCastLevel, range: $scope.range, date: $filter('date')(new Date(date.getFullYear() + 1, date.getMonth(), date.getDay()), 'yyyy-MM-dd') }
         };
         $http({
             method: 'POST',
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-            $scope.loyalSalesForecast = response.data.OutPutResults[0].LoyalSalesForecast;
-            $scope.NewSalesForecast = response.data.OutPutResults[0].NewSalesForecast;
-            $scope.SalesForecast = response.data.OutPutResults[0].SalesForecast;
+
             $scope.LoyalAvgForecast = response.data.OutPutResults[0].LoyalAvgForecast;
+            $scope.LoyalAvgForecast = $scope.LoyalAvgForecast.toFixed(2);
             $scope.NewAvgForecast = response.data.OutPutResults[0].NewAvgForecast;
+            $scope.NewAvgForecast = $scope.NewAvgForecast.toFixed(2);
             $scope.LoyalNumForecast = response.data.OutPutResults[0].LoyalNumForecast;
             $scope.NewNumForecast = response.data.OutPutResults[0].NewNumForecast;
-            console.log(response)
+            $scope.SalesForecast = $scope.NewNumForecast * $scope.NewAvgForecast;
+            $scope.SalesForecast = $scope.SalesForecast.toFixed(2);
+            $scope.NewSalesForecast = $scope.LoyalNumForecast * $scope.LoyalAvgForecast;
+            $scope.NewSalesForecast = $scope.NewSalesForecast.toFixed(2);
+            $scope.totalSale = +$scope.SalesForecast + +$scope.NewSalesForecast;
+            
         }, function errorCallback(response) {
-            console.log(response)
+
         });
 
         dbResObj = {
@@ -67,10 +74,10 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-            console.log(response)
+
             if ($scope.foreCastType == 'q')
-                angular.forEach(response.data.OutPutResults, function (v,k) {
-                    v.month = monthNames[v.month-1]
+                angular.forEach(response.data.OutPutResults, function (v, k) {
+                    v.month = monthNames[v.month - 1]
                 })
             if ($scope.foreCastType == 'd')
                 angular.forEach(response.data.OutPutResults, function (v, k) {
@@ -81,14 +88,14 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
                     v.time = k
                 })
             loadCustVisitFrequecyByStore(response.data.OutPutResults, $scope.foreCastType)
-    
+
         }, function errorCallback(response) {
-            console.log(response)
+
         });
     }
 
 
-//----------------------------------------------------------Wait Time servic calling--------------------------------------------------------------------------
+    //----------------------------------------------------------Wait Time servic calling--------------------------------------------------------------------------
     $scope.getWaitTime = function () {
 
         dbResObj = {
@@ -100,10 +107,10 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-            console.log(response)
-          loadwaittimemeterGuage(response.data.OutPutResults[0].waittime)
+
+            loadwaittimemeterGuage(response.data.OutPutResults[0].waittime)
         }, function errorCallback(response) {
-            console.log(response)
+
         });
 
         dbResObj = {
@@ -115,14 +122,14 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-            console.log(response)
+
             //if ($scope.foreCastType == 'q')
-                angular.forEach(response.data.OutPutResults, function (v, k) {
-                    v.dayofweek = weekNames[v.dayofweek - 1]
-                })
+            angular.forEach(response.data.OutPutResults, function (v, k) {
+                v.dayofweek = weekNames[v.dayofweek - 1]
+            })
             waitTimeGraph_week(response.data.OutPutResults, 'q')
         }, function errorCallback(response) {
-            console.log(response)
+
         });
 
         dbResObj = {
@@ -134,14 +141,14 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-            console.log(response)
+
             //if ($scope.foreCastType == 'q')
             angular.forEach(response.data.OutPutResults, function (v, k) {
                 v.daypart = daypart[v.daypart - 1]
             })
             waitTimeGraph_day(response.data.OutPutResults, 'q')
         }, function errorCallback(response) {
-            console.log(response)
+
         });
     }
 
@@ -157,10 +164,10 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-            
+
             loaddrinkqualityGuage(response.data.OutPutResults[0].newdrinkqual)
         }, function errorCallback(response) {
-            console.log(response)
+
         });
 
         dbResObj = {
@@ -172,7 +179,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-            console.log(response)
+
             //if ($scope.foreCastType == 'q')
             angular.forEach(response.data.OutPutResults, function (v, k) {
                 v.dayofweek = weekNames[v.dayofweek - 1]
@@ -180,7 +187,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             drinkQualityGraph(response.data.OutPutResults, 'q')
 
         }, function errorCallback(response) {
-            console.log(response)
+
         });
     }
 
@@ -196,10 +203,10 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-           
+
             loadfoodqualityGuage(response.data.OutPutResults[0].newfoodqual)
         }, function errorCallback(response) {
-            console.log(response)
+
         });
 
         dbResObj = {
@@ -211,7 +218,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-            console.log(response)
+
             //if ($scope.foreCastType == 'q')
             angular.forEach(response.data.OutPutResults, function (v, k) {
                 v.dayofweek = weekNames[v.dayofweek - 1]
@@ -219,7 +226,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             foodQualityGraph(response.data.OutPutResults, 'q')
 
         }, function errorCallback(response) {
-            console.log(response)
+
         });
     }
 
@@ -236,10 +243,10 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-           
+
             loadservicequalityGauge(response.data.OutPutResults[0].newservicequal)
         }, function errorCallback(response) {
-            console.log(response)
+
         });
 
         dbResObj = {
@@ -251,7 +258,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-            console.log(response)
+
             //if ($scope.foreCastType == 'q')
             angular.forEach(response.data.OutPutResults, function (v, k) {
                 v.dayofweek = weekNames[v.dayofweek - 1]
@@ -259,7 +266,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             serviceQualityGraph(response.data.OutPutResults, 'q')
 
         }, function errorCallback(response) {
-            console.log(response)
+
         });
     }
 
@@ -276,10 +283,10 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-           
+
             loadpromo1Gauge(response.data.OutPutResults[0].newpromo)
         }, function errorCallback(response) {
-            console.log(response)
+
         });
 
         dbResObj = {
@@ -291,7 +298,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-            console.log(response)
+
             //if ($scope.foreCastType == 'q')
             angular.forEach(response.data.OutPutResults, function (v, k) {
                 v.dayofweek = weekNames[v.dayofweek - 1]
@@ -299,7 +306,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             promotionGraph(response.data.OutPutResults, 'q')
 
         }, function errorCallback(response) {
-            console.log(response)
+
         });
     }
 
@@ -316,10 +323,10 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-           
+
             loadclean_li_nessGauge(response.data.OutPutResults[0].newclean)
         }, function errorCallback(response) {
-            console.log(response)
+
         });
 
         dbResObj = {
@@ -331,7 +338,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-            console.log(response)
+
             //if ($scope.foreCastType == 'q')
             angular.forEach(response.data.OutPutResults, function (v, k) {
                 v.dayofweek = weekNames[v.dayofweek - 1]
@@ -339,7 +346,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             cleanlinessGraph(response.data.OutPutResults, 'q')
 
         }, function errorCallback(response) {
-            console.log(response)
+
         });
     }
 
@@ -356,10 +363,10 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-           
+
             loadexternal_appearanceGauge(response.data.OutPutResults[0].newapperance)
         }, function errorCallback(response) {
-            console.log(response)
+
         });
 
         dbResObj = {
@@ -371,7 +378,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-            console.log(response)
+
             //if ($scope.foreCastType == 'q')
             angular.forEach(response.data.OutPutResults, function (v, k) {
                 v.dayofweek = weekNames[v.dayofweek - 1]
@@ -379,9 +386,10 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             appearanceGraph(response.data.OutPutResults, 'q')
 
         }, function errorCallback(response) {
-            console.log(response)
+
         });
     }
+    $scope.getReportData();
 }])
 $("#panel2").hide();
 function switchTab(id) {
