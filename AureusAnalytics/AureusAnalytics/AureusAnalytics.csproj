@@ -78,6 +78,7 @@
     <None Include="Properties\PublishProfiles\Aureusdemoanalytics %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Aureusdemoanalytics %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Aureusdemoanalytics.pubxml" />
+    <None Include="Properties\PublishProfiles\aureuspetesdemo.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
