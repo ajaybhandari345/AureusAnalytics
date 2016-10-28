@@ -389,6 +389,27 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
 
         });
     }
+
+    $scope.getActionPlannerData = function () {
+
+        //alert("wait_time :" + wait_time + " drink_quality :" + drink_quality + " food_quality : " + food_quality + " service_quality :" + service_quality + " promotions :" + promotions + " cleanliness :" + cleanliness + "external_appearence :" + external_appearence)
+
+        dbResObj = {
+            "MethodName": "QSalesForecast",
+            "Paramtervalues": ["2017", wait_time, promotions, drink_quality, food_quality, service_quality, cleanliness, external_appearence, "12", "0", "1"]
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/Api/pete/serviceclass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            var obj = JSON.parse(response.data.OutPutResults)
+            $scope.sales = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+        }, function errorCallback(response) {
+
+        });
+    }
+        
     $scope.getReportData();
 }])
 $("#panel2").hide();
