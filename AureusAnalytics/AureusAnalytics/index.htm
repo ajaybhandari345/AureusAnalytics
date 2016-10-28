@@ -64,17 +64,17 @@
                                         <option value="4">Quarterly</option>
                                     </select>
                                 </div>
-                                <div style="width:40%;float:left" ng-show="foreCastLevel=='1'">
+                                <div style="width:27%;float:left" ng-show="foreCastLevel=='1'">
                                     <label> Forecast Time Range :</label>
                                     <div style="display:inline-block" id="dateBox"></div>
                                 </div>
-                                <div style="width:40%;float:left" ng-if="foreCastLevel=='2'">
+                                <div style="width:30%;float:left" ng-if="foreCastLevel=='2'">
                                     <label> Forecast Time Range :</label>
                                     <input type="week" name="input" ng-model="weekrange.value"
                                            placeholder="YYYY-W##" min="2007-W32"
                                            max="2020-W52" ng-change="setRange(weekrange.value,'w')" />
                                 </div>
-                                <div style="width:40%;float:left" ng-if="foreCastLevel=='3'">
+                                <div style="width:27%;float:left" ng-if="foreCastLevel=='3'">
                                     <label> Forecast Time Range :</label>
                                     <select ng-model="range" ng-change="setRange(range,'m')">
                                         <option value="1">January</option>
@@ -91,7 +91,7 @@
                                         <option value="12">December</option>
                                     </select>
                                 </div>
-                                <div style="width:40%;float:left" ng-if="foreCastLevel=='4'">
+                                <div style="width:20%;float:left" ng-if="foreCastLevel=='4'">
                                     <label> Forecast Time Range :</label>
                                     <select ng-model="range" ng-change="setRange(range,'q')">
                                         <option value="Q1">Q1</option>
