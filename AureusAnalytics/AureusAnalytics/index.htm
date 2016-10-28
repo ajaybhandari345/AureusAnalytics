@@ -29,7 +29,7 @@
                 <div id="aside">
                     <ul class="tabs">
                         <li class="tabsli" ng-click="getReportData()"><a href="#one">Dashboard</a></li>
-                        <li class="tabsli"><a href="#three"  ng-click="getGraphValue()">Key Drivers</a></li>
+                        <!--<li class="tabsli"><a href="#three" ng-click="getGraphValue()">Key Drivers</a></li>-->
                         <li id="act_plnr" class="tabsli"  ng-click="getSliderValue()"><a href="#four">Action Planner</a></li>
                     </ul>
                 </div>
@@ -142,8 +142,8 @@
                                     <div style="width:45%;margin:0 auto;float:right;"><div class="point"></div></div>
                                 </div>
                                 <div style="float:left;width:100%;">
-                                    <div class="rectBox" style="float:left" onclick="ShowDrivers('1')">Sales from Repeat Customers : {{NewSalesForecast| currency:"$":0}}</div>
-                                    <div class="rectBox" style="float:right" onclick="ShowDrivers('2')">Sales from new Customers : {{SalesForecast| currency:"$":0}}</div>
+                                    <div class="rectBox" id="sales_repeat" style="float:left" onclick="ShowDrivers('1')">Sales from Repeat Customers : {{NewSalesForecast| currency:"$":0}}</div>
+                                    <div class="rectBox" id="sales_new" style="float:right" onclick="ShowDrivers('2')">Sales from new Customers : {{SalesForecast| currency:"$":0}}</div>
                                 </div>
                                 <div style="float:left;width:100%">
                                     <div style="width:45%;float:left;"><div class="lineV"></div></div>
@@ -178,67 +178,157 @@
 
                             </div>
                         </div>
-                        <div class="tab1div5" style="box-shadow:none;display:none" id="keyDrivers">
-                            <div style="width:70%;margin:0px auto">
-                                <div class="rectBoxTop">Sales : {{totalSale | currency:"$":0}}</div>
-                                <div class="flowArrows">
-                                    <div class="lineV"></div>
+                      
 
-                                </div>
-                                <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
-                                <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
+                        <div id="repeat_table" style="float:left;width:100%;margin-top:20px; padding-bottom:2%; display:none">
 
-                                <div style="float:left;width:100%">
-                                    <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                                    <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                                </div>
-                                <div style="float:left;width:100%">
-                                    <div style="width:45%;float:left;"><div class="point"></div></div>
-                                    <div style="width:45%;margin:0 auto;float:right;"><div class="point"></div></div>
-                                </div>
-                                <div style="float:left;width:100%;">
-                                    <div class="rectBox" style="float:left">Sales from Repeat Customers : {{NewSalesForecast| currency:"$":0}}</div>
-                                    <div class="rectBox" style="float:right">Sales from new Customers : {{SalesForecast| currency:"$":0}}</div>
-                                </div>
-                                <div style="float:left;width:100%">
-                                    <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                                    <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                                </div>
-                                <div style="float:left;width:100%">
-                                    <div style="width:45%;float:left;"><div class="point"></div></div>
-                                    <div style="width:45%;float:right;"><div class="point"></div></div>
-                                </div>
-                                <div style="float:left;width:100%;">
-                                    <div style="float:left;width:49%;margin-right:2%">
-                                        <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
-                                        <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
-                                        <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                                        <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                                        <div style="float:left;width:100%;">
-                                            <div class="rectBox" style="float:left">Avg. Ticket-Size: <br> {{LoyalAvgForecast| currency:"$":2}}</div>
-                                            <div class="rectBox" style="float:right">Traffic from Loyal <br> {{LoyalNumForecast| number:0}}</div>
-                                        </div>
-                                    </div>
-                                    <div style="float:left;width:49%;">
-                                        <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
-                                        <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
-                                        <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                                        <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                                        <div style="float:left;width:100%;">
-                                            <div class="rectBox" style="float:left">Avg. Ticket-Size: <br> {{NewAvgForecast| currency:"$":2}}</div>
-                                            <div class="rectBox" style="float:right">Traffic from New <br> {{NewNumForecast| number:0}}</div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div style="float:left;width:45%;text-align:center;margin:0 auto;">
+                                <label>Avg. Ticket-Size(Repeat) - Key Drivers</label>
+                                <table style="margin:0 auto">
+                                    <tr style="background-color:rgb(166,166,166);">
+                                        <td></td>
+                                        <td>Current Value</td>
+                                        <td>Target Value</td>
+                                    </tr>
 
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Drink Quality</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LDQ |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{DQT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Food Quality</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LFQ |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{FQT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Promotions</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LPR |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">&nbsp;</td>
+                                        <td style="background-color:rgb(214,220,229);"></td>
+                                        <td style="background-color:rgb(189,215,238);"></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div style="float:right;width:45%;text-align:center;margin:0 auto">
+                                <label>Traffic from Loyal(Repeat) - Key Drivers</label>
+                                <table style="margin:0 auto">
+                                    <tr style="background-color:rgb(166,166,166);">
+                                        <td></td>
+                                        <td>Current Value</td>
+                                        <td>Target Value</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Service Quality</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LSQ |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{SQT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Drink Quality</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LDQ |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{DQT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Wait Time</td>
+                                        <td style="background-color:rgb(214,220,229);">{{NWT |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{WTT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Promotions</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LPR |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
+                                    </tr>
+
+                                </table>
                             </div>
                         </div>
+                        <div id="new_table" style="float:left;width:100%;margin-top:20px; padding-bottom:2%; display:none">
 
+                            <div style="float:left;width:45%;text-align:center;margin:0 auto;">
+                                <label>Avg. Ticket-Size(New) - Key Drivers</label>
+                                <table style="margin:0 auto">
+                                    <tr style="background-color:rgb(166,166,166);">
+                                        <td></td>
+                                        <td>Current Value</td>
+                                        <td>Target Value</td>
+                                    </tr>
 
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Promotions</td>
+                                        <td style="background-color:rgb(214,220,229);">{{NPR |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Drink Quality</td>
+                                        <td style="background-color:rgb(214,220,229);">{{NDQ |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{DQT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Food Quality</td>
+                                        <td style="background-color:rgb(214,220,229);">{{NFQ |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{FQT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">&nbsp;</td>
+                                        <td style="background-color:rgb(214,220,229);"></td>
+                                        <td style="background-color:rgb(189,215,238);"></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div style="float:right;width:45%;text-align:center;margin:0 auto">
+                                <label>Avg. Ticket-Size(New) - Key Drivers</label>
+                                <table style="margin:0 auto">
+                                    <tr style="background-color:rgb(166,166,166);">
+                                        <td></td>
+                                        <td>Current Value</td>
+                                        <td>Target Value</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Promotions</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LPR |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Wait Time</td>
+                                        <td style="background-color:rgb(214,220,229);">{{NWT |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{WTT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Appearance</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LEA |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{EAT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Cleanliness</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LCL |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{CLT}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                         </div>
 
                     <!----------------------------------------------------------------------------------------Key Driver--------------------------------------------------------------------------------------------------------------------------------------------------->
-                    <div id="three" class="tab_content">
+                   <!--  <div id="three" class="tab_content">
                         <div style="float:left;width:100%;">
                             <div style="float:left;width:20%;text-align:right;">
                                 <ul class="tabsli_kd">
@@ -248,7 +338,7 @@
                             </div>
                             <div style="float:left;width:80%;">
 
-                                <!--Repeat Customers-->
+                               
                                 <div style="float:left;width:100%;padding:10px;background-color:rgb(222,235,247);" id="panel1">
                                     <div class="rectBoxTop" style="color:white">Sales From Repeat Customers <br> ${{NewSalesForecast}}</div>
                                     <div class="flowArrows">
@@ -280,23 +370,23 @@
                                                     <td>Current Value</td>
                                                     <td>Target Value</td>
                                                 </tr>
-
+                                              
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Drink Quality</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{LDQ}}</td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LDQ |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{DQT}}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Food Quality</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{LFQ}}</td>
-                                                    <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LFQ |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{FQT}}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Promotions</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{LPR}}</td>
-                                                    <td style="background-color:rgb(189,215,238);">40</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LPR |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
                                                 </tr>
 
                                                 <tr>
@@ -318,26 +408,26 @@
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Service Quality</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{LSQ}}</td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LSQ |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{SQT}}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Drink Quality</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{LDQ}}</td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LDQ |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{DQT}}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Wait Time</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{NWT}}</td>
-                                                    <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{NWT |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{WTT}}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Promotions</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{LPR}}</td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LPR |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
                                                 </tr>
 
                                             </table>
@@ -346,8 +436,8 @@
                                 </div>
 
 
-                                <!--Repeat Customers-->
-                                <!--New Customers-->
+                                <!--Repeat Customers--
+                                <!--New Customers-
                                 <div style="float:left;width:100%;padding:10px;background-color:rgb(222,235,247)" id="panel2">
                                     <div class="rectBoxTop" style="color:white;">Sales From New Customers <br> ${{SalesForecast}}</div>
                                     <div class="flowArrows">
@@ -382,20 +472,20 @@
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Promotions</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{NPR}}</td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(214,220,229);">{{NPR |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Drink Quality</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{NDQ}}</td>
-                                                    <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{NDQ |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{DQT}}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Food Quality</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{NFQ}}</td>
-                                                    <td style="background-color:rgb(189,215,238);">40</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{NFQ |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{FQT}}</td>
                                                 </tr>
 
                                                 <tr>
@@ -417,26 +507,26 @@
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Promotions</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{LPR}}</td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LPR |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Wait Time</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{NWT}}</td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(214,220,229);">{{NWT |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{WTT}}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Appearance</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{LEA}}</td>
-                                                    <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LEA |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{EAT}}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Cleanliness</td>
-                                                    <td style="background-color:rgb(214,220,229);">{{LCL}}</td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LCL |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{CLT}}</td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -448,7 +538,7 @@
 
 
 
-                    </div>
+                    </div> -->
 
                     <!----------------------------------------------------------------------------------------Action Planner--------------------------------------------------------------------------------------------------------------------------------------------------->
 
@@ -493,7 +583,7 @@
                                 <img src="Images/PowerPoint Presentation.png" width="460" height="345"/>
 
                                 <div id="circleBase" class="circleBase">
-                                   <div style="text-align:center;color:#FFF;font-weight:bold; font-size:24px;margin: 35% 0 0 0;">&plusmn; {{+salesfromrepeat1 + +salesfromnew1}} </div> 
+                                   <div style="text-align:center;color:#FFF;font-weight:bold; font-size:24px;margin: 35% 0 0 0;">&plusmn; {{+salesfromrepeat1 + +salesfromnew1   |number:2}} </div> 
                                 </div>
 
                             </div>

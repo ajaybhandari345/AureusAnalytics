@@ -422,6 +422,15 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
     }
 
     $scope.getActionPlannerData = function () {
+        $scope.WTT = waitTime;
+        $scope.DQT = drinkQuality;
+        $scope.FQT = foodQuality;
+        $scope.SQT = serviceQuality;
+        $scope.PRT = promotion;
+        $scope.CLT = cleanliness;
+        $scope.EAT = extAppearance;
+        
+        $scope.ex = waitTime;
         dbResObj = {
             "MethodName": "QSalesForecast",
             "Paramtervalues": ["2017", waitTime, drinkQuality, foodQuality, serviceQuality, promotion, cleanliness, extAppearance, "12", "0", "1"]
@@ -433,7 +442,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         }).then(function successCallback(response) {
             var obj = JSON.parse(response.data.OutPutResults)
             $scope.salesfromrepeat = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
-            $scope.salesfromrepeat1 = $scope.salesfromrepeat.toFixed(2);
+            $scope.salesfromrepeat1 = $scope.salesfromrepeat;
         }, function errorCallback(response) {
 
         });
@@ -449,7 +458,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         }).then(function successCallback(response) {
             var obj = JSON.parse(response.data.OutPutResults)
             $scope.salesfromnew = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
-            $scope.salesfromnew1 = $scope.salesfromnew.toFixed(2);
+            $scope.salesfromnew1 = $scope.salesfromnew;
 
         }, function errorCallback(response) {
 
@@ -568,6 +577,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         });
     }
     $scope.getReportData();
+    $scope.getGraphValue();
 }])
 $("#panel2").hide();
 function switchTab(id) {

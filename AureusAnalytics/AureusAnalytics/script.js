@@ -1229,3 +1229,14 @@ $('#btnLock').click(function () {
     $('#cleanli_ness').css('display', 'none');
     $('#external_appearance').css('display', 'none');
 });
+
+$('#sales_repeat').click(function () {
+    $('#repeat_table').css('display', 'block');
+    $('#new_table').css('display', 'none');
+    
+});
+
+$('#sales_new').click(function () {
+    $('#new_table').css('display', 'block');
+    $('#repeat_table').css('display', 'none');
+});
