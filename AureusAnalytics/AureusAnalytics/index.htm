@@ -30,7 +30,7 @@
                     <ul class="tabs">
                         <li class="tabsli" ng-click="getReportData()"><a href="#one">Dashboard</a></li>
                         <li class="tabsli"><a href="#three">Key Drivers</a></li>
-                        <li id="act_plnr" class="tabsli"><a href="#four">Action Planner</a></li>
+                        <li id="act_plnr" class="tabsli"  ng-click="getSliderValue()"><a href="#four">Action Planner</a></li>
                     </ul>
                 </div>
             </div>
@@ -64,17 +64,17 @@
                                         <option value="4">Quarterly</option>
                                     </select>
                                 </div>
-                                <div style="width:40%;float:left" ng-show="foreCastLevel=='1'">
+                                <div style="width:27%;float:left" ng-show="foreCastLevel=='1'">
                                     <label> Forecast Time Range :</label>
                                     <div style="display:inline-block" id="dateBox"></div>
                                 </div>
-                                <div style="width:40%;float:left" ng-if="foreCastLevel=='2'">
+                                <div style="width:30%;float:left" ng-if="foreCastLevel=='2'">
                                     <label> Forecast Time Range :</label>
                                     <input type="week" name="input" ng-model="weekrange.value"
                                            placeholder="YYYY-W##" min="2007-W32"
                                            max="2020-W52" ng-change="setRange(weekrange.value,'w')" />
                                 </div>
-                                <div style="width:40%;float:left" ng-if="foreCastLevel=='3'">
+                                <div style="width:27%;float:left" ng-if="foreCastLevel=='3'">
                                     <label> Forecast Time Range :</label>
                                     <select ng-model="range" ng-change="setRange(range,'m')">
                                         <option value="1">January</option>
@@ -91,7 +91,7 @@
                                         <option value="12">December</option>
                                     </select>
                                 </div>
-                                <div style="width:40%;float:left" ng-if="foreCastLevel=='4'">
+                                <div style="width:20%;float:left" ng-if="foreCastLevel=='4'">
                                     <label> Forecast Time Range :</label>
                                     <select ng-model="range" ng-change="setRange(range,'q')">
                                         <option value="Q1">Q1</option>
@@ -415,7 +415,7 @@
                             <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key7">
                                 <div id="slider7" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getAppearance()"><b>External Appearance</b></div> <br /><div id="extApperanceSlider" style="height: 25%; width:100%; float:left"></div>
                             </div>
-                            <div style="height: 20%; width:100%; float:left;"></div><div style="height: 20%; width:100%; float:left;margin-top:1%;padding-bottom:20px"><button id="btnLock" class="btnlock" onclick="lockTargets()">Lock Targets</button></div>
+                            <div style="height: 20%; width:100%; float:left;"></div><div style="height: 20%; width:100%; float:left;margin-top:1%;padding-bottom:20px"><button id="btnLock" class="btnlock" ng-click="getActionPlannerData()">Lock Targets</button></div>
                         </div>
 
                         <div class="tab4div3">
@@ -423,6 +423,7 @@
                                 <img src="Images/PowerPoint Presentation.png" width="460" height="345"/>
 
                                 <div id="circleBase" class="circleBase">
+                                   <div style="text-align:center;color:#FFF;font-weight:bold; font-size:24px;margin: 35% 0 0 0;">&plusmn; {{sales}} </div> 
                                 </div>
 
                             </div>

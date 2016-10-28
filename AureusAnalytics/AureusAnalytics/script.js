@@ -13,7 +13,7 @@
         $("ul.tabs li").removeClass("current");
         $(this).addClass("current");
 
-        loadCustVisitFrequecyByStore(storeId);
+        
         waitTimeGraph_week(storeId);
         waitTimeGraph_day(storeId);
         drinkQualityGraph(storeId);
@@ -22,7 +22,7 @@
         promotionGraph(storeId);
         cleanlinessGraph(storeId);
         appearanceGraph(storeId);
-        setRangeSliders(storeId);
+        
         $(".tab_content").hide();
         var activeTab = $(this).find("a").attr("href");
         $(activeTab).fadeIn();
@@ -30,11 +30,23 @@
     });
 });
 
-var storeId = 1;
+var storeId = 0;
+var waitTime = 0;
+var drinkQuality = 0;
+var foodQuality = 0;
+var serviceQuality = 0;
+var promotion = 0;
+var cleanliness = 0;
+var extAppearance = 0;
 
-function setRangeSliders(sId) {
-
-    var waitTime = 0;
+function setRangeSliders(WT, DQ, FQ, SQ, PR, CL, EA) {
+    waitTime = WT;
+    drinkQuality = DQ;
+    foodQuality = FQ;
+    serviceQuality = SQ;
+    promotion = PR;
+    cleanliness = CL;
+    extAppearance = EA;
 
     //------------------------------------------------------------------dx-slider-waitTime------------------------------------------------------------------------------------------
 
@@ -66,11 +78,11 @@ function setRangeSliders(sId) {
         }
     }).dxSlider("instance");
     //------------------------------------------------------------------dx-slider-drinkQuality------------------------------------------------------------------------------------------  
-    hdnOA = $("#drinkQualitySlider").dxSlider({
+    hdnDQ = $("#drinkQualitySlider").dxSlider({
         min: 0,
         max: 5,
         step: 0.1,
-        value: waitTime,
+        value: drinkQuality,
         tooltip: {
             enabled: true,
             format: function (value) {
@@ -106,11 +118,11 @@ function setRangeSliders(sId) {
         }
     }).dxSlider("instance");
     //------------------------------------------------------------------dx-slider-foodQuality------------------------------------------------------------------------------------------
-    hdnMV = $("#foodQualitySlider").dxSlider({
+    hdnFQ = $("#foodQualitySlider").dxSlider({
         min: 0,
         max: 5,
         step: 0.1,
-        value: waitTime,
+        value: foodQuality,
         tooltip: {
             enabled: true,
             format: function (value) {
@@ -133,11 +145,11 @@ function setRangeSliders(sId) {
 
     }).dxSlider("instance");
     //------------------------------------------------------------------dx-slider-serviceQuality-------------------------------------------------------------------------------------------
-    hdnMV = $("#serviceQualitySlider").dxSlider({
+    hdnSQ = $("#serviceQualitySlider").dxSlider({
         min: 0,
         max: 5,
         step: 0.1,
-        value: waitTime,
+        value: serviceQuality,
         tooltip: {
             enabled: true,
             format: function (value) {
@@ -164,11 +176,11 @@ function setRangeSliders(sId) {
 
 
     //------------------------------------------------------------------dx-slider-promotions-------------------------------------------------------------------------------------------
-    hdnMV = $("#promotionsSlider").dxSlider({
+    hdnPR = $("#promotionsSlider").dxSlider({
         min: 0,
         max: 5,
         step: 0.1,
-        value: waitTime,
+        value: promotion,
         tooltip: {
             enabled: true,
             format: function (value) {
@@ -192,11 +204,11 @@ function setRangeSliders(sId) {
     }).dxSlider("instance");
 
     //------------------------------------------------------------------dx-slider-cleanliness-------------------------------------------------------------------------------------------
-    hdnMV = $("#cleanlinessSlider").dxSlider({
+    hdnCL = $("#cleanlinessSlider").dxSlider({
         min: 0,
         max: 5,
         step: 0.1,
-        value: waitTime,
+        value: cleanliness,
         tooltip: {
             enabled: true,
             format: function (value) {
@@ -222,11 +234,11 @@ function setRangeSliders(sId) {
 
 
     //------------------------------------------------------------------dx-slider-ExternalAppearance-------------------------------------------------------------------------------------------
-    hdnMV = $("#extApperanceSlider").dxSlider({
+    hdnEA = $("#extApperanceSlider").dxSlider({
         min: 0,
         max: 5,
         step: 0.1,
-        value: waitTime,
+        value: extAppearance,
         tooltip: {
             enabled: true,
             format: function (value) {
@@ -1131,9 +1143,9 @@ function loadexternal_appearanceGauge(GaugeValue) {
 }
 
 
-loadCustVisitFrequecyByStore(storeId);
 
-setRangeSliders(storeId)
+
+
 
 $('#slider1').click(function () {
     $('#wait_time').css('display', 'block');
