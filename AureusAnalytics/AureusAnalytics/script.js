@@ -74,7 +74,7 @@ function setRangeSliders(WT, DQ, FQ, SQ, PR, CL, EA) {
             color: 'red'
         },
         onValueChanged: function (data) {
-
+            waitTime = data.value;
         }
     }).dxSlider("instance");
     //------------------------------------------------------------------dx-slider-drinkQuality------------------------------------------------------------------------------------------  
@@ -103,18 +103,7 @@ function setRangeSliders(WT, DQ, FQ, SQ, PR, CL, EA) {
             color: 'red'
         },
         onValueChanged: function (data) {
-            //OrderA = data.value / 100;
-            //target_oa = OrderA * 100;
-
-            //hdnOA.option("value", parseFloat(OrderA * 100).toFixed(1))
-
-            //var predictedDV = (0.61266 - 0.17 * (waitTime) + 0.34 * (OrderA) + 0.49 * (menuV)) * 100;
-            //var LiftInDV = parseFloat(predictedDV - 84.1).toFixed(1);
-            //var liftInSales = parseFloat((LiftInDV / CustVF) * rrg * 100).toFixed(1);
-            //$("#liftInSales").html("+" + LiftInDV + "%");
-
-            //hdnfinalCustVisitFreq.option("value", predictedDV);
-            //hdnfinalCustVisitFreq.option("subvalues", predictedDV);
+            drinkQuality = data.value;
         }
     }).dxSlider("instance");
     //------------------------------------------------------------------dx-slider-foodQuality------------------------------------------------------------------------------------------
@@ -140,7 +129,7 @@ function setRangeSliders(WT, DQ, FQ, SQ, PR, CL, EA) {
             position: "top"
         },
         onValueChanged: function (data) {
-
+            foodQuality = data.value;
         }
 
     }).dxSlider("instance");
@@ -167,7 +156,7 @@ function setRangeSliders(WT, DQ, FQ, SQ, PR, CL, EA) {
             position: "top"
         },
         onValueChanged: function (data) {
-
+            serviceQuality = data.value;
         }
 
     }).dxSlider("instance");
@@ -198,7 +187,7 @@ function setRangeSliders(WT, DQ, FQ, SQ, PR, CL, EA) {
             position: "top"
         },
         onValueChanged: function (data) {
-
+            promotion = data.value;
         }
 
     }).dxSlider("instance");
@@ -226,7 +215,7 @@ function setRangeSliders(WT, DQ, FQ, SQ, PR, CL, EA) {
             position: "top"
         },
         onValueChanged: function (data) {
-
+            cleanliness = data.value;
         }
 
     }).dxSlider("instance");
@@ -256,7 +245,7 @@ function setRangeSliders(WT, DQ, FQ, SQ, PR, CL, EA) {
             position: "top"
         },
         onValueChanged: function (data) {
-
+            extAppearance = data.value;
         }
 
     }).dxSlider("instance");

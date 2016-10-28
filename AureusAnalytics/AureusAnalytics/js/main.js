@@ -437,7 +437,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
 
         dbResObj = {
             "MethodName": "QSalesForecast",
-            "Paramtervalues": ["2017", wait_time, promotions, drink_quality, food_quality, service_quality, cleanliness, external_appearence, "12", "0", "1"]
+            "Paramtervalues": ["2017", waitTime, drinkQuality, foodQuality, serviceQuality, promotion, cleanliness, extAppearance, "12", "0", "1"]
         };
         $http({
             method: 'POST',
@@ -445,7 +445,22 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             data: dbResObj
         }).then(function successCallback(response) {
             var obj = JSON.parse(response.data.OutPutResults)
-            $scope.sales = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+            $scope.salesfromrepeat = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+        }, function errorCallback(response) {
+
+        });
+
+        dbResObj = {
+            "MethodName": "QSalesForecast",
+            "Paramtervalues": ["2017", waitTime, drinkQuality, foodQuality, serviceQuality, promotion, cleanliness, extAppearance, "12", "0", "0"]
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/Api/pete/serviceclass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            var obj = JSON.parse(response.data.OutPutResults)
+            $scope.salesfromnew = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
         }, function errorCallback(response) {
 
         });
