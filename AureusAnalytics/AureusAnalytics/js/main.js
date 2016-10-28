@@ -109,6 +109,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         }).then(function successCallback(response) {
 
             loadwaittimemeterGuage(response.data.OutPutResults[0].waittime)
+            
         }, function errorCallback(response) {
 
         });
@@ -389,6 +390,47 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
 
         });
     }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+    $scope.getSliderValue = function () {
+
+        dbResObj = {
+            "StoredProcedueName": "GetSliderValue",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            $scope.WT = response.data.OutPutResults[0].waittime;
+            $scope.WT = $scope.WT.toFixed(2);
+            $scope.DQ = response.data.OutPutResults[0].newdrinkqual;
+            $scope.DQ = $scope.DQ.toFixed(2);
+            $scope.FQ = response.data.OutPutResults[0].newfoodqual;
+            $scope.FQ = $scope.FQ.toFixed(2);
+            $scope.SQ = response.data.OutPutResults[0].newservicequal;
+            $scope.SQ = $scope.SQ.toFixed(2);
+            $scope.PR = response.data.OutPutResults[0].newpromo;
+            $scope.PR = $scope.PR.toFixed(2);
+            $scope.CL = response.data.OutPutResults[0].newclean;
+            $scope.CL = $scope.CL.toFixed(2);
+            $scope.EA = response.data.OutPutResults[0].newapperance;
+            $scope.EA = $scope.EA.toFixed(2);
+          
+
+            setRangeSliders($scope.WT, $scope.DQ, $scope.FQ, $scope.SQ, $scope.PR, $scope.CL, $scope.EA);
+
+
+               
+        }, function errorCallback(response) {
+
+        });
+
+       
+        
+    }
+    //$scope.getSliderValue();
     $scope.getReportData();
 }])
 $("#panel2").hide();
