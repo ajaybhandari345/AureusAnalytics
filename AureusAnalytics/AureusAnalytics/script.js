@@ -310,7 +310,7 @@ function loadCustVisitFrequecyByStore(dataSource, type) {
         valueAxis: {
             min: minV,
             max: maxV,
-            title: 'Net Promoter Score',
+            title: 'Sales',
             label: {
                 customizeText: function (arg) {
                     if (type == 'q') {
@@ -1131,11 +1131,6 @@ function loadexternal_appearanceGauge(GaugeValue) {
     }).dxCircularGauge("instance");
 }
 
-
-
-
-
-
 $('#slider1').click(function () {
     $('#wait_time').css('display', 'block');
     $('#circle1').css('display', 'none');
@@ -1169,8 +1164,6 @@ $('#slider3').click(function () {
     $('#external_appearance').css('display', 'none');
 });
 
-
-
 $('#slider4').click(function () {
     $('#wait_time').css('display', 'none');
     $('#circle1').css('display', 'none');
@@ -1181,8 +1174,6 @@ $('#slider4').click(function () {
     $('#cleanli_ness').css('display', 'none');
     $('#external_appearance').css('display', 'none');
 });
-
-
 
 $('#slider5').click(function () {
     $('#wait_time').css('display', 'none');
@@ -1218,6 +1209,17 @@ $('#slider7').click(function () {
 });
 
 $('#act_plnr').click(function () {
+    $('#wait_time').css('display', 'none');
+    $('#circle1').css('display', 'block');
+    $('#drink_quality').css('display', 'none');
+    $('#food_quality').css('display', 'none');
+    $('#service_quality').css('display', 'none');
+    $('#promo_tions').css('display', 'none');
+    $('#cleanli_ness').css('display', 'none');
+    $('#external_appearance').css('display', 'none');
+});
+
+$('#btnLock').click(function () {
     $('#wait_time').css('display', 'none');
     $('#circle1').css('display', 'block');
     $('#drink_quality').css('display', 'none');
