@@ -29,7 +29,7 @@
                 <div id="aside">
                     <ul class="tabs">
                         <li class="tabsli" ng-click="getReportData()"><a href="#one">Dashboard</a></li>
-                        <li class="tabsli"><a href="#three">Key Drivers</a></li>
+                        <!--<li class="tabsli"><a href="#three" ng-click="getGraphValue()">Key Drivers</a></li>-->
                         <li id="act_plnr" class="tabsli"  ng-click="getSliderValue()"><a href="#four">Action Planner</a></li>
                     </ul>
                 </div>
@@ -43,38 +43,43 @@
 
                     <!----------------------------------------------------------------------------------------Dashboard--------------------------------------------------------------------------------------------------------------------------------------------------->
                     <div id="one" class="tab_content">
-                        <div class="dataContainer" style="box-shadow:none;padding-bottom:0;margin-bottom:0;margin-top:10px">
+                        <div class="tab1div1">
                             <div style="width:100%;float:left">
-                                <div style="width:30%;float:left">
+                                <div style="width:50%;float:left">
                                     <label> Store Number :</label> <input type="text" value="xxx-xxxxxx-xxxx" disabled />
                                 </div>
 
-                                <div style="width:28%;float:left">
-                                    <label> Store Address :</label> <input type="text" value="xxxxxxxxxx" disabled />
+                                <div style="width:50%;float:left">
+                                    <div style="width:50%;float:left">
+                                        <label> Forecast Level :</label>
+                                    </div>
+                                    <div style="width:50%;float:left">
+                                        <select ng-model="foreCastLevel">
+                                            <option value="">--Select--</option>
+                                            <option value="1" selected>Daily</option>
+                                            <option value="2">Weekly</option>
+                                            <option value="3">Monthly</option>
+                                            <option value="4">Quarterly</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div style="width:100%;float:left">
-                                <div style="width:30%;float:left">
-                                    <label> Forecast Level :</label>
-                                    <select ng-model="foreCastLevel">
-                                        <option value="">--Select--</option>
-                                        <option value="1" selected>Daily</option>
-                                        <option value="2">Weekly</option>
-                                        <option value="3">Monthly</option>
-                                        <option value="4">Quarterly</option>
-                                    </select>
+                                <div style="width:50%;float:left">
+                                    <label> Store Address :</label> 
+                                    <input type="text" value="xxxxxxxxxx" disabled />
                                 </div>
-                                <div style="width:27%;float:left" ng-show="foreCastLevel=='1'">
-                                    <label> Forecast Time Range :</label>
+                                <div style="width:50%;float:left" ng-show="foreCastLevel=='1'">
+                                    <label style="line-height:30px;vertical-align:top"> Forecast Time Range :</label>
                                     <div style="display:inline-block" id="dateBox"></div>
                                 </div>
-                                <div style="width:30%;float:left" ng-if="foreCastLevel=='2'">
+                                <div style="width:50%;float:left" ng-if="foreCastLevel=='2'">
                                     <label> Forecast Time Range :</label>
                                     <input type="week" name="input" ng-model="weekrange.value"
                                            placeholder="YYYY-W##" min="2007-W32"
                                            max="2020-W52" ng-change="setRange(weekrange.value,'w')" />
                                 </div>
-                                <div style="width:27%;float:left" ng-if="foreCastLevel=='3'">
+                                <div style="width:50%;float:left" ng-if="foreCastLevel=='3'">
                                     <label> Forecast Time Range :</label>
                                     <select ng-model="range" ng-change="setRange(range,'m')">
                                         <option value="1">January</option>
@@ -91,7 +96,7 @@
                                         <option value="12">December</option>
                                     </select>
                                 </div>
-                                <div style="width:20%;float:left" ng-if="foreCastLevel=='4'">
+                                <div style="width:50%;float:left" ng-if="foreCastLevel=='4'">
                                     <label> Forecast Time Range :</label>
                                     <select ng-model="range" ng-change="setRange(range,'q')">
                                         <option value="Q1">Q1</option>
@@ -100,75 +105,230 @@
                                         <option value="Q4">Q4</option>
                                     </select>
                                 </div>
-                                <div style="width:20%;float:left">
-                                    <button type="submit" class="btnlock" ng-click="getReportData()">Get Report</button>
+                               
+                            </div>
+                            <div style="width:100%;float:left;">
+                                <div style="width:90%;text-align:center;margin:0px auto">
+                                    <button type="submit" class="btnlock" ng-click="getReportData()" style="margin:0px auto;font-weight:bold">Get Data</button>
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="tab1div1" style="box-shadow:none;margin-bottom:0;padding-bottom:0">
-
-                            <div class="rectBoxTop">Sales <br> ${{totalSale}}</div>
-                            <div class="flowArrows">
-                                <div class="lineV"></div>
-
-                            </div>
-                            <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
-                            <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
-
-                            <div style="float:left;width:100%">
-                                <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                                <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                            </div>
-                            <div style="float:left;width:100%">
-                                <div style="width:45%;float:left;"><div class="point"></div></div>
-                                <div style="width:45%;margin:0 auto;float:right;"><div class="point"></div></div>
-                            </div>
-                            <div style="float:left;width:100%;">
-                                <div class="rectBox" style="float:left">Sales from Repeat Customers <br> ${{NewSalesForecast}}</div>
-                                <div class="rectBox" style="float:right">Sales from new Customers <br> ${{SalesForecast}}</div>
-                            </div>
-                            <div style="float:left;width:100%">
-                                <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                                <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                            </div>
-                            <div style="float:left;width:100%">
-                                <div style="width:45%;float:left;"><div class="point"></div></div>
-                                <div style="width:45%;float:right;"><div class="point"></div></div>
-                            </div>
-                            <div style="float:left;width:100%;">
-                                <div style="float:left;width:49%;margin-right:2%">
-                                    <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
-                                    <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
-                                    <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                                    <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                                    <div style="float:left;width:100%;">
-                                        <div class="rectBox" style="float:left">Avg. Ticket-Size: <br> ${{LoyalAvgForecast}}</div>
-                                        <div class="rectBox" style="float:right">Traffic from Loyal <br> {{LoyalNumForecast}}</div>
-                                    </div>
-                                </div>
-                                <div style="float:left;width:49%;">
-                                    <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
-                                    <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
-                                    <div style="width:45%;float:left;"><div class="lineV"></div></div>
-                                    <div style="width:45%;float:right;"><div class="lineV"></div></div>
-                                    <div style="float:left;width:100%;">
-                                        <div class="rectBox" style="float:left">Avg. Ticket-Size: <br> ${{NewAvgForecast}}</div>
-                                        <div class="rectBox" style="float:right">Traffic from New <br> {{NewNumForecast}}</div>
+                            <div>
+                                <div style="width:100%;height:200px;float:left">
+                                    <div style="margin:5% auto; width:400px;height:150px;border-radius:30px;background-color:#D2532E;color:white;text-align:center">
+                                        <div style="margin:0px auto;vertical-align:middle; height:150px;width:90%;font-weight:bold; font-size:45px">Sales Forecast <br />{{totalSale | currency:"$":0}} </div>                                        
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
-
                         <div class="tab1div4">
                             <div id="freqByStoreContainer" style="width:100%"></div>
                         </div>
-                    </div>
+                        <div class="tab1div5" style="box-shadow:none;">
+                            <div style="width:70%;margin:0px auto">
+                                <div class="rectBoxTop">Sales : {{totalSale | currency:"$":0}}</div>
+                                <div class="flowArrows">
+                                    <div class="lineV"></div>
+
+                                </div>
+                                <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
+                                <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
+
+                                <div style="float:left;width:100%">
+                                    <div style="width:45%;float:left;"><div class="lineV"></div></div>
+                                    <div style="width:45%;float:right;"><div class="lineV"></div></div>
+                                </div>
+                                <div style="float:left;width:100%">
+                                    <div style="width:45%;float:left;"><div class="point"></div></div>
+                                    <div style="width:45%;margin:0 auto;float:right;"><div class="point"></div></div>
+                                </div>
+                                <div style="float:left;width:100%;">
+                                    <div class="rectBox" id="sales_repeat" style="float:left" onclick="ShowDrivers('1')">Sales from Repeat Customers : {{NewSalesForecast| currency:"$":0}}</div>
+                                    <div class="rectBox" id="sales_new" style="float:right" onclick="ShowDrivers('2')">Sales from new Customers : {{SalesForecast| currency:"$":0}}</div>
+                                </div>
+                                <div style="float:left;width:100%">
+                                    <div style="width:45%;float:left;"><div class="lineV"></div></div>
+                                    <div style="width:45%;float:right;"><div class="lineV"></div></div>
+                                </div>
+                                <div style="float:left;width:100%">
+                                    <div style="width:45%;float:left;"><div class="point"></div></div>
+                                    <div style="width:45%;float:right;"><div class="point"></div></div>
+                                </div>
+                                <div style="float:left;width:100%;">
+                                    <div style="float:left;width:49%;margin-right:2%">
+                                        <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
+                                        <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
+                                        <div style="width:45%;float:left;"><div class="lineV"></div></div>
+                                        <div style="width:45%;float:right;"><div class="lineV"></div></div>
+                                        <div style="float:left;width:100%;">
+                                            <div class="rectBox" style="float:left">Avg. Ticket-Size: <br> {{LoyalAvgForecast| currency:"$":2}}</div>
+                                            <div class="rectBox" style="float:right">Traffic from Loyal <br> {{LoyalNumForecast| number:0}}</div>
+                                        </div>
+                                    </div>
+                                    <div style="float:left;width:49%;">
+                                        <div style="width:49%;float:left;"><div class="lineH" style="margin-left:46%"></div></div>
+                                        <div style="width:49%;float:left;"><div class="lineH" style="margin-right:50%"></div></div>
+                                        <div style="width:45%;float:left;"><div class="lineV"></div></div>
+                                        <div style="width:45%;float:right;"><div class="lineV"></div></div>
+                                        <div style="float:left;width:100%;">
+                                            <div class="rectBox" style="float:left">Avg. Ticket-Size: <br> {{NewAvgForecast| currency:"$":2}}</div>
+                                            <div class="rectBox" style="float:right">Traffic from New <br> {{NewNumForecast| number:0}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                      
+
+                        <div id="repeat_table" style="float:left;width:100%;margin-top:20px; padding-bottom:2%; display:none">
+
+                            <div style="float:left;width:45%;text-align:center;margin:0 auto;">
+                                <label>Avg. Ticket-Size(Repeat) - Key Drivers</label>
+                                <table style="margin:0 auto">
+                                    <tr style="background-color:rgb(166,166,166);">
+                                        <td></td>
+                                        <td>Current Value</td>
+                                        <td>Target Value</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Drink Quality</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LDQ |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{DQT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Food Quality</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LFQ |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{FQT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Promotions</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LPR |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">&nbsp;</td>
+                                        <td style="background-color:rgb(214,220,229);"></td>
+                                        <td style="background-color:rgb(189,215,238);"></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div style="float:right;width:45%;text-align:center;margin:0 auto">
+                                <label>Traffic from Loyal(Repeat) - Key Drivers</label>
+                                <table style="margin:0 auto">
+                                    <tr style="background-color:rgb(166,166,166);">
+                                        <td></td>
+                                        <td>Current Value</td>
+                                        <td>Target Value</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Service Quality</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LSQ |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{SQT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Drink Quality</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LDQ |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{DQT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Wait Time</td>
+                                        <td style="background-color:rgb(214,220,229);">{{NWT |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{WTT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Promotions</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LPR |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                        <div id="new_table" style="float:left;width:100%;margin-top:20px; padding-bottom:2%; display:none">
+
+                            <div style="float:left;width:45%;text-align:center;margin:0 auto;">
+                                <label>Avg. Ticket-Size(New) - Key Drivers</label>
+                                <table style="margin:0 auto">
+                                    <tr style="background-color:rgb(166,166,166);">
+                                        <td></td>
+                                        <td>Current Value</td>
+                                        <td>Target Value</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Promotions</td>
+                                        <td style="background-color:rgb(214,220,229);">{{NPR |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Drink Quality</td>
+                                        <td style="background-color:rgb(214,220,229);">{{NDQ |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{DQT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Food Quality</td>
+                                        <td style="background-color:rgb(214,220,229);">{{NFQ |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{FQT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">&nbsp;</td>
+                                        <td style="background-color:rgb(214,220,229);"></td>
+                                        <td style="background-color:rgb(189,215,238);"></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div style="float:right;width:45%;text-align:center;margin:0 auto">
+                                <label>Avg. Ticket-Size(New) - Key Drivers</label>
+                                <table style="margin:0 auto">
+                                    <tr style="background-color:rgb(166,166,166);">
+                                        <td></td>
+                                        <td>Current Value</td>
+                                        <td>Target Value</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Promotions</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LPR |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Wait Time</td>
+                                        <td style="background-color:rgb(214,220,229);">{{NWT |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{WTT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Appearance</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LEA |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{EAT}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="background-color:rgb(222,235,247);">Cleanliness</td>
+                                        <td style="background-color:rgb(214,220,229);">{{LCL |number:2}}</td>
+                                        <td style="background-color:rgb(189,215,238);">{{CLT}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        </div>
 
                     <!----------------------------------------------------------------------------------------Key Driver--------------------------------------------------------------------------------------------------------------------------------------------------->
-                    <div id="three" class="tab_content">
+                   <!--  <div id="three" class="tab_content">
                         <div style="float:left;width:100%;">
                             <div style="float:left;width:20%;text-align:right;">
                                 <ul class="tabsli_kd">
@@ -178,7 +338,7 @@
                             </div>
                             <div style="float:left;width:80%;">
 
-                                <!--Repeat Customers-->
+                               
                                 <div style="float:left;width:100%;padding:10px;background-color:rgb(222,235,247);" id="panel1">
                                     <div class="rectBoxTop" style="color:white">Sales From Repeat Customers <br> ${{NewSalesForecast}}</div>
                                     <div class="flowArrows">
@@ -198,7 +358,7 @@
                                     </div>
                                     <div style="float:left;width:100%;">
                                         <div class="rectBox" style="float:left; color:white">Avg. Ticket-Size <br> ${{LoyalAvgForecast}}</div>
-                                        <div class="rectBox" style="float:right; color:white">Traffic From Loyal Customers <br> ${{LoyalNumForecast}}</div>
+                                        <div class="rectBox" style="float:right; color:white">Traffic From Loyal Customers <br> {{LoyalNumForecast}}</div>
                                     </div>
                                     <div style="float:left;width:100%;margin-top:20px">
 
@@ -210,23 +370,23 @@
                                                     <td>Current Value</td>
                                                     <td>Target Value</td>
                                                 </tr>
+                                              
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Drink Quality</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LDQ |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{DQT}}</td>
+                                                </tr>
 
                                                 <tr>
                                                     <td style="background-color:rgb(222,235,247);">Food Quality</td>
-                                                    <td style="background-color:rgb(214,220,229);"></td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LFQ |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{FQT}}</td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td style="background-color:rgb(222,235,247);">Weather forecast</td>
-                                                    <td style="background-color:rgb(214,220,229);">72<sup>&deg;</sup>F</td>
-                                                    <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td style="background-color:rgb(222,235,247);"># of seats</td>
-                                                    <td style="background-color:rgb(214,220,229);">40</td>
-                                                    <td style="background-color:rgb(189,215,238);">40</td>
+                                                    <td style="background-color:rgb(222,235,247);">Promotions</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LPR |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
                                                 </tr>
 
                                                 <tr>
@@ -247,27 +407,27 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <td style="background-color:rgb(222,235,247);">Food Quality</td>
-                                                    <td style="background-color:rgb(214,220,229);"></td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
-                                                </tr>
-
-                                                <tr>
                                                     <td style="background-color:rgb(222,235,247);">Service Quality</td>
-                                                    <td style="background-color:rgb(214,220,229);"></td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LSQ |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{SQT}}</td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td style="background-color:rgb(222,235,247);">Weather forecast</td>
-                                                    <td style="background-color:rgb(214,220,229);">72<sup>&deg;</sup>F</td>
-                                                    <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
+                                                    <td style="background-color:rgb(222,235,247);">Drink Quality</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LDQ |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{DQT}}</td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td style="background-color:rgb(222,235,247);">Price</td>
-                                                    <td style="background-color:rgb(214,220,229);"></td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(222,235,247);">Wait Time</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{NWT |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{WTT}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="background-color:rgb(222,235,247);">Promotions</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LPR |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
                                                 </tr>
 
                                             </table>
@@ -276,8 +436,8 @@
                                 </div>
 
 
-                                <!--Repeat Customers-->
-                                <!--New Customers-->
+                                <!--Repeat Customers--
+                                <!--New Customers-
                                 <div style="float:left;width:100%;padding:10px;background-color:rgb(222,235,247)" id="panel2">
                                     <div class="rectBoxTop" style="color:white;">Sales From New Customers <br> ${{SalesForecast}}</div>
                                     <div class="flowArrows">
@@ -297,7 +457,7 @@
                                     </div>
                                     <div style="float:left;width:100%;">
                                         <div class="rectBox" style="float:left; color:white">Avg. Ticket-Size <br> ${{NewAvgForecast}}</div>
-                                        <div class="rectBox" style="float:right; color:white">Traffic From New Customers <br> ${{NewNumForecast}}</div>
+                                        <div class="rectBox" style="float:right; color:white">Traffic From New Customers <br> {{NewNumForecast}}</div>
                                     </div>
                                     <div style="float:left;width:100%;margin-top:20px">
 
@@ -311,21 +471,21 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <td style="background-color:rgb(222,235,247);">Loyalty</td>
-                                                    <td style="background-color:rgb(214,220,229);"></td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(222,235,247);">Promotions</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{NPR |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td style="background-color:rgb(222,235,247);">Weather Forecast</td>
-                                                    <td style="background-color:rgb(214,220,229);">72<sup>&deg;</sup>F</td>
-                                                    <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
+                                                    <td style="background-color:rgb(222,235,247);">Drink Quality</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{NDQ |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{DQT}}</td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td style="background-color:rgb(222,235,247);"># of seats</td>
-                                                    <td style="background-color:rgb(214,220,229);">40</td>
-                                                    <td style="background-color:rgb(189,215,238);">40</td>
+                                                    <td style="background-color:rgb(222,235,247);">Food Quality</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{NFQ |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{FQT}}</td>
                                                 </tr>
 
                                                 <tr>
@@ -346,27 +506,27 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <td style="background-color:rgb(222,235,247);">Loyalty</td>
-                                                    <td style="background-color:rgb(214,220,229);"></td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(222,235,247);">Promotions</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LPR |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{PRT}}</td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td style="background-color:rgb(222,235,247);">Service Quality</td>
-                                                    <td style="background-color:rgb(214,220,229);"></td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(222,235,247);">Wait Time</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{NWT |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{WTT}}</td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td style="background-color:rgb(222,235,247);">Weather forecast</td>
-                                                    <td style="background-color:rgb(214,220,229);">72<sup>&deg;</sup>F</td>
-                                                    <td style="background-color:rgb(189,215,238);">72<sup>&deg;</sup>F</td>
+                                                    <td style="background-color:rgb(222,235,247);">Appearance</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LEA |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{EAT}}</td>
                                                 </tr>
 
                                                 <tr>
-                                                    <td style="background-color:rgb(222,235,247);">Price</td>
-                                                    <td style="background-color:rgb(214,220,229);"></td>
-                                                    <td style="background-color:rgb(189,215,238);"></td>
+                                                    <td style="background-color:rgb(222,235,247);">Cleanliness</td>
+                                                    <td style="background-color:rgb(214,220,229);">{{LCL |number:2}}</td>
+                                                    <td style="background-color:rgb(189,215,238);">{{CLT}}</td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -378,7 +538,7 @@
 
 
 
-                    </div>
+                    </div> -->
 
                     <!----------------------------------------------------------------------------------------Action Planner--------------------------------------------------------------------------------------------------------------------------------------------------->
 

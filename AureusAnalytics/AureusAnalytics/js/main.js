@@ -379,8 +379,6 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-
-            //if ($scope.foreCastType == 'q')
             angular.forEach(response.data.OutPutResults, function (v, k) {
                 v.dayofweek = weekNames[v.dayofweek - 1]
             })
@@ -417,24 +415,22 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             $scope.CL = $scope.CL.toFixed(2);
             $scope.EA = response.data.OutPutResults[0].newapperance;
             $scope.EA = $scope.EA.toFixed(2);
-          
-
             setRangeSliders($scope.WT, $scope.DQ, $scope.FQ, $scope.SQ, $scope.PR, $scope.CL, $scope.EA);
-
-
-               
         }, function errorCallback(response) {
 
         });
-
-       
-        
     }
 
     $scope.getActionPlannerData = function () {
-
-        //alert("wait_time :" + wait_time + " drink_quality :" + drink_quality + " food_quality : " + food_quality + " service_quality :" + service_quality + " promotions :" + promotions + " cleanliness :" + cleanliness + "external_appearence :" + external_appearence)
-
+        $scope.WTT = waitTime;
+        $scope.DQT = drinkQuality;
+        $scope.FQT = foodQuality;
+        $scope.SQT = serviceQuality;
+        $scope.PRT = promotion;
+        $scope.CLT = cleanliness;
+        $scope.EAT = extAppearance;
+        
+        $scope.ex = waitTime;
         dbResObj = {
             "MethodName": "QSalesForecast",
             "Paramtervalues": ["2017", waitTime, drinkQuality, foodQuality, serviceQuality, promotion, cleanliness, extAppearance, "12", "0", "1"]
@@ -446,6 +442,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         }).then(function successCallback(response) {
             var obj = JSON.parse(response.data.OutPutResults)
             $scope.salesfromrepeat = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+            $scope.salesfromrepeat1 = $scope.salesfromrepeat;
         }, function errorCallback(response) {
 
         });
@@ -461,12 +458,126 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         }).then(function successCallback(response) {
             var obj = JSON.parse(response.data.OutPutResults)
             $scope.salesfromnew = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+            $scope.salesfromnew1 = $scope.salesfromnew;
+
         }, function errorCallback(response) {
 
         });
     }
-        
+
+    $scope.getTicketsizeData = function () {
+        dbResObj = {
+            "MethodName": "QTicketSize",
+            "Paramtervalues": ["2017", waitTime, drinkQuality, foodQuality, serviceQuality, promotion, cleanliness, extAppearance, "12", "0", "1"]
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/Api/pete/serviceclass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            var obj = JSON.parse(response.data.OutPutResults)
+            $scope.salesfromrepeat = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+            $scope.salesfromrepeat1 = $scope.salesfromrepeat.toFixed(2);
+        }, function errorCallback(response) {
+
+        });
+
+        dbResObj = {
+            "MethodName": "QTicketSize",
+            "Paramtervalues": ["2017", waitTime, drinkQuality, foodQuality, serviceQuality, promotion, cleanliness, extAppearance, "12", "0", "0"]
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/Api/pete/serviceclass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            var obj = JSON.parse(response.data.OutPutResults)
+            $scope.salesfromnew = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+            $scope.salesfromnew1 = $scope.salesfromnew.toFixed(2);
+
+        }, function errorCallback(response) {
+
+        });
+    }
+
+    $scope.getCustomercountData = function () {
+        dbResObj = {
+            "MethodName": "QCustomerCount",
+            "Paramtervalues": ["2017", waitTime, drinkQuality, foodQuality, serviceQuality, promotion, cleanliness, extAppearance, "12", "0", "1"]
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/Api/pete/serviceclass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            var obj = JSON.parse(response.data.OutPutResults)
+            $scope.salesfromrepeat = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+            $scope.salesfromrepeat1 = $scope.salesfromrepeat.toFixed(2);
+        }, function errorCallback(response) {
+
+        });
+
+        dbResObj = {
+            "MethodName": "QCustomerCount",
+            "Paramtervalues": ["2017", waitTime, drinkQuality, foodQuality, serviceQuality, promotion, cleanliness, extAppearance, "12", "0", "0"]
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/Api/pete/serviceclass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            var obj = JSON.parse(response.data.OutPutResults)
+            $scope.salesfromnew = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+            $scope.salesfromnew1 = $scope.salesfromnew.toFixed(2);
+
+        }, function errorCallback(response) {
+
+        });
+    }
+
+    $scope.getGraphValue = function () {
+
+        dbResObj = {
+            "StoredProcedueName": "GetGraphValue",
+            "Paramtervalues": { range: "Q1" }
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            $scope.NWT = response.data.OutPutResults[0].waittime;
+            //$scope.NWT = $scope.WT.toFixed(2);
+            $scope.NDQ = response.data.OutPutResults[0].newdrinkqual;
+            //$scope.NDQ = $scope.DQ.toFixed(2);
+            $scope.NFQ = response.data.OutPutResults[0].newfoodqual;
+            //$scope.NFQ = $scope.FQ.toFixed(2);
+            $scope.NSQ = response.data.OutPutResults[0].newservicequal;
+            //$scope.NSQ = $scope.SQ.toFixed(2);
+            $scope.NPR = response.data.OutPutResults[0].newpromo;
+            //$scope.NPR = $scope.PR.toFixed(2);
+            $scope.NCL = response.data.OutPutResults[0].newclean;
+            //$scope.NCL = $scope.CL.toFixed(2);
+            $scope.NEA = response.data.OutPutResults[0].newapperance;
+            //$scope.NEA = $scope.EA.toFixed(2);
+            $scope.LDQ = response.data.OutPutResults[0].loyaldrinkqual;
+            //$scope.LDQ = $scope.DQ.toFixed(2);
+            $scope.LFQ = response.data.OutPutResults[0].loyalfoodqual;
+            //$scope.LFQ = $scope.FQ.toFixed(2);
+            $scope.LSQ = response.data.OutPutResults[0].loyalservicequal;
+            //$scope.LSQ = $scope.SQ.toFixed(2);
+            $scope.LPR = response.data.OutPutResults[0].loyalpromo;
+            //$scope.LPR = $scope.PR.toFixed(2);
+            $scope.LCL = response.data.OutPutResults[0].loyalclean;
+            //$scope.LCL = $scope.CL.toFixed(2);
+            $scope.LEA = response.data.OutPutResults[0].loyalapperance;
+            //$scope.LEA = $scope.EA.toFixed(2);
+        }, function errorCallback(response) {
+
+        });
+    }
     $scope.getReportData();
+    $scope.getGraphValue();
 }])
 $("#panel2").hide();
 function switchTab(id) {
@@ -478,4 +589,4 @@ function switchTab(id) {
         $("#panel1").hide();
         $("#panel2").show();
     }
-}
+} 
