@@ -69,6 +69,10 @@
     <Content Include="Images\Untitled - Copy - Copy.jpg" />
     <Content Include="Images\Untitled - Copy.jpg" />
     <Content Include="Images\Untitled.jpg" />
+    <Content Include="Images\Untitled.png" />
+    <Content Include="Images\untitled_3.png" />
+    <Content Include="Images\untitled_4.png" />
+    <Content Include="Images\untitled_5.png" />
     <Content Include="js\angular.min.js" />
     <Content Include="js\jquery-2.2.3.min.js" />
     <Content Include="js\jquery-ui.css" />

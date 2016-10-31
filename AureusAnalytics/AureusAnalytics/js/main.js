@@ -50,15 +50,15 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         }).then(function successCallback(response) {
 
             $scope.LoyalAvgForecast = response.data.OutPutResults[0].LoyalAvgForecast;
-            $scope.LoyalAvgForecast = $scope.LoyalAvgForecast.toFixed(2);
+          
             $scope.NewAvgForecast = response.data.OutPutResults[0].NewAvgForecast;
-            $scope.NewAvgForecast = $scope.NewAvgForecast.toFixed(2);
+          
             $scope.LoyalNumForecast = response.data.OutPutResults[0].LoyalNumForecast;
             $scope.NewNumForecast = response.data.OutPutResults[0].NewNumForecast;
             $scope.SalesForecast = $scope.NewNumForecast * $scope.NewAvgForecast;
-            $scope.SalesForecast = $scope.SalesForecast.toFixed(2);
+          
             $scope.NewSalesForecast = $scope.LoyalNumForecast * $scope.LoyalAvgForecast;
-            $scope.NewSalesForecast = $scope.NewSalesForecast.toFixed(2);
+          
             $scope.totalSale = +$scope.SalesForecast + +$scope.NewSalesForecast;
             
         }, function errorCallback(response) {
