@@ -11,7 +11,13 @@ background-color:#CCC;
 min-height:100%;
 color:#000;
 }
-
+.text_color{
+    font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
+    color:#FFF;
+    font-size:14px;
+    font-weight:600;
+    text-shadow:none;
+}
 img {
     width: 100%;
     height: auto;
@@ -29,7 +35,7 @@ select{
     margin-bottom:10px;
 }
 label{
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
     font-size:16px;
     font-weight:600;
 }
@@ -111,8 +117,8 @@ list-style: none;
    margin-right: 8px;
    color:#FFF;
    font-weight:600;
-   font-size:20px;
-   font-family:Times New Roman;
+   font-size:18px;
+   font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
    display: inline;
    float:left;
    padding:8px 40px 8px 40px;
@@ -630,6 +636,12 @@ list-style: none;
     box-shadow: -1px 1px 16px 4px rgb(53,80,125);
     
 }
+.scale{
+    -moz-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1);
+    transform: scale(1, -1);
+}
 .circleBase {
     border-radius: 50%;
     behavior: url(PIE.htc); /* remove if you don't care about IE8 */
@@ -681,6 +693,44 @@ list-style: none;
     padding:12px 0 12px;
     /*box-shadow: -1px 1px 14px 2px rgba(138,134,138,1);*/
     box-shadow:0px 1px 6px 0px rgba(128,128,128,1)
+}
+.rectBoxAP{
+    width:100%;  
+    background-color:#3977db; 
+    border-radius:8px; 
+    border:1px solid #CCC;
+    text-align:center;
+    font-weight:500;
+    padding:5% 0 5% 0;
+    margin:10% 0 10% 0;
+    /*box-shadow: -1px 1px 14px 2px rgba(138,134,138,1);*/
+    box-shadow:0px 1px 6px 0px rgba(128,128,128,1)
+}
+.rectBoxAP2{
+    width:100%;  
+    background-color:#3977db; 
+    border-radius:8px; 
+    border:1px solid #CCC;
+    text-align:center;
+    font-weight:500;
+    padding:5% 0 5% 0;
+    margin:5% 0 5% 0;
+    /*box-shadow: -1px 1px 14px 2px rgba(138,134,138,1);*/
+    box-shadow:0px 1px 6px 0px rgba(128,128,128,1)
+}
+.lineV_ap {
+    margin:0 auto;
+    width:2px;
+    color:black;
+    background:black;
+    height:30px;
+    margin:0 auto;
+}
+.lineH_ap {
+    width:100%;
+    background:black;
+    height:2px;
+    color:black;
 }
 /*.rectBox:hover{
    box-shadow: -1px 1px 16px 4px rgba(175,134,138,1);
