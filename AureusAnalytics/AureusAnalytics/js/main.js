@@ -41,7 +41,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
     $scope.getReportData = function () {
         var dbResObj = {
             "StoredProcedueName": "GetDashboardSales",
-            "Paramtervalues": { type: $scope.foreCastLevel, range: $scope.range, date: $filter('date')(new Date(date.getFullYear() + 1, date.getMonth(), date.getDay()), 'yyyy-MM-dd') }
+            "Paramtervalues": { type: $scope.foreCastLevel, range: $scope.range, date: $filter('date')(new Date(date.getFullYear(), date.getMonth(), date.getDay()), 'yyyy-MM-dd') }
         };
         $http({
             method: 'POST',
@@ -50,13 +50,14 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         }).then(function successCallback(response) {
 
             $scope.LoyalAvgForecast = response.data.OutPutResults[0].LoyalAvgForecast;
-          
+            $scope.LoyalAvgForecast = $scope.LoyalAvgForecast.toFixed(2);
             $scope.NewAvgForecast = response.data.OutPutResults[0].NewAvgForecast;
-          
+            $scope.NewAvgForecast = $scope.NewAvgForecast.toFixed(2);
+
             $scope.LoyalNumForecast = response.data.OutPutResults[0].LoyalNumForecast;
             $scope.NewNumForecast = response.data.OutPutResults[0].NewNumForecast;
-            $scope.SalesForecast = $scope.NewNumForecast * $scope.NewAvgForecast;
-          
+
+            $scope.SalesForecast = $scope.NewNumForecast * $scope.NewAvgForecast;          
             $scope.NewSalesForecast = $scope.LoyalNumForecast * $scope.LoyalAvgForecast;
           
             $scope.totalSale = +$scope.SalesForecast + +$scope.NewSalesForecast;
@@ -67,7 +68,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
 
         dbResObj = {
             "StoredProcedueName": "GetDashboardSalesForecast",
-            "Paramtervalues": { type: $scope.foreCastLevel, range: $scope.range, date: $filter('date')(new Date(date.getFullYear() + 1, date.getMonth(), date.getDay()), 'yyyy-MM-dd') }
+            "Paramtervalues": { type: $scope.foreCastLevel, range: $scope.range, date: $filter('date')(new Date(date.getFullYear(), date.getMonth(), date.getDay()), 'yyyy-MM-dd') }
         };
         $http({
             method: 'POST',
@@ -107,7 +108,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-
+            response.data.OutPutResults[0].waittime = response.data.OutPutResults[0].waittime.toFixed(2);
             loadwaittimemeterGuage(response.data.OutPutResults[0].waittime)
             
         }, function errorCallback(response) {
@@ -165,7 +166,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-
+            response.data.OutPutResults[0].newdrinkqual = response.data.OutPutResults[0].newdrinkqual.toFixed(2);
             loaddrinkqualityGuage(response.data.OutPutResults[0].newdrinkqual)
         }, function errorCallback(response) {
 
@@ -204,7 +205,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-
+            response.data.OutPutResults[0].newfoodqual = response.data.OutPutResults[0].newfoodqual.toFixed(2);
             loadfoodqualityGuage(response.data.OutPutResults[0].newfoodqual)
         }, function errorCallback(response) {
 
@@ -244,7 +245,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-
+            response.data.OutPutResults[0].newservicequal = response.data.OutPutResults[0].newservicequal.toFixed(2);
             loadservicequalityGauge(response.data.OutPutResults[0].newservicequal)
         }, function errorCallback(response) {
 
@@ -284,7 +285,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-
+            response.data.OutPutResults[0].newpromo = response.data.OutPutResults[0].newpromo.toFixed(2);
             loadpromo1Gauge(response.data.OutPutResults[0].newpromo)
         }, function errorCallback(response) {
 
@@ -324,7 +325,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-
+            response.data.OutPutResults[0].newclean = response.data.OutPutResults[0].newclean.toFixed(2);
             loadclean_li_nessGauge(response.data.OutPutResults[0].newclean)
         }, function errorCallback(response) {
 
@@ -364,7 +365,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
             data: dbResObj
         }).then(function successCallback(response) {
-
+            response.data.OutPutResults[0].newapperance = response.data.OutPutResults[0].newapperance.toFixed(2);
             loadexternal_appearanceGauge(response.data.OutPutResults[0].newapperance)
         }, function errorCallback(response) {
 
@@ -466,7 +467,46 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         }, function errorCallback(response) {
 
         });
+
+        dbResObj = {
+            "MethodName": "QSalesForecast",
+            "Paramtervalues": ["2017", "12", "0", "1"]
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/Api/pete/serviceclass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            var obj = JSON.parse(response.data.OutPutResults)
+            $scope.defaultsalesfromrepeat = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+            $scope.defaultsalesfromrepeat1 = $scope.defaultsalesfromrepeat;
+        }, function errorCallback(response) {
+
+        });
+
+        dbResObj = {
+            "MethodName": "QSalesForecast",
+            "Paramtervalues": ["2017", "12", "0", "1"]
+        };
+        $http({
+            method: 'POST',
+            url: 'http://petesdemoapi.azurewebsites.net/Api/pete/serviceclass',
+            data: dbResObj
+        }).then(function successCallback(response) {
+            var obj = JSON.parse(response.data.OutPutResults)
+            $scope.defaultsalesfromnew = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+            $scope.defaultsalesfromnew1 = $scope.defaultsalesfromnew;
+        }, function errorCallback(response) {
+
+        });
+
+     
+
+
+
     }
+
+    
     //----------------------------------------------------------------------------------------------------------------------------------------------
     $scope.getTicketsizeData = function () {
         dbResObj = {
@@ -511,6 +551,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             data: dbResObj
         }).then(function successCallback(response) {
             var obj = JSON.parse(response.data.OutPutResults)
+
             $scope.customercountRepeat = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
           
         }, function errorCallback(response) {
@@ -533,6 +574,8 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         }, function errorCallback(response) {
 
         });
+
+
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------
     $scope.getGraphValue = function () {
@@ -553,12 +596,12 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             $scope.NPR = response.data.OutPutResults[0].newpromo;
             $scope.NCL = response.data.OutPutResults[0].newclean;
             $scope.NEA = response.data.OutPutResults[0].newapperance;
-            $scope.LDQ = response.data.OutPutResults[0].loyaldrinkqual;           
-            $scope.LFQ = response.data.OutPutResults[0].loyalfoodqual;
-            $scope.LSQ = response.data.OutPutResults[0].loyalservicequal;
-            $scope.LPR = response.data.OutPutResults[0].loyalpromo;
-            $scope.LCL = response.data.OutPutResults[0].loyalclean;
-            $scope.LEA = response.data.OutPutResults[0].loyalapperance;
+            $scope.LDQ = response.data.OutPutResults[0].newdrinkqual;
+            $scope.LFQ = response.data.OutPutResults[0].newfoodqual;
+            $scope.LSQ = response.data.OutPutResults[0].newservicequal;
+            $scope.LPR = response.data.OutPutResults[0].newpromo;
+            $scope.LCL = response.data.OutPutResults[0].newclean;
+            $scope.LEA = response.data.OutPutResults[0].newapperance;
 
         }, function errorCallback(response) {
 

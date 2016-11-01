@@ -382,7 +382,7 @@ function waitTimeGraph_week(dataSource, type) {
         valueAxis: {
             min: minV,
             max: maxV,
-            title: 'Avg. Time (in seconds)',
+            title: 'Avg. Time (in Minutes)',
             label: {
                 customizeText: function (arg) {
 
@@ -708,7 +708,7 @@ function promotionGraph(dataSource, type) {
             enabled: true
         },
         title: {
-            text: "First Promotion rating by Day", font: {
+            text: "Avg Promotions Discount by Day", font: {
                 size: 30,
                 color: '#355066',
                 weight: 'bold'
@@ -874,8 +874,8 @@ function loadwaittimemeterGuage(GaugeValue) {
     hdnwaittimemeter = $('#waittimemeter').dxCircularGauge({
         scale: {
             startValue: 0,
-            endValue: 2,
-            tickInterval: .25,
+            endValue: 3,
+            tickInterval: .5,
             label: {
                 customizeText: function (arg) {
                     return arg.valueText;
@@ -1052,7 +1052,7 @@ function loadpromo1Gauge(GaugeValue) {
             ]
         },
         title: {
-            text: 'Avg. Promotion Rating: ' + GaugeValue,
+            text: 'Avg. Promotion Per Ticket: $' + GaugeValue,
             font: { size: 20 }
         },
         value: GaugeValue
@@ -1230,13 +1230,3 @@ $('#btnLock').click(function () {
     $('#external_appearance').css('display', 'none');
 });
 
-$('#sales_repeat').click(function () {
-    $('#repeat_table').css('display', 'block');
-    $('#new_table').css('display', 'none');
-    
-});
-
-$('#sales_new').click(function () {
-    $('#new_table').css('display', 'block');
-    $('#repeat_table').css('display', 'none');
-});
