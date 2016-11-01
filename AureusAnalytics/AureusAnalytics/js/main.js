@@ -553,12 +553,12 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             $scope.NPR = response.data.OutPutResults[0].newpromo;
             $scope.NCL = response.data.OutPutResults[0].newclean;
             $scope.NEA = response.data.OutPutResults[0].newapperance;
-            $scope.LDQ = response.data.OutPutResults[0].loyaldrinkqual;           
-            $scope.LFQ = response.data.OutPutResults[0].loyalfoodqual;
-            $scope.LSQ = response.data.OutPutResults[0].loyalservicequal;
+            $scope.LDQ = response.data.OutPutResults[0].newdrinkqual;
+            $scope.LFQ = response.data.OutPutResults[0].newfoodqual;
+            $scope.LSQ = response.data.OutPutResults[0].newservicequal;
             $scope.LPR = response.data.OutPutResults[0].loyalpromo;
-            $scope.LCL = response.data.OutPutResults[0].loyalclean;
-            $scope.LEA = response.data.OutPutResults[0].loyalapperance;
+            $scope.LCL = response.data.OutPutResults[0].newclean;
+            $scope.LEA = response.data.OutPutResults[0].newapperance;
 
         }, function errorCallback(response) {
 
