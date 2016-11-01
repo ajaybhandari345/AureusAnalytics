@@ -423,9 +423,10 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------
     $scope.getActionPlannerData = function () {
-
         $scope.getTicketsizeData();
         $scope.getCustomercountData();
+       
+        $scope.totalAggSale();
         $scope.WTT = waitTime;
         $scope.DQT = drinkQuality;
         $scope.FQT = foodQuality;
@@ -433,8 +434,32 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         $scope.PRT = promotion;
         $scope.CLT = cleanliness;
         $scope.EAT = extAppearance;
-        
-        $scope.ex = waitTime;
+       
+    }
+   
+    $scope.totalAggSale = function () {
+        $scope.salesFromCustomer();
+        $scope.aggSale = +$scope.salesfromrepeat1 + +$scope.salesfromNew1;
+          
+        if ($scope.aggSale < 868483) {
+
+            $scope.aggSale_change = (1 - ($scope.aggSale / 868483)) * 100;
+            $scope.aggSale_negSign = "-";
+        }
+        else if ($scope.aggSale == 868483) {
+            $scope.aggSale_change = "";
+            $scope.aggSale_negSign = "";
+        }
+        else {
+            $scope.aggSale_change = (($scope.aggSale / 868483) - 1) * 100;
+
+            $scope.aggSale_negSign = "";
+        }
+    }
+   
+    $scope.salesFromCustomer= function () {
+
+      
         dbResObj = {
             "MethodName": "QSalesForecast",
             "Paramtervalues": ["2017", waitTime, drinkQuality, foodQuality, serviceQuality, promotion, cleanliness, extAppearance, "12", "0", "1"]
@@ -447,10 +472,25 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             var obj = JSON.parse(response.data.OutPutResults)
             $scope.salesfromrepeat = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
             $scope.salesfromrepeat1 = $scope.salesfromrepeat;
+            
+            if ($scope.salesfromrepeat1 < 325735) {
+
+                $scope.salesfromrepeat1_change = (1 - ($scope.salesfromrepeat1 / 325735)) * 100;
+                $scope.salesfromrepeat1_negSign = "-";
+            }
+            else if ($scope.salesfromrepeat1 == 325735) {
+                $scope.salesfromrepeat1_change = "";
+                $scope.salesfromrepeat1_negSign = "";
+            }
+            else {
+                $scope.salesfromrepeat1_change = (($scope.salesfromrepeat1 / 325735) - 1) * 100;
+
+                $scope.salesfromrepeat1_negSign = "";
+            }
         }, function errorCallback(response) {
 
         });
-
+  
         dbResObj = {
             "MethodName": "QSalesForecast",
             "Paramtervalues": ["2017", waitTime, drinkQuality, foodQuality, serviceQuality, promotion, cleanliness, extAppearance, "12", "0", "0"]
@@ -461,51 +501,28 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             data: dbResObj
         }).then(function successCallback(response) {
             var obj = JSON.parse(response.data.OutPutResults)
-            $scope.salesfromnew = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
-            $scope.salesfromnew1 = $scope.salesfromnew;
+            $scope.salesfromNew = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+            $scope.salesfromNew1 = $scope.salesfromNew;
+            
+            if ($scope.salesfromNew1 < 543748) {
 
+                $scope.salesfromNew1_change = (1 - ($scope.salesfromNew1 / 543748)) * 100;
+                $scope.salesfromNew1_negSign = "-";
+            }
+            else if ($scope.salesfromNew1 == 543748) {
+                $scope.salesfromNew1_change = "";
+                $scope.salesfromNew1_negSign = "";
+            }
+            else {
+                $scope.salesfromNew1_change = (($scope.salesfromNew1 / 543748) - 1) * 100;
+
+                $scope.salesfromNew1_negSign = "";
+            }
+           
         }, function errorCallback(response) {
 
         });
-
-        dbResObj = {
-            "MethodName": "QSalesForecast",
-            "Paramtervalues": ["2017", "12", "0", "1"]
-        };
-        $http({
-            method: 'POST',
-            url: 'http://petesdemoapi.azurewebsites.net/Api/pete/serviceclass',
-            data: dbResObj
-        }).then(function successCallback(response) {
-            var obj = JSON.parse(response.data.OutPutResults)
-            $scope.defaultsalesfromrepeat = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
-            $scope.defaultsalesfromrepeat1 = $scope.defaultsalesfromrepeat;
-        }, function errorCallback(response) {
-
-        });
-
-        dbResObj = {
-            "MethodName": "QSalesForecast",
-            "Paramtervalues": ["2017", "12", "0", "1"]
-        };
-        $http({
-            method: 'POST',
-            url: 'http://petesdemoapi.azurewebsites.net/Api/pete/serviceclass',
-            data: dbResObj
-        }).then(function successCallback(response) {
-            var obj = JSON.parse(response.data.OutPutResults)
-            $scope.defaultsalesfromnew = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
-            $scope.defaultsalesfromnew1 = $scope.defaultsalesfromnew;
-        }, function errorCallback(response) {
-
-        });
-
-     
-
-
-
     }
-
     
     //----------------------------------------------------------------------------------------------------------------------------------------------
     $scope.getTicketsizeData = function () {
@@ -520,10 +537,26 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         }).then(function successCallback(response) {
             var obj = JSON.parse(response.data.OutPutResults)
             $scope.ticketsizedataRepeat = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+            if ($scope.ticketsizedataRepeat < 34553) {
+               
+                $scope.ticketsizedataRepeat_change = (1 - ($scope.ticketsizedataRepeat / 34553)) * 100;
+                $scope.ticketsizedataRepeat_negSign = "-";
+                }
+            else if ($scope.ticketsizedataRepeat == 34553) {
+                $scope.ticketsizedataRepeat_change = "";
+                $scope.ticketsizedataRepeat_negSign = "";
+              }
+                else {
+                $scope.ticketsizedataRepeat_change = (($scope.ticketsizedataRepeat / 34553) - 1) * 100;
+                   
+                $scope.ticketsizedataRepeat_negSign = "";
+            }
+
+
         }, function errorCallback(response) {
 
         });
-
+   
         dbResObj = {
             "MethodName": "QTicketSize",
             "Paramtervalues": ["2017", waitTime, drinkQuality, foodQuality, serviceQuality, promotion, cleanliness, extAppearance, "12", "0", "0"]
@@ -535,6 +568,21 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         }).then(function successCallback(response) {
             var obj = JSON.parse(response.data.OutPutResults)
             $scope.ticketsizedataNew = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
+            if ($scope.ticketsizedataNew < 42266) {
+
+                $scope.ticketsizedataNew_change = (1 - ($scope.ticketsizedataNew / 42266)) * 100;
+                $scope.ticketsizedataNew_negSign = "-";
+            }
+            else if ($scope.ticketsizedataNew == 42266) {
+                $scope.ticketsizedataNew_change = "";
+                $scope.ticketsizedataNew_negSign = "";
+            }
+            else {
+                $scope.ticketsizedataNew_change = (($scope.ticketsizedataNew / 42266) - 1) * 100;
+
+                $scope.ticketsizedataNew_negSign = "";
+            }
+
         }, function errorCallback(response) {
 
         });
@@ -553,11 +601,24 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             var obj = JSON.parse(response.data.OutPutResults)
 
             $scope.customercountRepeat = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
-          
+            if ($scope.customercountRepeat < 9.44) {
+
+                $scope.customercountRepeat_change = (1 - ($scope.customercountRepeat / 9.44)) * 100;
+                $scope.customercountRepeat_negSign = "-";
+            }
+            else if ($scope.customercountRepeat == 9.44) {
+                $scope.customercountRepeat_change = "";
+                $scope.customercountRepeat_negSign = "";
+            }
+            else {
+                $scope.customercountRepeat_change = (($scope.customercountRepeat / 9.44) - 1) * 100;
+
+                $scope.customercountRepeat_negSign = "";
+            }
         }, function errorCallback(response) {
 
         });
-
+    
         dbResObj = {
             "MethodName": "QCustomerCount",
             "Paramtervalues": ["2017", waitTime, drinkQuality, foodQuality, serviceQuality, promotion, cleanliness, extAppearance, "12", "0", "0"]
@@ -569,7 +630,20 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
         }).then(function successCallback(response) {
             var obj = JSON.parse(response.data.OutPutResults)
             $scope.customercountNew = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
-       
+            if ($scope.customercountNew < 12.85) {
+
+                $scope.customercountNew_change = (1 - ($scope.customercountNew / 12.85)) * 100;
+                $scope.customercountNew_negSign = "-";
+            }
+            else if ($scope.customercountNew == 12.85) {
+                $scope.customercountNew_change = "";
+                $scope.customercountNew_negSign = "";
+            }
+            else {
+                $scope.customercountNew_change = (($scope.customercountNew / 12.85) - 1) * 100;
+
+                $scope.customercountNew_negSign = "";
+            }
 
         }, function errorCallback(response) {
 

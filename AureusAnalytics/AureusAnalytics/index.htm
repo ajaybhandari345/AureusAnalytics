@@ -370,24 +370,24 @@
                         <div class="tab4div3">
                             <div id="circle1" style="width:100%;position:relative">
                                 <img src="Images/PowerPoint Presentation.png" width="460" height="345" />
-                                <div style="border-top:dashed 1px; margin-top:2%">
-                                <div id="circle1" style="width:100%;position:relative">
+                                <div style="border-top:dashed 1px; margin-top:2%; margin-bottom:5%">    </div>
+                                <div id="circle1" style="width:100%;position:relative; margin-left:13%">
                                   
                                     <img src="Images/untitled_5.png" style="width:65%;height:60%" />
                                     <img src="Images/untitled_5.png" style="width:65%;height:60%;" class="scale" />
-                                    <div style="width:20%;position:absolute;top:4%;left:2%;text-align:center" class="text_color">No. of Repeat customers <br /> {{ticketsizedataRepeat}}</div>
-                                    <div style="width:20%;position:absolute;top:39%;left:2%;text-align:center" class="text_color">Avg. Ticket Size <br /> {{customercountRepeat |currency:"$":2}}</div>
+                                    <div style="width:20%;position:absolute;top:4%;left:2%;text-align:center" class="text_color">No. of Repeat customers <br /> {{ticketsizedataRepeat}}({{ticketsizedataRepeat_negSign}}{{ticketsizedataRepeat_change | number:2}}%)</div>
+                                    <div style="width:20%;position:absolute;top:39%;left:2%;text-align:center" class="text_color">Avg. Ticket Size <br /> {{customercountRepeat |currency:"$":2}}({{customercountRepeat_negSign}}{{customercountRepeat_change | number:2}}%)</div>
 
-                                    <div style="width:20%;position:absolute;top:55%;left:2%;text-align:center" class="text_color">No. of New customers <br /> {{ticketsizedataNew}}</div>
-                                    <div style="width:20%;position:absolute;top:89%;left:2%;text-align:center" class="text_color">Avg. Ticket Size <br /> {{customercountNew |currency:"$":2}}</div>
+                                    <div style="width:20%;position:absolute;top:55%;left:2%;text-align:center" class="text_color">No. of New customers <br /> {{ticketsizedataNew}}({{ticketsizedataNew_negSign}}{{ticketsizedataNew_change | number:2}}%)</div>
+                                    <div style="width:20%;position:absolute;top:89%;left:2%;text-align:center" class="text_color">Avg. Ticket Size <br /> {{customercountNew |currency:"$":2}}({{customercountNew_negSign}}{{customercountNew_change | number:2}}%)</div>
 
-                                    <div style="width:20%;position:absolute;top:20%;left:32%;text-align:center" class="text_color">Sales from Repeat customers <br /> {{customercountRepeat * ticketsizedataRepeat |currency:"$":2}}</div>
-                                    <div style="width:20%;position:absolute;top:73%;left:32%;text-align:center" class="text_color">Sales from New customers <br /> {{customercountNew * ticketsizedataNew |currency:"$":2}}</div>
+                                    <div style="width:20%;position:absolute;top:20%;left:32%;text-align:center" class="text_color">Sales from Repeat customers <br /> {{salesfromrepeat1 |currency:"$":0}}({{salesfromrepeat1_negSign}}{{salesfromrepeat1_change | number:2}}%)</div>
+                                    <div style="width:20%;position:absolute;top:73%;left:32%;text-align:center" class="text_color">Sales from New customers <br /> {{salesfromNew1 |currency:"$":0}}({{salesfromNew1_negSign}}{{salesfromNew1_change | number:2}}%)</div>
 
                                     <div id="circleBase" class="circleBase" style="position:absolute;top:32%;left:43%">
-                                        <div style="text-align:center;color:#FFF;font-weight:bold; font-size:24px;margin: 35% 0 0 0;"> {{((+salesfromrepeat1 + +salesfromnew1) / (+defaultsalesfromrepeat1 + +defaultsalesfromnew1))}} </div>
+                                        <div style="text-align:center;color:#FFF;font-weight:bold; font-size:24px;margin: 35% 0 0 0;">{{aggSale |number:0}}({{aggSale_negSign}}{{aggSale_change | number:0}}%)</div>
                                     </div> 
-                                    </div>
+                                 
                                 </div>
                             </div>
                             <!--<div style="width:100%;float:left">
