@@ -492,14 +492,14 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             $scope.salesfromrepeat = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
             $scope.salesfromrepeat1 = $scope.salesfromrepeat;
             
-            if ($scope.salesfromrepeat1 < 325735) {
+            if ($scope.salesfromrepeat1 < 325734.62) {
 
-                $scope.salesfromrepeat1_change = (1 - ($scope.salesfromrepeat1 / 325735)) * 100;
+                $scope.salesfromrepeat1_change = (1 - ($scope.salesfromrepeat1 / 325734.62)) * 100;
                 $scope.salesfromrepeat1_negSign = "-";
             }
            
             else {
-                $scope.salesfromrepeat1_change = (($scope.salesfromrepeat1 / 325735) - 1) * 100;
+                $scope.salesfromrepeat1_change = (($scope.salesfromrepeat1 / 325734.62) - 1) * 100;
 
                 $scope.salesfromrepeat1_negSign = "";
             }

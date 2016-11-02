@@ -124,7 +124,7 @@
                             <div id="freqByStoreContainer" style="width:100%"></div>
                         </div>
                         <div class="tab1div5" style="box-shadow:none;">
-                            <div style="width:70%;margin:0px auto">
+                            <div style="width:90%;margin:0px auto">
                                 <div class="rectBoxTop">Sales : {{totalSale | currency:"$":0}}</div>
                                 <div class="flowArrows">
                                     <div class="lineV"></div>
@@ -590,11 +590,10 @@
                     <div id="four" class="tab_content">
 
                         <div class="tab4div1" style="margin-bottom: 0px; margin-top: 0px;">
-
-                            <div style="width:100%; height:25%; margin-bottom:30%; margin-bottom:32%;" id="key1">
-                                <div id="slider1" style="float:left;margin-top:0%; text-align:right; color:#173C57;cursor: pointer;" ng-click="getWaitTime()"><b>Wait Time</b></div> <br /> <div id="waitTimeSlider" style="height: 25%; width:100%; float:left"></div>
+                            <div style="width:100%; height:25%; margin-bottom:32%" id="key4">
+                                <div id="slider4" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getServiceQuality()"><b>Service Quality</b></div> <br /> <div id="serviceQualitySlider" style="height: 25%; width:100%; float:left"></div>
                             </div>
-
+                           
 
                             <div style="width:100%; height:25%;  border-top:solid 1px; margin-bottom:32%;" id="key2">
                                 <div id="slider2" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getDrinkQuality()"><b>Drink Quality</b></div> <br /><div id="drinkQualitySlider" style="height: 25%; width:100%; float:left"></div>
@@ -603,10 +602,10 @@
                                 <div id="slider3" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getFoodQuality()"><b>Food Quality</b></div> <br /><div id="foodQualitySlider" style="height: 25%; width:100%; float:left"></div>
                             </div>
 
-
-                            <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key4">
-                                <div id="slider4" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getServiceQuality()"><b>Service Quality</b></div> <br /> <div id="serviceQualitySlider" style="height: 25%; width:100%; float:left"></div>
+                            <div style="width:100%; height:25%;  border-top:solid 1px; margin-bottom:32%;" id="key1">
+                                <div id="slider1" style="float:left;margin-top:0%; text-align:right; color:#173C57;cursor: pointer;" ng-click="getWaitTime()"><b>Wait Time</b></div> <br /> <div id="waitTimeSlider" style="height: 25%; width:100%; float:left"></div>
                             </div>
+                           
 
 
                             <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key5">
@@ -616,6 +615,7 @@
                                 <div id="slider6" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getCleanliness()"><b>Cleanliness</b></div> <br /><div id="cleanlinessSlider" style="height: 25%; width:100%; float:left"></div>
                             </div>
 
+                           
 
                             <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key7">
                                 <div id="slider7" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getAppearance()"><b>External Appearance</b></div> <br /><div id="extApperanceSlider" style="height: 25%; width:100%; float:left"></div>
@@ -633,17 +633,17 @@
             </div>-->
                                     <img src="Images/untitled_5.png" style="width:65%;height:60%" />
                                     <img src="Images/untitled_5.png" style="width:65%;height:60%;" class="scale" />
-                                    <div style="width:20%;position:absolute;top:4%;left:2%;text-align:center" class="text_color">No. of Repeat customers <br /> {{ticketsizedataRepeat +' '}}<span style="color:yellow">({{ticketsizedataRepeat_negSign}}{{ticketsizedataRepeat_change | number:2}}%)</span></div>
-                                    <div style="width:20%;position:absolute;top:39%;left:2%;text-align:center" class="text_color">Avg. Ticket Size <br /> {{customercountRepeat |currency:"$":2}}&nbsp;<span style="color:yellow">({{customercountRepeat_negSign}}{{customercountRepeat_change | number:2}}%)</span></div>
+                                    <div style="width:20%;position:absolute;top:4%;left:2%;text-align:center" class="text_color">No. of Repeat customers <br /> {{ticketsizedataRepeat +' '}}<span style="color:yellow; font-weight:bold;">({{ticketsizedataRepeat_negSign}}{{ticketsizedataRepeat_change | number:2}}%)</span></div>
+                                    <div style="width:20%;position:absolute;top:39%;left:2%;text-align:center" class="text_color">Avg. Ticket Size <br /> {{customercountRepeat |currency:"$":2}}&nbsp;<span style="color:yellow; font-weight:bold;">({{customercountRepeat_negSign}}{{customercountRepeat_change | number:2}}%)</span></div>
 
-                                    <div style="width:20%;position:absolute;top:55%;left:2%;text-align:center" class="text_color">No. of New customers <br /> {{ticketsizedataNew  +' '}}<span style="color:yellow">({{ticketsizedataNew_negSign}}{{ticketsizedataNew_change | number:2}}%)</span></div>
-                                    <div style="width:20%;position:absolute;top:89%;left:2%;text-align:center" class="text_color">Avg. Ticket Size <br /> {{customercountNew |currency:"$":2}}&nbsp;<span style="color:yellow">({{customercountNew_negSign}}{{customercountNew_change | number:2}}%)</span></div>
+                                    <div style="width:20%;position:absolute;top:55%;left:2%;text-align:center" class="text_color">No. of New customers <br /> {{ticketsizedataNew  +' '}}<span style="color:yellow; font-weight:bold;">({{ticketsizedataNew_negSign}}{{ticketsizedataNew_change | number:2}}%)</span></div>
+                                    <div style="width:20%;position:absolute;top:89%;left:2%;text-align:center" class="text_color">Avg. Ticket Size <br /> {{customercountNew |currency:"$":2}}&nbsp;<span style="color:yellow; font-weight:bold;">({{customercountNew_negSign}}{{customercountNew_change | number:2}}%)</span></div>
 
-                                    <div style="width:20%;position:absolute;top:20%;left:32%;text-align:center" class="text_color">Sales from Repeat customers <br /> {{salesfromrepeat1|currency:"$":0 }}&nbsp;<span style="color:yellow">({{salesfromrepeat1_negSign}}{{salesfromrepeat1_change | number:2}}%)</span></div>
-                                    <div style="width:20%;position:absolute;top:73%;left:32%;text-align:center" class="text_color">Sales from New customers <br /> {{salesfromNew1 |currency:"$":0}}&nbsp;<span style="color:yellow">({{salesfromNew1_negSign}}{{salesfromNew1_change | number:2}}%)</span></div>
+                                    <div style="width:20%;position:absolute;top:20%;left:32%;text-align:center" class="text_color">Sales from Repeat customers <br /> {{salesfromrepeat1|currency:"$":0 }}&nbsp;<span style="color:yellow; font-weight:bold;">({{salesfromrepeat1_negSign}}{{salesfromrepeat1_change | number:2}}%)</span></div>
+                                    <div style="width:20%;position:absolute;top:73%;left:32%;text-align:center" class="text_color">Sales from New customers <br /> {{salesfromNew1 |currency:"$":0}}&nbsp;<span style="color:yellow; font-weight:bold;">({{salesfromNew1_negSign}}{{salesfromNew1_change | number:2}}%)</span></div>
 
-                                    <div id="circleBase" class="circleBase" style="position:absolute;top:32%;left:43%">
-                                        <div style="text-align:center;color:#FFF;font-weight:bold; font-size:24px;margin: 35% 0 0 0;">{{aggSale |number:0}}({{aggSale_negSign}}{{aggSale_change | number:0}}%)</div>
+                                    <div id="circleBase" class="circleBase" style="position:absolute;top:36%;left:41%">
+                                        <div style="text-align:center;color:#FFF;font-weight:bold; font-size:24px;margin: 30% 0 0 0;">Sales <br /> {{aggSale |number:0}}({{aggSale_negSign}}{{aggSale_change | number:0}}%)</div>
                                     </div> 
                                  
                                 </div>
