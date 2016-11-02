@@ -1,6 +1,6 @@
 ﻿var app = angular.module("app", [])
 app.controller("mainController", ["$scope", "$http", "$filter", function ($scope, $http, $filter) {
-    var date = new Date();
+    var date = new Date('2017,01,01');
     $("#dateBox").dxDateBox({
         min: new Date(2000, 0, 1),
         max: new Date(2029, 11, 31),
@@ -11,11 +11,11 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
 
         }
     });
-    $scope.foreCastType = 'q';
+    $scope.foreCastType = 'd';
     $scope.weekrange = {
         value: date
     };
-    $scope.foreCastLevel = '4';
+    $scope.foreCastLevel = '1';
     $scope.range = "Q1"
 
     $scope.setRange = function (val, type) {
@@ -47,14 +47,14 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
 
 
     $scope.getReportData = function () {
-        var dbResObj = {
+        var dbResObj11 = {
             "StoredProcedueName": "GetDashboardSales",
-            "Paramtervalues": { type: $scope.foreCastLevel, range: $scope.range, date: $filter('date')(new Date(date.getFullYear(), date.getMonth(), date.getDay()), 'yyyy-MM-dd') }
+            "Paramtervalues": { type: $scope.foreCastLevel, range: $scope.range, date: $filter('date')(new Date(date.getFullYear(), date.getMonth(), date.getDay()+1), 'yyyy-MM-dd') }
         };
         $http({
             method: 'POST',
             url: 'http://petesdemoapi.azurewebsites.net/API/petes/SQLClass',
-            data: dbResObj
+            data: dbResObj11
         }).then(function successCallback(response) {
 
             $scope.LoyalAvgForecast = response.data.OutPutResults[0].LoyalAvgForecast;
@@ -439,11 +439,11 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------
     $scope.getActionPlannerData = function () {
-        $scope.totalAggSale();
+       
         $scope.salesFromCustomer();
         $scope.getTicketsizeData();
         $scope.getCustomercountData();
-       
+        $scope.totalAggSale();
        
         $scope.WTT = waitTime;
         $scope.DQT = drinkQuality;
