@@ -76,7 +76,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
 
         dbResObj = {
             "StoredProcedueName": "GetDashboardSalesForecast",
-            "Paramtervalues": { type: $scope.foreCastLevel, range: $scope.range, date: $filter('date')(new Date(date.getFullYear(), date.getMonth(), date.getDay()), 'yyyy-MM-dd') }
+            "Paramtervalues": { type: $scope.foreCastLevel, range: $scope.range, date: $filter('date')(new Date(date.getFullYear(), date.getMonth(), date.getDay()+1), 'yyyy-MM-dd') }
         };
         $http({
             method: 'POST',
