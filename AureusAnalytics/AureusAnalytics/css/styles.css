@@ -340,6 +340,7 @@ list-style: none;
 {
     width:48%;
     float:left;
+    height:367px;
     border-radius:6px;
     background-color:#FFF;
     margin:1.5% 0 1% 1%;
@@ -932,6 +933,11 @@ td{
 
 #action_planner_header {
      width:100%; background-color:#355066; font-size:250%; font-weight:bold; text-align:center; color:white;
+}
+
+#waitTimeGraph_week, #waitTimeGraph_day,#drinkQualityGraph, #foodQualityGraph, #serviceQualityGraph , #promotionGraph, #cleanlinessGraph, #appearanceGraph{
+    width:400px;
+    height:350px;
 }
 
 

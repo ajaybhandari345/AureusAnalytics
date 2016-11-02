@@ -609,9 +609,9 @@
                             </div>
 
 
-                            <!--<div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key5">
+                            <div style="width:100%; height:25%; border-top:solid 1px; margin-bottom:32%" id="key5">
                                 <div id="slider5" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getPromotion()"><b>Promotions</b></div> <br /><div id="promotionsSlider" style="height: 25%; width:100%; float:left"></div>
-                            </div>-->
+                            </div>
                             <div style="width:100%; height:25%;  border-top:solid 1px; margin-bottom:32%" id="key6">
                                 <div id="slider6" style="float:left;margin-top:0%; text-align:right; color:#173C57; cursor: pointer;" ng-click="getCleanliness()"><b>Cleanliness</b></div> <br /><div id="cleanlinessSlider" style="height: 25%; width:100%; float:left"></div>
                             </div>
@@ -633,14 +633,14 @@
             </div>-->
                                     <img src="Images/untitled_5.png" style="width:65%;height:60%" />
                                     <img src="Images/untitled_5.png" style="width:65%;height:60%;" class="scale" />
-                                    <div style="width:20%;position:absolute;top:4%;left:2%;text-align:center" class="text_color">No. of Repeat customers <br /> {{ticketsizedataRepeat}}({{ticketsizedataRepeat_negSign}}{{ticketsizedataRepeat_change | number:2}}%)</div>
-                                    <div style="width:20%;position:absolute;top:39%;left:2%;text-align:center" class="text_color">Avg. Ticket Size <br /> {{customercountRepeat |currency:"$":2}}({{customercountRepeat_negSign}}{{customercountRepeat_change | number:2}}%)</div>
+                                    <div style="width:20%;position:absolute;top:4%;left:2%;text-align:center" class="text_color">No. of Repeat customers <br /> {{ticketsizedataRepeat +' '}}<span style="color:yellow">({{ticketsizedataRepeat_negSign}}{{ticketsizedataRepeat_change | number:2}}%)</span></div>
+                                    <div style="width:20%;position:absolute;top:39%;left:2%;text-align:center" class="text_color">Avg. Ticket Size <br /> {{customercountRepeat |currency:"$":2}}&nbsp;<span style="color:yellow">({{customercountRepeat_negSign}}{{customercountRepeat_change | number:2}}%)</span></div>
 
-                                    <div style="width:20%;position:absolute;top:55%;left:2%;text-align:center" class="text_color">No. of New customers <br /> {{ticketsizedataNew}}({{ticketsizedataNew_negSign}}{{ticketsizedataNew_change | number:2}}%)</div>
-                                    <div style="width:20%;position:absolute;top:89%;left:2%;text-align:center" class="text_color">Avg. Ticket Size <br /> {{customercountNew |currency:"$":2}}({{customercountNew_negSign}}{{customercountNew_change | number:2}}%)</div>
+                                    <div style="width:20%;position:absolute;top:55%;left:2%;text-align:center" class="text_color">No. of New customers <br /> {{ticketsizedataNew  +' '}}<span style="color:yellow">({{ticketsizedataNew_negSign}}{{ticketsizedataNew_change | number:2}}%)</span></div>
+                                    <div style="width:20%;position:absolute;top:89%;left:2%;text-align:center" class="text_color">Avg. Ticket Size <br /> {{customercountNew |currency:"$":2}}&nbsp;<span style="color:yellow">({{customercountNew_negSign}}{{customercountNew_change | number:2}}%)</span></div>
 
-                                    <div style="width:20%;position:absolute;top:20%;left:32%;text-align:center" class="text_color">Sales from Repeat customers <br /> {{salesfromrepeat1 |currency:"$":0}}({{salesfromrepeat1_negSign}}{{salesfromrepeat1_change | number:2}}%)</div>
-                                    <div style="width:20%;position:absolute;top:73%;left:32%;text-align:center" class="text_color">Sales from New customers <br /> {{salesfromNew1 |currency:"$":0}}({{salesfromNew1_negSign}}{{salesfromNew1_change | number:2}}%)</div>
+                                    <div style="width:20%;position:absolute;top:20%;left:32%;text-align:center" class="text_color">Sales from Repeat customers <br /> {{salesfromrepeat1|currency:"$":0 }}&nbsp;<span style="color:yellow">({{salesfromrepeat1_negSign}}{{salesfromrepeat1_change | number:2}}%)</span></div>
+                                    <div style="width:20%;position:absolute;top:73%;left:32%;text-align:center" class="text_color">Sales from New customers <br /> {{salesfromNew1 |currency:"$":0}}&nbsp;<span style="color:yellow">({{salesfromNew1_negSign}}{{salesfromNew1_change | number:2}}%)</span></div>
 
                                     <div id="circleBase" class="circleBase" style="position:absolute;top:32%;left:43%">
                                         <div style="text-align:center;color:#FFF;font-weight:bold; font-size:24px;margin: 35% 0 0 0;">{{aggSale |number:0}}({{aggSale_negSign}}{{aggSale_change | number:0}}%)</div>
@@ -673,7 +673,13 @@
                                 <div id="action_planner_header">Wait Time</div>
 
                                 <div class="tab4div5">
-                                    <div id="waittimemeter" style="height:400px; width:400px; float:left;"></div>
+                                    <!--<div id="waittimemeter" style="height:400px; width:400px; float:left;"></div>-->
+                                    <div style="width:100%;height:200px;float:left">
+                                        <div style="margin:5% auto; width:400px;height:150px;border-radius:30px;background-color:#D2532E;color:white;text-align:center; margin-top: 23%;">
+                                            <div style="margin:0px auto;vertical-align:middle; height:150px;width:90%;font-weight:bold; font-size:45px">Avg. Wait Time: <br />{{WTG}} </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="tab4div4"> <div id="waitTimeGraph_week"></div></div><br /><br />
                                 <div class="tab4div5"> <div id="waitTimeGraph_day"></div></div><br />
@@ -684,7 +690,13 @@
                             <div id="drink_quality" style="display:none">
                                 <div id="action_planner_header">Drink Quality</div>
                                 <div class="tab4div5">
-                                    <div id="drinkquality" style="height:400px; width:400px; float:left;"></div>
+                                    <!--<div id="drinkquality" style="height:400px; width:400px; float:left;"></div>-->
+                                    <div style="width:100%;height:200px;float:left">
+                                        <div style="margin:5% auto; width:400px;height:150px;border-radius:30px;background-color:#D2532E;color:white;text-align:center; margin-top: 23%;">
+                                            <div style="margin:0px auto;vertical-align:middle; height:150px;width:90%;font-weight:bold; font-size:35px">Avg. Drink Quality Rating:  <br />{{DQG}} </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="tab4div4"> <div id="drinkQualityGraph"></div></div><br /><br />
@@ -769,7 +781,13 @@
                                     Food Quality
                                 </div>
                                 <div class="tab4div5">
-                                    <div id="foodquality" style="height:400px; width:400px; float:left;"></div>
+                                    <!--<div id="foodquality" style="height:400px; width:400px; float:left;"></div>-->
+                                    <div style="width:100%;height:200px;float:left">
+                                        <div style="margin:5% auto; width:400px;height:150px;border-radius:30px;background-color:#D2532E;color:white;text-align:center; margin-top: 23%;">
+                                            <div style="margin:0px auto;vertical-align:middle; height:150px;width:90%;font-weight:bold; font-size:35px">Avg. Food Quality Rating: <br />{{FQG}} </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="tab4div4"> <div id="foodQualityGraph"></div></div><br /><br />
@@ -851,7 +869,13 @@
                             <div id="service_quality" style="display:none">
                                 <div id="action_planner_header">Service Quality </div>
                                 <div class="tab4div5">
-                                    <div id="servicequality" style="height:400px; width:400px; float:left;"></div>
+                                    <!--<div id="servicequality" style="height:400px; width:400px; float:left;"></div>-->
+                                    <div style="width:100%;height:200px;float:left">
+                                        <div style="margin:5% auto; width:400px;height:150px;border-radius:30px;background-color:#D2532E;color:white;text-align:center; margin-top: 23%;">
+                                            <div style="margin:0px auto;vertical-align:middle; height:150px;width:90%;font-weight:bold; font-size:35px">Avg. Service Quality Rating:  <br />{{SQG}} </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="tab4div4"> <div id="serviceQualityGraph"></div></div><br />
                             </div>
@@ -861,20 +885,17 @@
 
                             <div id="promo_tions" style="display:none">
                                 <div id="action_planner_header">Promotions</div>
-                                <!--<div style="border:solid 1px white">
-                                    <ul class="nav nav-tabs" role="tablist">
-                                        <li data-toggle='tab' class="active"><a href="#1" aria-controls="1" role="tab" data-toggle="tab">Promo#1</a></li>
-                                        <li data-toggle='tab'><a href="#2" aria-controls="2" role="tab" data-toggle="tab">Promo#2</a></li>
-                                        <li data-toggle='tab'><a href="#3" aria-controls="3" role="tab" data-toggle="tab">Promo#3</a></li>
-
-                                    </ul>-->
-                                    <!--<div class="tab-content">
-                                        <div class="tab-pane fade in active" id="1">
-                                            <div>-->
+                               
                                                 <div style="margin-left:20%; margin-top:2%; width:60%; background-color:yellow; text-align:center; font-weight:bold; font-size:200%;">Buy One Get One Free</div>
 
-                                                <div class="tab4div5">
-                                                    <div id="promo1" style="height:400px; width:400px; float:left;"></div>
+                                                <div class="tab4div5" style="height:388px;">
+                                                    <!--<div id="promo1" style="height:400px; width:400px; float:left;"></div>-->
+                                                    <div style="width:100%;height:200px;float:left">
+                                                        <div style="margin:5% auto; width:400px;height:150px;border-radius:30px;background-color:#D2532E;color:white;text-align:center; margin-top: 23%;">
+                                                            <div style="margin:0px auto;vertical-align:middle; height:150px;width:90%;font-weight:bold; font-size:35px">Avg. Promotion Per Ticket:<br />{{PRG}} </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                                 <div class="tab4div4">
                                                     <div id="promotionGraph"></div><br />
@@ -891,7 +912,13 @@
                             <div id="cleanli_ness" style="display:none">
                                 <div id="action_planner_header">Cleanliness</div>
                                 <div class="tab4div5">
-                                    <div id="clean_li_ness" style="height:400px; width:400px; float:left;"></div>
+                                    <!--<div id="clean_li_ness" style="height:400px; width:400px; float:left;"></div>-->
+                                    <div style="width:100%;height:200px;float:left">
+                                        <div style="margin:5% auto; width:400px;height:150px;border-radius:30px;background-color:#D2532E;color:white;text-align:center; margin-top: 23%;">
+                                            <div style="margin:0px auto;vertical-align:middle; height:150px;width:90%;font-weight:bold; font-size:35px">Avg. Cleanliness Rating: <br />{{CLG}} </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="tab4div4"> <div id="cleanlinessGraph"></div></div><br /><br />
                             </div>
@@ -902,14 +929,20 @@
 
                                 <div id="action_planner_header">External Appearance</div>
                                 <div class="tab4div5">
-                                    <div id="external_appearance1" style="height:400px; width:400px; float:left;"></div>
+                                    <!--<div id="external_appearance1" style="height:400px; width:400px; float:left;"></div>-->
+                                    <div style="width:100%;height:200px;float:left">
+                                        <div style="margin:5% auto; width:400px;height:150px;border-radius:30px;background-color:#D2532E;color:white;text-align:center ; margin-top: 23%;">
+                                            <div style="margin:0px auto;vertical-align:middle; height:150px;width:90%;font-weight:bold; font-size:35px">Avg. Appearance Rating: <br />{{EAG}} </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="tab4div4"> <div id="appearanceGraph"></div></div><br /><br />
                             </div>
                         </div><!-- end tab_content -->
                     </div>
                 </div>
-            </div>
+            </div>jh
         </div>
 
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

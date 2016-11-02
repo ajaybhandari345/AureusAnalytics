@@ -28,6 +28,14 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             $scope.range = val;
     }
 
+    $scope.aggSale = 868483;
+    $scope.salesfromrepeat1 = 325735;
+    $scope.salesfromNew1 = 542748;
+    $scope.customercountNew = 12.85;
+    $scope.ticketsizedataNew = 42266;
+    $scope.customercountRepeat = 9.44;
+    $scope.ticketsizedataRepeat = 34553;
+
     var monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
     ];
@@ -109,7 +117,8 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             data: dbResObj
         }).then(function successCallback(response) {
             response.data.OutPutResults[0].waittime = response.data.OutPutResults[0].waittime.toFixed(2);
-            loadwaittimemeterGuage(response.data.OutPutResults[0].waittime)
+            $scope.WTG = response.data.OutPutResults[0].waittime;
+            //loadwaittimemeterGuage(response.data.OutPutResults[0].waittime)
             
         }, function errorCallback(response) {
 
@@ -167,7 +176,9 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             data: dbResObj
         }).then(function successCallback(response) {
             response.data.OutPutResults[0].newdrinkqual = response.data.OutPutResults[0].newdrinkqual.toFixed(2);
-            loaddrinkqualityGuage(response.data.OutPutResults[0].newdrinkqual)
+
+            $scope.DQG = response.data.OutPutResults[0].newdrinkqual;
+            //loaddrinkqualityGuage(response.data.OutPutResults[0].newdrinkqual)
         }, function errorCallback(response) {
 
         });
@@ -206,7 +217,8 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             data: dbResObj
         }).then(function successCallback(response) {
             response.data.OutPutResults[0].newfoodqual = response.data.OutPutResults[0].newfoodqual.toFixed(2);
-            loadfoodqualityGuage(response.data.OutPutResults[0].newfoodqual)
+            $scope.FQG = response.data.OutPutResults[0].newfoodqual;
+            //loadfoodqualityGuage(response.data.OutPutResults[0].newfoodqual)
         }, function errorCallback(response) {
 
         });
@@ -246,7 +258,8 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             data: dbResObj
         }).then(function successCallback(response) {
             response.data.OutPutResults[0].newservicequal = response.data.OutPutResults[0].newservicequal.toFixed(2);
-            loadservicequalityGauge(response.data.OutPutResults[0].newservicequal)
+            $scope.SQG = response.data.OutPutResults[0].newservicequal;
+            //loadservicequalityGauge(response.data.OutPutResults[0].newservicequal)
         }, function errorCallback(response) {
 
         });
@@ -286,7 +299,8 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             data: dbResObj
         }).then(function successCallback(response) {
             response.data.OutPutResults[0].newpromo = response.data.OutPutResults[0].newpromo.toFixed(2);
-            loadpromo1Gauge(response.data.OutPutResults[0].newpromo)
+            $scope.PRG = response.data.OutPutResults[0].newpromo;
+            //loadpromo1Gauge(response.data.OutPutResults[0].newpromo)
         }, function errorCallback(response) {
 
         });
@@ -326,7 +340,8 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             data: dbResObj
         }).then(function successCallback(response) {
             response.data.OutPutResults[0].newclean = response.data.OutPutResults[0].newclean.toFixed(2);
-            loadclean_li_nessGauge(response.data.OutPutResults[0].newclean)
+            $scope.CLG = response.data.OutPutResults[0].newclean;
+            //loadclean_li_nessGauge(response.data.OutPutResults[0].newclean)
         }, function errorCallback(response) {
 
         });
@@ -366,7 +381,8 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             data: dbResObj
         }).then(function successCallback(response) {
             response.data.OutPutResults[0].newapperance = response.data.OutPutResults[0].newapperance.toFixed(2);
-            loadexternal_appearanceGauge(response.data.OutPutResults[0].newapperance)
+            $scope.EAG = response.data.OutPutResults[0].newapperance;
+            //loadexternal_appearanceGauge(response.data.OutPutResults[0].newapperance)
         }, function errorCallback(response) {
 
         });
@@ -423,10 +439,12 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------
     $scope.getActionPlannerData = function () {
+        $scope.totalAggSale();
+        $scope.salesFromCustomer();
         $scope.getTicketsizeData();
         $scope.getCustomercountData();
        
-        $scope.totalAggSale();
+       
         $scope.WTT = waitTime;
         $scope.DQT = drinkQuality;
         $scope.FQT = foodQuality;
@@ -438,7 +456,8 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
     }
    
     $scope.totalAggSale = function () {
-        $scope.salesFromCustomer();
+       
+       
         $scope.aggSale = +$scope.salesfromrepeat1 + +$scope.salesfromNew1;
           
         if ($scope.aggSale < 868483) {
@@ -478,10 +497,7 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
                 $scope.salesfromrepeat1_change = (1 - ($scope.salesfromrepeat1 / 325735)) * 100;
                 $scope.salesfromrepeat1_negSign = "-";
             }
-            else if ($scope.salesfromrepeat1 == 325735) {
-                $scope.salesfromrepeat1_change = "";
-                $scope.salesfromrepeat1_negSign = "";
-            }
+           
             else {
                 $scope.salesfromrepeat1_change = (($scope.salesfromrepeat1 / 325735) - 1) * 100;
 
@@ -504,17 +520,17 @@ app.controller("mainController", ["$scope", "$http", "$filter", function ($scope
             $scope.salesfromNew = JSON.parse(response.data.OutPutResults).Results.output1.value.Values[0][0];
             $scope.salesfromNew1 = $scope.salesfromNew;
             
-            if ($scope.salesfromNew1 < 543748) {
+            if ($scope.salesfromNew1 < 542748) {
 
-                $scope.salesfromNew1_change = (1 - ($scope.salesfromNew1 / 543748)) * 100;
+                $scope.salesfromNew1_change = (1 - ($scope.salesfromNew1 / 542748)) * 100;
                 $scope.salesfromNew1_negSign = "-";
             }
-            else if ($scope.salesfromNew1 == 543748) {
+            else if ($scope.salesfromNew1 == 542748) {
                 $scope.salesfromNew1_change = "";
                 $scope.salesfromNew1_negSign = "";
             }
             else {
-                $scope.salesfromNew1_change = (($scope.salesfromNew1 / 543748) - 1) * 100;
+                $scope.salesfromNew1_change = (($scope.salesfromNew1 / 542748) - 1) * 100;
 
                 $scope.salesfromNew1_negSign = "";
             }

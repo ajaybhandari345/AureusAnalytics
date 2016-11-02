@@ -670,7 +670,7 @@ function promotionGraph(dataSource, type) {
     if (type == 'q') {
         var argmntField = "dayofweek";
         var minV = 0
-        var maxV = 5
+        var maxV = 4
 
     }
     if (type == 'd') {
@@ -738,7 +738,7 @@ function cleanlinessGraph(dataSource, type) {
     if (type == 'q') {
         var argmntField = "dayofweek";
         var minV = 0
-        var maxV = 5
+        var maxV = 4
 
     }
     if (type == 'd') {
